@@ -1,0 +1,6 @@
+module Pods_Zenspace {
+  umbrella header "Pods-Zenspace-umbrella.h"
+
+  export *
+  module * { export * }
+}
