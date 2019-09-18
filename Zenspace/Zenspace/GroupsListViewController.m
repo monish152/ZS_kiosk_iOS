@@ -148,7 +148,15 @@
                                     size:16];
         time.textColor = [UIColor colorWithRed:22.0/255.0 green:91.0/255.0 blue:254.0/255.0 alpha:1.0];
         time.textAlignment = NSTextAlignmentRight;
-        time.text = [NSString stringWithFormat:@"N/A", [[arrResults objectAtIndex:i] valueForKey:@"date_of_event__c"]];
+        
+        NSString *minimumPrice = [[arrResults objectAtIndex:i] valueForKey:@"minimum_pod_pricing__c"];
+        if (minimumPrice == nil || minimumPrice == (id)[NSNull null]) {
+            minimumPrice= @"N/A";
+        }else{
+            minimumPrice =  [NSString stringWithFormat:@"$%@/Hr", capacityStr];
+        }
+        time.text = minimumPrice;
+       
         [view addSubview:time];
         
         

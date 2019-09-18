@@ -258,7 +258,7 @@
         cell.title.font = [UIFont fontWithName:@"CircularStd-Bold"
                                           size:16];
         
-        cell.address.text =  [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:indexPath.row] valueForKey:@"pod_combined_location__c"]];
+        cell.address.text =  [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:indexPath.row] valueForKey:@"indoor_location__c"]];
         cell.address.font = [UIFont fontWithName:@"CircularStd-Book"
                                             size:14];
         

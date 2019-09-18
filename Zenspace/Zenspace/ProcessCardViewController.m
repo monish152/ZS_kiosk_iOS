@@ -449,12 +449,32 @@ typedef void(^commandCompletion)(NSString*);
     }
     if ([currentElement isEqualToString:@"a:TransactionID"]) {
         txtData.text = [txtData.text stringByAppendingString:[NSString stringWithFormat:@"\n\nTrasaction Id : %@",string]];
-         [self bookingApi:string];
-        
-        
-   
+        if (paymentApproved) {
+            [self bookingApi:string];
+        }
+        else{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Sorry..Payment not approved. Please try after some time." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+                [self.lib closeDevice];
+                [self.navigationController popViewControllerAnimated:YES];
+                // Ok action example
+            }];
+            
+            [alert addAction:okAction];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        }
         
     }
+    if ([currentElement isEqualToString:@"a:IsTransactionApproved"]) {
+        if ([string isEqualToString:@"true"]) {
+            paymentApproved = YES;
+        }
+        else{
+            paymentApproved = NO;
+        }
+    }
+    
     if ([currentElement isEqualToString:@"a:TransactionUTCTimestamp"]) {
         txtData.text = [txtData.text stringByAppendingString:[NSString stringWithFormat:@"\n\nTime : %@",string]];
     }

@@ -251,7 +251,11 @@
         
         ProcessCardViewController *vc = [[ProcessCardViewController alloc] initWithNibName:@"ProcessCardViewController" bundle:nil];
         CGFloat value = [_price floatValue] *100;
-        vc.transactionAmount = [NSString stringWithFormat:@"%.2f",value];
+        NSString *amount = [NSString stringWithFormat:@"%f",value];
+        NSInteger i = [amount integerValue];
+        amount = [NSString stringWithFormat:@"%ld", (long)i];
+        // you got your string
+        vc.transactionAmount =amount ;
         vc.sfid = _sfid;
         vc.podName = self->_podName;
         vc.date = self->_date;

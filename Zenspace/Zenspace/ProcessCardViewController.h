@@ -43,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     
     NSString *transactionid;
+    BOOL paymentApproved;
     
 }
 @property (nonatomic, strong) MTSCRA* lib;
