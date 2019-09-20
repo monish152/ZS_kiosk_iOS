@@ -12,10 +12,11 @@
 #import "GlobalKeyViewController.h"
 #import "CalenderViewController.h"
 #import "ScreensaverViewController.h"
+#import <Stripe/Stripe.h>
 
 
-#define KBASEPATH @"https://zenspace-production.herokuapp.com/"
-//#define KBASEPATH @"https://zensapce-staging.herokuapp.com/"
+//#define KBASEPATH @"https://zenspace-production.herokuapp.com/"
+#define KBASEPATH @"https://zensapce-staging.herokuapp.com/"
 
 @import Firebase;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

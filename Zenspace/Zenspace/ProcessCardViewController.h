@@ -45,6 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
     NSString *transactionid;
     BOOL paymentApproved;
     
+    NSString *megPrint;
+    NSString *track1;
+    NSString *track2;
+    
 }
 @property (nonatomic, strong) MTSCRA* lib;
 @property (nonatomic,retain)NSString *transactionAmount;

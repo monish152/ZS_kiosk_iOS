@@ -16,6 +16,8 @@
 		D20636AC22F2D9020001DE6C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20636AB22F2D9010001DE6C /* AVFoundation.framework */; };
 		D20636AE22F2D9250001DE6C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20636AD22F2D9250001DE6C /* AudioToolbox.framework */; };
 		D20636B022F2D94A0001DE6C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20636AF22F2D94A0001DE6C /* CoreBluetooth.framework */; };
+		D2187F6823340A2100D163A4 /* StripePaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2187F6623340A2100D163A4 /* StripePaymentViewController.m */; };
+		D2187F6923340A2100D163A4 /* StripePaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2187F6723340A2100D163A4 /* StripePaymentViewController.xib */; };
 		D21A6C672302F22300827195 /* BookingSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A6C652302F22300827195 /* BookingSummaryViewController.m */; };
 		D21A6C682302F22300827195 /* BookingSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21A6C662302F22300827195 /* BookingSummaryViewController.xib */; };
 		D220F6D122DC472E005D8457 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D220F6D022DC472E005D8457 /* AppDelegate.m */; };
@@ -150,6 +152,9 @@
 		D20636AB22F2D9010001DE6C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D20636AD22F2D9250001DE6C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D20636AF22F2D94A0001DE6C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		D2187F6523340A2100D163A4 /* StripePaymentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripePaymentViewController.h; sourceTree = "<group>"; };
+		D2187F6623340A2100D163A4 /* StripePaymentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripePaymentViewController.m; sourceTree = "<group>"; };
+		D2187F6723340A2100D163A4 /* StripePaymentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StripePaymentViewController.xib; sourceTree = "<group>"; };
 		D21A6C642302F22300827195 /* BookingSummaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookingSummaryViewController.h; sourceTree = "<group>"; };
 		D21A6C652302F22300827195 /* BookingSummaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookingSummaryViewController.m; sourceTree = "<group>"; };
 		D21A6C662302F22300827195 /* BookingSummaryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingSummaryViewController.xib; sourceTree = "<group>"; };
@@ -421,6 +426,9 @@
 				D21A6C642302F22300827195 /* BookingSummaryViewController.h */,
 				D21A6C652302F22300827195 /* BookingSummaryViewController.m */,
 				D21A6C662302F22300827195 /* BookingSummaryViewController.xib */,
+				D2187F6523340A2100D163A4 /* StripePaymentViewController.h */,
+				D2187F6623340A2100D163A4 /* StripePaymentViewController.m */,
+				D2187F6723340A2100D163A4 /* StripePaymentViewController.xib */,
 				D292130022F441D300E690ED /* ProcessCardViewController.h */,
 				D292130122F441D300E690ED /* ProcessCardViewController.m */,
 				D292130222F441D300E690ED /* ProcessCardViewController.xib */,
@@ -668,6 +676,7 @@
 				D220F6C922DC472D005D8457 /* Frameworks */,
 				D220F6CA22DC472D005D8457 /* Resources */,
 				D25EB5CF2313F1B700B0C65A /* ShellScript */,
+				E9BB02E8F11808F9830CF083 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -798,6 +807,7 @@
 				D2F1A9B822F1A499008989B7 /* setting.png in Resources */,
 				D2B8C86023013BA80010FA2E /* CircularStd-BookItalic.otf in Resources */,
 				D2B8C88723017EA10010FA2E /* group@3x.png in Resources */,
+				D2187F6923340A2100D163A4 /* StripePaymentViewController.xib in Resources */,
 				D2B8C85923013A1A0010FA2E /* mask@2x.png in Resources */,
 				D2F1A9A922F0566D008989B7 /* minus.png in Resources */,
 				D2B8C877230149CC0010FA2E /* delete.png in Resources */,
@@ -884,6 +894,30 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n\n";
 		};
+		E9BB02E8F11808F9830CF083 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zenspace/Pods-Zenspace-resources.sh",
+				"${PODS_ROOT}/Phone-Country-Code-and-Flags/Phone-Country-Code-and-Flags.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Phone-Country-Code-and-Flags.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zenspace/Pods-Zenspace-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -919,6 +953,7 @@
 				D220F7EC22DDC069005D8457 /* FSCalendarDelegationFactory.m in Sources */,
 				D220F7E322DDC069005D8457 /* FSCalendarExtensions.m in Sources */,
 				D2A273A9231D373800E08EF2 /* PCCPViewController.m in Sources */,
+				D2187F6823340A2100D163A4 /* StripePaymentViewController.m in Sources */,
 				D23C5ABA230BCBA2000B0494 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				D220F7E022DDC069005D8457 /* FSCalendarSeparatorDecorationView.m in Sources */,
 				D220F6D122DC472E005D8457 /* AppDelegate.m in Sources */,

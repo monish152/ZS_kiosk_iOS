@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+     [Stripe setDefaultPublishableKey:@"pk_live_CEKEZh124pleOeee47rAXnGB"];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];

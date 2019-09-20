@@ -16,12 +16,13 @@
 #import "ProcessCardViewController.h"
 #import "BookingConfirmationViewController.h"
 #import "PCCPViewController.h"
-
+#import "StripePaymentViewController.h"
+#import <Stripe/Stripe.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BookingSummaryViewController : UIViewController<GlobalKeyViewControllerDelegate>{
+@interface BookingSummaryViewController : UIViewController<GlobalKeyViewControllerDelegate,STPPaymentCardTextFieldDelegate,STPAddCardViewControllerDelegate>{
     IBOutlet UILabel *title1;
     IBOutlet UILabel *title2;
     IBOutlet UIButton *submit;

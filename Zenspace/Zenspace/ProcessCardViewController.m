@@ -171,21 +171,21 @@ typedef void(^commandCompletion)(NSString*);
     
     NSString *amountStr = _transactionAmount;
 //    NSString *amountStr = @"25";
-    NSString *custCode = @"QC16736815";
-    NSString *userName = @"MAG190709002";
-    NSString *password = @"Md!kgW#V@zBu5A";
+//    NSString *custCode = @"QC16736815";
+//    NSString *userName = @"MAG190709002";
+//    NSString *password = @"Md!kgW#V@zBu5A";
     NSString *soapMessage;
-    NSString *processorName = @"Rapid Connect v3 - Pilot";
+//    NSString *processorName = @"Rapid Connect v3 - Pilot";
     NSString *transactionIdStr = @"1231232";
     
-//    encryptionType = @"80";
+    encryptionType = @"80";
     
     
     //production
-    //    NSString *custCode = @"QF20436257";
-    //    NSString *userName = @"MAG190911002";
-    //    NSString *password = @"ryQbhRu!e@6#Z3";
-    //    NSString *processorName = @"Rapid Connect v3 - Production";
+        NSString *custCode = @"QF20436257";
+        NSString *userName = @"MAG190911002";
+        NSString *password = @"ryQbhRu!e@6#Z3";
+        NSString *processorName = @"Rapid Connect v3 - Production";
     
    
     
@@ -204,9 +204,9 @@ typedef void(^commandCompletion)(NSString*);
                    "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
     "<soapenv:Header/>\n"
     "<soapenv:Body>\n"
-    "<mpp:ProcessEMVSRED>\n"
-    "<mpp:ProcessEMVSREDRequests>\n"
-    "<mpp1:ProcessEMVSREDRequest>\n"
+    "<mpp:ProcessCardSwipe>\n"
+    "<mpp:ProcessCardSwipeRequests>\n"
+    "<mpp1:ProcessCardSwipeRequest>\n"
     "<mpp1:AdditionalRequestData>\n"
     "<sys:KeyValuePairOfstringstring>\n"
     "<sys:key/>\n"
@@ -241,9 +241,9 @@ typedef void(^commandCompletion)(NSString*);
     "</mpp1:TransactionInputDetails>\n"
     "<mpp1:TransactionType>SALE</mpp1:TransactionType>\n"
     "</mpp1:TransactionInput>\n"
-    "</mpp1:ProcessEMVSREDRequest>\n"
-    "</mpp:ProcessEMVSREDRequests>\n"
-    "</mpp:ProcessEMVSRED>\n"
+    "</mpp1:ProcessCardSwipeRequest>\n"
+    "</mpp:ProcessCardSwipeRequest>\n"
+    "</mpp:ProcessCardSwipe>\n"
     "</soapenv:Body>\n"
                    "</soapenv:Envelope>\n",custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,amountStr,processorName];
     
@@ -326,14 +326,17 @@ typedef void(^commandCompletion)(NSString*);
 //                   "</soapenv:Body>\n"
 //                   "</soapenv:Envelope>\n",custCode,password,userName,string,encryptionType,ksnStr,paddedBytes,processorName,custCode,password,userName,string,encryptionType,ksnStr,paddedBytes,amountStr,processorName];
     
-    [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessEMVSRED" forHTTPHeaderField:@"SOAPAction"];
+    [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessCardSwipe" forHTTPHeaderField:@"SOAPAction"];
     
     
-    NSLog(@"Soap Request : %@",soapMessage);
+    
     
     
     ///Card Swipe
-    /*
+    
+    
+    
+    
      soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
      "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
      "<soapenv:Header/>\n"
@@ -356,18 +359,18 @@ typedef void(^commandCompletion)(NSString*);
      "<mpp1:CardSwipeInput>\n"
      "<mpp1:EncryptedCardSwipe>\n"
      "<mpp1:DeviceSN>B39B81F031417AA</mpp1:DeviceSN>\n"
-     "<mpp1:KSN>9011880B39B81F000001</mpp1:KSN>\n"
-     "<mpp1:MagnePrint>B23E26494E64EBC00E39AA1E33BF7B4ADEBB8F6463D76325B92003BCDAEA98979A442040B2E1AC8D8CC79C4BE11B7AD89B1E95D01F4EB2C4E2D30621CA926EEC202773B618FBF07F1CC5DFCD16DCA8041A22054EC27EA2057C572662AB32BBDE9ABD92694E0C5D9BCE9B3351AF57D14D79CDF8E45F640B8D</mpp1:MagnePrint>\n"
+     "<mpp1:KSN>%@</mpp1:KSN>\n"
+     "<mpp1:MagnePrint>%@</mpp1:MagnePrint>\n"
      "<mpp1:MagnePrintStatus>304061</mpp1:MagnePrintStatus>\n"
-     "<mpp1:Track1>B23E26494E64EBC00E39AA1E33BF7B4ADEBB8F6463D76325B92003BCDAEA98979A442040B2E1AC8D8CC79C4BE11B7AD89B1E95D01F4EB2C4E2D30621CA926EEC202773B618FBF07F1CC5DFCD16DCA804</mpp1:Track1>\n"
-     "<mpp1:Track2>1A22054EC27EA2057C572662AB32BBDE9ABD92694E0C5D9BCE9B3351AF57D14D79CDF8E45F640B8D</mpp1:Track2>\n"
+     "<mpp1:Track1>%@</mpp1:Track1>\n"
+     "<mpp1:Track2>%@</mpp1:Track2>\n"
      "<mpp1:Track3></mpp1:Track3>\n"
      "</mpp1:EncryptedCardSwipe>\n"
      "</mpp1:CardSwipeInput>\n"
      "<mpp1:CustomerTransactionID>GlobalPay</mpp1:CustomerTransactionID>\n"
      "<mpp1:TransactionInput>\n"
      "<mpp1:Amount>%@</mpp1:Amount>\n"
-     "<mpp1:ProcessorName>Rapid Connect v3 - Pilot</mpp1:ProcessorName>\n"
+     "<mpp1:ProcessorName>%@</mpp1:ProcessorName>\n"
      "<mpp1:TransactionInputDetails>\n"
      "<!--Zero or more repetitions:-->\n"
      "<sys:KeyValuePairOfstringstring>\n"
@@ -381,12 +384,13 @@ typedef void(^commandCompletion)(NSString*);
      "</mpp:ProcessCardSwipeRequests>\n"
      "</mpp:ProcessCardSwipe>\n"
      "</soapenv:Body>\n"
-     "</soapenv:Envelope>\n",custCode,password,userName,amountStr];
+     "</soapenv:Envelope>\n",custCode,password,userName,ksnStr,megPrint,track1,track2,amountStr,processorName];
      
-     
+    
+    NSLog(@"Soap Request : %@",soapMessage);
      [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessCardSwipe" forHTTPHeaderField:@"SOAPAction"];
      
-     */
+    
     
     
     
@@ -1244,6 +1248,12 @@ typedef void(^commandCompletion)(NSString*);
                 self->encryptionType = [(MTTLV*)[tlv objectForKey:@"DFDF55"] value];
                 self->paddedBytes = [(MTTLV*)[tlv objectForKey:@"DFDF58"] value];
                 
+                self->megPrint =  [self.lib getMagnePrint];
+                self->track1 =  [self.lib getTrack1];
+                self->track2 =  [self.lib getTrack2];
+               
+                
+                
                 NSString *datastr = [(MTTLV*)[tlv objectForKey:@"DFDF59"] value];
                 
                 if ([self->cardPaymentStatus isEqualToString:@"APPROVED"]) {
@@ -1251,7 +1261,7 @@ typedef void(^commandCompletion)(NSString*);
                         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                     });
                     [self.lib closeDevice];
-                    [self apiConnect:datastr];
+                    [self apiConnect:dataString];
                 }
             }
             

@@ -74,6 +74,7 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - Stripe (11.5.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - KissXML (~> 5.0)
   - Phone-Country-Code-and-Flags
   - SDWebImage (~> 3.8)
+  - Stripe
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -99,6 +101,7 @@ SPEC REPOS:
     - nanopb
     - Phone-Country-Code-and-Flags
     - SDWebImage
+    - Stripe
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -114,7 +117,8 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Phone-Country-Code-and-Flags: 19b303483d6e14091a1e3a404ec2aac8f08a985c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  Stripe: 10761682d20dc491c52287393c800db056c9748d
 
-PODFILE CHECKSUM: d44e09f69dd42114209e6ea9cb303f30143462e2
+PODFILE CHECKSUM: 311a1943262ea14e7307b0ee3691fb46b6d860c1
 
 COCOAPODS: 1.6.1
