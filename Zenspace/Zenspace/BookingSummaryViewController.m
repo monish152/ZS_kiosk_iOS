@@ -250,14 +250,14 @@
             number = [NSString stringWithFormat:@"+%@%@",countrycodeStr,phone.text];
         }
         
-        STPAddCardViewController *addCardViewController = [[STPAddCardViewController alloc] init];
-        addCardViewController.delegate = self;
+//        STPAddCardViewController *addCardViewController = [[STPAddCardViewController alloc] init];
+//        addCardViewController.delegate = self;
+//
+//
+//        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addCardViewController];
+//        [self presentViewController:navigationController animated:YES completion:nil];
         
-    
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addCardViewController];
-        [self presentViewController:navigationController animated:YES completion:nil];
-        
-        /*
+      
         StripePaymentViewController *vc = [[StripePaymentViewController alloc] initWithNibName:@"StripePaymentViewController" bundle:nil];
 //        CGFloat value = [_price floatValue] *100;
 //        NSString *amount = [NSString stringWithFormat:@"%f",value];
@@ -276,7 +276,7 @@
         vc.phoneNumber = number;
         vc.name = name.text;
         [self.navigationController pushViewController:vc animated:YES];
-        */
+   
         /*
         ProcessCardViewController *vc = [[ProcessCardViewController alloc] initWithNibName:@"ProcessCardViewController" bundle:nil];
         CGFloat value = [_price floatValue] *100;

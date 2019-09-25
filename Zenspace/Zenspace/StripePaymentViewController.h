@@ -10,9 +10,14 @@
 #import <Stripe/Stripe.h>
 #import "MBProgressHUD.h"
 #import "BookingConfirmationViewController.h"
+#import "BKCardNumberField.h"
+#import "BKCardExpiryField.h"
+#import "CardIO.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface StripePaymentViewController : UIViewController<STPPaymentCardTextFieldDelegate,STPAddCardViewControllerDelegate>{
+@interface StripePaymentViewController : UIViewController<UITextFieldDelegate,CardIOPaymentViewControllerDelegate>{
+    IBOutlet UIButton *submit;
+    IBOutlet UIButton *scanCard;
 }
 
 @property(nonatomic,retain)NSString *podName;
@@ -26,6 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,retain)NSString *name;
 @property(nonatomic,retain)NSString *phoneNumber;
 @property (nonatomic,retain)NSString *transactionAmount;
+
+@property (weak, nonatomic) IBOutlet BKCardExpiryField *cardExpiryField;
+@property (weak, nonatomic) IBOutlet BKCardNumberField *cardNumberField;
+@property (weak, nonatomic) IBOutlet UITextField *cvcField;
+@property (weak, nonatomic) IBOutlet UITextField *cardHolderName;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

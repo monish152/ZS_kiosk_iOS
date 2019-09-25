@@ -22,10 +22,13 @@
 - (void)viewDidLoad {
     EventsListViewController *vc = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:NO];
-//    
+//
 //        BookingSummaryViewController *vc = [[BookingSummaryViewController alloc] initWithNibName:@"BookingSummaryViewController" bundle:nil];
 //        vc.price = @"10";
 //        [self.navigationController pushViewController:vc animated:NO];
+    
+//    StripePaymentViewController *vc = [[StripePaymentViewController alloc] initWithNibName:@"StripePaymentViewController" bundle:nil];
+//    [self.navigationController pushViewController:vc animated:NO];
     
     
     [super viewDidLoad];

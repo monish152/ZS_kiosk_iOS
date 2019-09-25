@@ -97,7 +97,7 @@
                placeholderImage:[UIImage imageNamed:@""]];
         
         UILabel *eventName = [[UILabel alloc]init];
-        eventName.frame = CGRectMake(29, 201, 150, 20);
+        eventName.frame = CGRectMake(29, 201, 270, 20);
         eventName.font = [UIFont fontWithName:@"CircularStd-Bold"
                                          size:16];
         eventName.textColor = [UIColor blackColor];

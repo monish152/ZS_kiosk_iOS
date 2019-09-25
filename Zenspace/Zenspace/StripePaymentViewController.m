@@ -20,33 +20,77 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.paymentCardTextField = [[STPPaymentCardTextField alloc] init];
-//    self.paymentCardTextField.delegate = self;
-//
-//    // Add payment card text field to view
-//    [self.view addSubview:self.paymentCardTextField];
+    self.cardNumberField.showsCardLogo = YES;
+    self.cardNumberField.font = [UIFont fontWithName:@"CircularStd-Book"
+                                        size:16];
+    self.cardExpiryField.font = [UIFont fontWithName:@"CircularStd-Book"
+                                        size:16];
+    _cvcField.font = [UIFont fontWithName:@"CircularStd-Book"
+                                        size:16];
+    _cardHolderName.font = [UIFont fontWithName:@"CircularStd-Book"
+                                     size:16];
     
-    // Setup customer context
-    STPAddCardViewController *addCardViewController = [[STPAddCardViewController alloc] init];
-    addCardViewController.delegate = self;
+    [self.cardNumberField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
+    [self.cardExpiryField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
+   
     
-    // Present add card view controller
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addCardViewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
-    // Do any additional setup after loading the view from its nib.
+    [self.cardNumberField becomeFirstResponder];
+    
 }
-#pragma mark STPPaymentCardTextFieldDelegate
-
-#pragma mark STPAddCardViewControllerDelegate
-
-- (void)addCardViewControllerDidCancel:(STPAddCardViewController *)addCardViewController {
-    // Dismiss add card view controller
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [CardIOUtilities preloadCardIO];
 }
--(void)addCardViewController:(STPAddCardViewController *)addCardViewController didCreateToken:(STPToken *)token completion:(STPErrorBlock)completion{
-    [self bookingApi:token.tokenId];
+- (void)textFieldEditingChanged:(id)sender
+{
+    if (sender == self.cardNumberField) {
+        
+        NSString *cardCompany = self.cardNumberField.cardCompanyName;
+        if (nil == cardCompany) {
+            cardCompany = @"unknown";
+        }
+        
+        
+    } 
 }
 
+
+-(IBAction)backBtnPress:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(IBAction)submitBtnPress:(id)sender{
+    NSDateComponents *dateComp = self.cardExpiryField.dateComponents;
+    STPCardParams *cardParams = [[STPCardParams alloc] init];
+    cardParams.number = self.cardNumberField.cardNumber;
+    cardParams.expMonth = dateComp.month;
+    cardParams.expYear = dateComp.year;
+    cardParams.cvc = _cvcField.text;
+    cardParams.name = _cardHolderName.text;
+    
+    [[STPAPIClient sharedClient] createTokenWithCard:cardParams completion:^(STPToken *token, NSError *error) {
+        if (token == nil || error != nil) {
+            // Present error to user...
+            NSString *errorDescription = [error.userInfo valueForKey:NSLocalizedDescriptionKey];
+            NSLog(@"%@",errorDescription);
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self dismissViewControllerAnimated:NO completion:nil];
+           
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:errorDescription preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+                
+            }];
+            
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            NSLog(@"Error: %@", error);
+            return;
+        }
+       
+        NSLog(@"token.tokenId :: %@",token.tokenId);
+         [self bookingApi:token.tokenId];
+        
+    }];
+}
 -(void)bookingApi:(NSString *)transactionID{
     //    return;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -63,6 +107,7 @@
     
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
     
+    
     NSDictionary *params = @{@"startdate":_date,
                              @"duration":[NSNumber numberWithInteger:_duration],
                              @"capacity":[NSNumber numberWithInteger:_capacity],
@@ -76,18 +121,6 @@
                              };
     
     NSLog(@"Stripe api parameter : %@",params);
-    
-    //    NSDictionary *params = @{@"startdate":_date,
-    //                             @"duration":[NSNumber numberWithInteger:_duration],
-    //                             @"capacity":[NSNumber numberWithInteger:_capacity],
-    //                             @"stripe_source":@"",
-    //                             @"email":_email,
-    //                             @"amount_due":[NSNumber numberWithInteger:[_price integerValue]],
-    //                             @"save_card":[NSNumber numberWithInteger:0],
-    //                             @"magtek_transaction_id" :@"",
-    //                             @"phonenumber" :number,
-    //                             @"name" :name.text
-    //                             };
     
     [manager POST:URL.absoluteString parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -119,29 +152,45 @@
     }];
     
 }
-//- (void)addCardViewController:(STPAddCardViewController *)addCardViewController didCreatePaymentMethod:(STPPaymentMethod *)paymentMethod completion:(STPErrorBlock)completion {
-////    [self submitPaymentMethodToBackend:paymentMethod completion:^(NSError *error) {
-////        if (error) {
-////            // Show error in add card view controller
-////            completion(error);
-////        }
-////        else {
-////            // Notify add card view controller that token creation was handled successfully
-////            completion(nil);
-////
-////            // Dismiss add card view controller
-////            [self dismissViewControllerAnimated:YES completion:nil];
-////        }
-////    }];
-//}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == _cvcField) {
+        if (textField.text.length >= 3 && range.length == 0)
+        {
+            [_cardHolderName becomeFirstResponder];
+            return NO; // return NO to not change text
+        }
+    }
+    
+   
+    if (self.cardNumberField.cardNumber.length >10 && _cvcField.text.length == 3 && self.cardExpiryField.text.length ==7 && _cardHolderName.text.length >= 3) {
+        submit.enabled = YES;
+        submit.alpha = 1.0;
+    }
+    else{
+        submit.enabled = NO;
+        submit.alpha = 0.5;
+    }
+    return YES;
 }
-*/
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+}
+- (IBAction)scanCard:(id)sender {
+    CardIOPaymentViewController *scanViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+    [self presentViewController:scanViewController animated:YES completion:nil];
+}
 
+- (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)scanViewController {
+    NSLog(@"User canceled payment info");
+    // Handle user cancellation here...
+    [scanViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)scanViewController {
+    // The full card number is available as info.cardNumber, but don't log that!
+    NSLog(@"Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv);
+    // Use the card info...
+    [scanViewController dismissViewControllerAnimated:YES completion:nil];
+}
 @end

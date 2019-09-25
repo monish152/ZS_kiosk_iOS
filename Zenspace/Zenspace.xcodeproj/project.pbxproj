@@ -122,6 +122,25 @@
 		D2F1A9BA22F1A862008989B7 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A9B922F1A862008989B7 /* logo.png */; };
 		D2F1A9BC22F1A869008989B7 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A9BB22F1A869008989B7 /* circle.png */; };
 		D2F1A9BE22F1A894008989B7 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A9BD22F1A894008989B7 /* backBtn.png */; };
+		D2F6CF52233A0EF60061CDA7 /* BKCardNumberField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F6CF43233A0EF60061CDA7 /* BKCardNumberField.m */; };
+		D2F6CF53233A0EF60061CDA7 /* BKCardNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F6CF44233A0EF60061CDA7 /* BKCardNumberFormatter.m */; };
+		D2F6CF54233A0EF60061CDA7 /* BKForwardingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F6CF45233A0EF60061CDA7 /* BKForwardingTextField.m */; };
+		D2F6CF55233A0EF60061CDA7 /* BKCardNumberLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F6CF46233A0EF60061CDA7 /* BKCardNumberLabel.m */; };
+		D2F6CF56233A0EF60061CDA7 /* BKMoneyKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2F6CF49233A0EF60061CDA7 /* BKMoneyKit.bundle */; };
+		D2F6CF57233A0EF60061CDA7 /* BKCardExpiryField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F6CF4B233A0EF60061CDA7 /* BKCardExpiryField.m */; };
+		D2F6CF58233A0EF60061CDA7 /* BKCardPatternInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F6CF4C233A0EF60061CDA7 /* BKCardPatternInfo.m */; };
+		D2F6CF59233A0EF60061CDA7 /* BKMoneyUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F6CF4F233A0EF60061CDA7 /* BKMoneyUtils.m */; };
+		D2F6CF5A233A0EF60061CDA7 /* BKCurrencyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F6CF50233A0EF60061CDA7 /* BKCurrencyTextField.m */; };
+		D2F6CF5C233A34D70061CDA7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF5B233A34D70061CDA7 /* Accelerate.framework */; };
+		D2F6CF5E233A34F70061CDA7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF5D233A34F70061CDA7 /* CoreGraphics.framework */; };
+		D2F6CF60233A34FF0061CDA7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF5F233A34FF0061CDA7 /* CoreMedia.framework */; };
+		D2F6CF62233A35050061CDA7 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF61233A35050061CDA7 /* CoreVideo.framework */; };
+		D2F6CF64233A350C0061CDA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF63233A350C0061CDA7 /* Foundation.framework */; };
+		D2F6CF66233A35120061CDA7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF65233A35120061CDA7 /* MobileCoreServices.framework */; };
+		D2F6CF68233A35170061CDA7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF67233A35170061CDA7 /* OpenGLES.framework */; };
+		D2F6CF6A233A351C0061CDA7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF69233A351C0061CDA7 /* QuartzCore.framework */; };
+		D2F6CF6C233A35230061CDA7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF6B233A35230061CDA7 /* Security.framework */; };
+		D2F6CF6E233A35290061CDA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF6D233A35280061CDA7 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -306,6 +325,33 @@
 		D2F1A9B922F1A862008989B7 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		D2F1A9BB22F1A869008989B7 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		D2F1A9BD22F1A894008989B7 /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
+		D2F6CF41233A0EF60061CDA7 /* BKCardPatternInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCardPatternInfo.h; sourceTree = "<group>"; };
+		D2F6CF42233A0EF60061CDA7 /* BKCardExpiryField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCardExpiryField.h; sourceTree = "<group>"; };
+		D2F6CF43233A0EF60061CDA7 /* BKCardNumberField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKCardNumberField.m; sourceTree = "<group>"; };
+		D2F6CF44233A0EF60061CDA7 /* BKCardNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKCardNumberFormatter.m; sourceTree = "<group>"; };
+		D2F6CF45233A0EF60061CDA7 /* BKForwardingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKForwardingTextField.m; sourceTree = "<group>"; };
+		D2F6CF46233A0EF60061CDA7 /* BKCardNumberLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKCardNumberLabel.m; sourceTree = "<group>"; };
+		D2F6CF47233A0EF60061CDA7 /* BKCurrencyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCurrencyTextField.h; sourceTree = "<group>"; };
+		D2F6CF48233A0EF60061CDA7 /* BKMoneyUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMoneyUtils.h; sourceTree = "<group>"; };
+		D2F6CF49233A0EF60061CDA7 /* BKMoneyKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BKMoneyKit.bundle; sourceTree = "<group>"; };
+		D2F6CF4A233A0EF60061CDA7 /* BKCardNumberField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCardNumberField.h; sourceTree = "<group>"; };
+		D2F6CF4B233A0EF60061CDA7 /* BKCardExpiryField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKCardExpiryField.m; sourceTree = "<group>"; };
+		D2F6CF4C233A0EF60061CDA7 /* BKCardPatternInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKCardPatternInfo.m; sourceTree = "<group>"; };
+		D2F6CF4D233A0EF60061CDA7 /* BKForwardingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKForwardingTextField.h; sourceTree = "<group>"; };
+		D2F6CF4E233A0EF60061CDA7 /* BKCardNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCardNumberFormatter.h; sourceTree = "<group>"; };
+		D2F6CF4F233A0EF60061CDA7 /* BKMoneyUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKMoneyUtils.m; sourceTree = "<group>"; };
+		D2F6CF50233A0EF60061CDA7 /* BKCurrencyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKCurrencyTextField.m; sourceTree = "<group>"; };
+		D2F6CF51233A0EF60061CDA7 /* BKCardNumberLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCardNumberLabel.h; sourceTree = "<group>"; };
+		D2F6CF5B233A34D70061CDA7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		D2F6CF5D233A34F70061CDA7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D2F6CF5F233A34FF0061CDA7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D2F6CF61233A35050061CDA7 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		D2F6CF63233A350C0061CDA7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2F6CF65233A35120061CDA7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D2F6CF67233A35170061CDA7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D2F6CF69233A351C0061CDA7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D2F6CF6B233A35230061CDA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D2F6CF6D233A35280061CDA7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,8 +359,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D20636B022F2D94A0001DE6C /* CoreBluetooth.framework in Frameworks */,
+				D2F6CF6E233A35290061CDA7 /* UIKit.framework in Frameworks */,
+				D2F6CF6C233A35230061CDA7 /* Security.framework in Frameworks */,
+				D2F6CF6A233A351C0061CDA7 /* QuartzCore.framework in Frameworks */,
+				D2F6CF68233A35170061CDA7 /* OpenGLES.framework in Frameworks */,
+				D2F6CF66233A35120061CDA7 /* MobileCoreServices.framework in Frameworks */,
+				D2F6CF64233A350C0061CDA7 /* Foundation.framework in Frameworks */,
+				D2F6CF62233A35050061CDA7 /* CoreVideo.framework in Frameworks */,
+				D2F6CF60233A34FF0061CDA7 /* CoreMedia.framework in Frameworks */,
+				D2F6CF5E233A34F70061CDA7 /* CoreGraphics.framework in Frameworks */,
 				D20636AE22F2D9250001DE6C /* AudioToolbox.framework in Frameworks */,
+				D2F6CF5C233A34D70061CDA7 /* Accelerate.framework in Frameworks */,
+				D20636B022F2D94A0001DE6C /* CoreBluetooth.framework in Frameworks */,
 				D20636AC22F2D9020001DE6C /* AVFoundation.framework in Frameworks */,
 				D20636A522F2CFDA0001DE6C /* libMTSCRA.a in Frameworks */,
 				D20636AA22F2D1C80001DE6C /* libstdc++.dylib in Frameworks */,
@@ -345,6 +401,16 @@
 		C6263D76D9DEBE7CDCB89B7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2F6CF6D233A35280061CDA7 /* UIKit.framework */,
+				D2F6CF6B233A35230061CDA7 /* Security.framework */,
+				D2F6CF69233A351C0061CDA7 /* QuartzCore.framework */,
+				D2F6CF67233A35170061CDA7 /* OpenGLES.framework */,
+				D2F6CF65233A35120061CDA7 /* MobileCoreServices.framework */,
+				D2F6CF63233A350C0061CDA7 /* Foundation.framework */,
+				D2F6CF61233A35050061CDA7 /* CoreVideo.framework */,
+				D2F6CF5F233A34FF0061CDA7 /* CoreMedia.framework */,
+				D2F6CF5D233A34F70061CDA7 /* CoreGraphics.framework */,
+				D2F6CF5B233A34D70061CDA7 /* Accelerate.framework */,
 				D2A27371231D195100E08EF2 /* libFlagPhoneNumber.a */,
 				D20636AF22F2D94A0001DE6C /* CoreBluetooth.framework */,
 				D20636AD22F2D9250001DE6C /* AudioToolbox.framework */,
@@ -391,6 +457,8 @@
 		D220F6CE22DC472D005D8457 /* Zenspace */ = {
 			isa = PBXGroup;
 			children = (
+				D2F6CF40233A0EF60061CDA7 /* BKMoneyKit */,
+				D2F6CF3F233A0ED40061CDA7 /* New Group */,
 				D2A273A7231D373100E08EF2 /* PCCPViewController.h */,
 				D2A273A8231D373800E08EF2 /* PCCPViewController.m */,
 				D23C5AAF230BCB8F000B0494 /* KeyboardAvoiding */,
@@ -655,6 +723,37 @@
 			path = "icons-search_2019-07-30";
 			sourceTree = "<group>";
 		};
+		D2F6CF3F233A0ED40061CDA7 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		D2F6CF40233A0EF60061CDA7 /* BKMoneyKit */ = {
+			isa = PBXGroup;
+			children = (
+				D2F6CF41233A0EF60061CDA7 /* BKCardPatternInfo.h */,
+				D2F6CF42233A0EF60061CDA7 /* BKCardExpiryField.h */,
+				D2F6CF43233A0EF60061CDA7 /* BKCardNumberField.m */,
+				D2F6CF44233A0EF60061CDA7 /* BKCardNumberFormatter.m */,
+				D2F6CF45233A0EF60061CDA7 /* BKForwardingTextField.m */,
+				D2F6CF46233A0EF60061CDA7 /* BKCardNumberLabel.m */,
+				D2F6CF47233A0EF60061CDA7 /* BKCurrencyTextField.h */,
+				D2F6CF48233A0EF60061CDA7 /* BKMoneyUtils.h */,
+				D2F6CF49233A0EF60061CDA7 /* BKMoneyKit.bundle */,
+				D2F6CF4A233A0EF60061CDA7 /* BKCardNumberField.h */,
+				D2F6CF4B233A0EF60061CDA7 /* BKCardExpiryField.m */,
+				D2F6CF4C233A0EF60061CDA7 /* BKCardPatternInfo.m */,
+				D2F6CF4D233A0EF60061CDA7 /* BKForwardingTextField.h */,
+				D2F6CF4E233A0EF60061CDA7 /* BKCardNumberFormatter.h */,
+				D2F6CF4F233A0EF60061CDA7 /* BKMoneyUtils.m */,
+				D2F6CF50233A0EF60061CDA7 /* BKCurrencyTextField.m */,
+				D2F6CF51233A0EF60061CDA7 /* BKCardNumberLabel.h */,
+			);
+			path = BKMoneyKit;
+			sourceTree = "<group>";
+		};
 		FE764B5E0A533187F7B0040A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -830,6 +929,7 @@
 				D2F1A98E22F02010008989B7 /* blue-white@2x.png in Resources */,
 				D2B8C86D2301487B0010FA2E /* settings-f-illed.png in Resources */,
 				D2B8C85F23013BA60010FA2E /* CircularStd-Book.otf in Resources */,
+				D2F6CF56233A0EF60061CDA7 /* BKMoneyKit.bundle in Resources */,
 				D220F7B622DDAC53005D8457 /* PodListTableCell.xib in Resources */,
 				D2B8C85823013A1A0010FA2E /* mask@3x.png in Resources */,
 				D220F7F922DDD47C005D8457 /* GroupsListViewController.xib in Resources */,
@@ -926,12 +1026,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2F1A9AC22F195CB008989B7 /* TIMERUIApplication.m in Sources */,
+				D2F6CF5A233A0EF60061CDA7 /* BKCurrencyTextField.m in Sources */,
 				D220F7E922DDC069005D8457 /* FSCalendarConstants.m in Sources */,
 				D220F6D422DC472E005D8457 /* ViewController.m in Sources */,
+				D2F6CF59233A0EF60061CDA7 /* BKMoneyUtils.m in Sources */,
 				D220F7B222DD967D005D8457 /* PodsListViewController.m in Sources */,
 				D23C5AB8230BCBA2000B0494 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				D220F7F022DDC849005D8457 /* EventsListViewController.m in Sources */,
 				D220F7F822DDD47C005D8457 /* GroupsListViewController.m in Sources */,
+				D2F6CF52233A0EF60061CDA7 /* BKCardNumberField.m in Sources */,
 				D220F73422DC8A8E005D8457 /* SearchPodViewController.m in Sources */,
 				D237C56822F2DFD200ECABFF /* NSObject+TLVParser.m in Sources */,
 				D220F7F422DDCA17005D8457 /* MBProgressHUD.m in Sources */,
@@ -939,7 +1042,10 @@
 				D220F7DE22DDC069005D8457 /* FSCalendarWeekdayView.m in Sources */,
 				D23C5B3E230D4DE6000B0494 /* BookingConfirmationViewController.m in Sources */,
 				D220F7E422DDC069005D8457 /* FSCalendarCollectionView.m in Sources */,
+				D2F6CF58233A0EF60061CDA7 /* BKCardPatternInfo.m in Sources */,
+				D2F6CF57233A0EF60061CDA7 /* BKCardExpiryField.m in Sources */,
 				D220F7E522DDC069005D8457 /* FSCalendar.m in Sources */,
+				D2F6CF54233A0EF60061CDA7 /* BKForwardingTextField.m in Sources */,
 				D23C5AB9230BCBA2000B0494 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				D2B8C874230149050010FA2E /* GlobalKeyViewController.m in Sources */,
 				D220F6DF22DC4730005D8457 /* main.m in Sources */,
@@ -957,9 +1063,11 @@
 				D23C5ABA230BCBA2000B0494 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				D220F7E022DDC069005D8457 /* FSCalendarSeparatorDecorationView.m in Sources */,
 				D220F6D122DC472E005D8457 /* AppDelegate.m in Sources */,
+				D2F6CF55233A0EF60061CDA7 /* BKCardNumberLabel.m in Sources */,
 				D220F7E622DDC069005D8457 /* FSCalendarHeaderView.m in Sources */,
 				D220F7EA22DDC069005D8457 /* FSCalendarCalculator.m in Sources */,
 				D220F7E222DDC069005D8457 /* FSCalendarDelegationProxy.m in Sources */,
+				D2F6CF53233A0EF60061CDA7 /* BKCardNumberFormatter.m in Sources */,
 				D220F7E122DDC069005D8457 /* FSCalendarCell.m in Sources */,
 				D220F7E722DDC069005D8457 /* FSCalendarTransitionCoordinator.m in Sources */,
 				D292130322F441D300E690ED /* ProcessCardViewController.m in Sources */,
