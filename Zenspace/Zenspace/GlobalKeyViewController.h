@@ -43,6 +43,9 @@ NS_ASSUME_NONNULL_BEGIN
     int statusCode;
     
     IBOutlet UILabel *keyType;
+    
+    NSURL *url;
+    NSString *postString;
 }
 
 @property(nonatomic, retain)NSString *physicalPodName;

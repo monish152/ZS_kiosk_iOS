@@ -70,17 +70,17 @@
     
     if(!emailId || [emailId isKindOfClass:[NSNull class]])    {
         
-        NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@api/iot/pod/key-verify/",KBASEPATH]];
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@api/iot/pod/key-verify/",KBASEPATH]];
         
         
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                         
                                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
                                         
                                                            timeoutInterval:25.0];
         
         [request setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"key=%@",key];
+        postString = [NSString stringWithFormat:@"key=%@",key];
         [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
         
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -92,15 +92,15 @@
         }
     }
     else{
-         NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@api/iot/pod/pin-verify/",KBASEPATH]];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@api/iot/pod/pin-verify/",KBASEPATH]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                         
                                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
                                         
                                                            timeoutInterval:25.0];
         
         [request setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"pin=%@&personemail=%@",key,emailId];
+        postString = [NSString stringWithFormat:@"pin=%@&personemail=%@",key,emailId];
         request.HTTPBody = [postString dataUsingEncoding:NSUTF8StringEncoding];
         
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -128,6 +128,11 @@
 {
     [self cleanData];
     NSLog(@"Connection failed: %@", [error description]);
+    
+    NSString *errorDescription = [error.userInfo valueForKey:NSLocalizedDescriptionKey];
+    NSString *className = NSStringFromClass([self class]);
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate fireBaseUpdateData:className :url.absoluteString :postString :errorDescription];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -153,6 +158,10 @@
         else{
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
            
+            NSString *errorDescription = [error.userInfo valueForKey:NSLocalizedDescriptionKey];
+            NSString *className = NSStringFromClass([self class]);
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [appDelegate fireBaseUpdateData:className :url.absoluteString :postString :[dict objectForKey:@"detail"]];
            
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:[dict objectForKey:@"detail"] preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
@@ -181,6 +190,10 @@
         else{
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
             
+            NSString *errorDescription = [error.userInfo valueForKey:NSLocalizedDescriptionKey];
+            NSString *className = NSStringFromClass([self class]);
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [appDelegate fireBaseUpdateData:className :url.absoluteString :postString :[dict objectForKey:@"detail"]];
             
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:[dict objectForKey:@"detail"] preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){

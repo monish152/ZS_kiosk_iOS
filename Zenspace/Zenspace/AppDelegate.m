@@ -21,8 +21,28 @@
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
-    [FIRApp configure];
+    [FIRApp configure];self.ref = [[FIRDatabase database] reference];
+    
     return YES;
+}
+-(void)fireBaseUpdateData :(NSString *)className :(NSString *)apiURL :(NSString *)parameters :(NSString *)error  {
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterFullStyle];
+    NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *appBuild = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+    
+    NSString *key = [[_ref child:@"Logs"] childByAutoId].key;
+    NSDictionary *post = @{@"date" : dateString,
+                           @"appVersion": appVersion,
+                           @"appBuild": appBuild,
+                           @"class": className,
+                           @"apiURL": apiURL,
+                           @"parameters": parameters,
+                           @"error": error,
+                           @"deviceVersion": [[UIDevice currentDevice] systemVersion]};
+    NSDictionary *childUpdates = @{[@"/Logs/" stringByAppendingString:key]: post};
+    [_ref updateChildValues:childUpdates];
 }
 -(void)applicationDidTimeout:(NSNotification *) notif
 {

@@ -11,5 +11,6 @@ pod 'Crashlytics', '~> 3.13.4'
 pod 'Phone-Country-Code-and-Flags'
 pod 'Stripe'
 pod 'CardIO'
+pod 'Firebase/Database'
 
 end

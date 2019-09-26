@@ -18,6 +18,7 @@
 @implementation EventsListViewController
 
 -(void)viewDidLoad{
+    
     eventsBtn.titleLabel.font = [UIFont fontWithName:@"CircularStd-Medium"
                                                 size:24];
     locationBtn.titleLabel.font = [UIFont fontWithName:@"CircularStd-Medium"
@@ -26,6 +27,9 @@
     
     titleLbl.font = [UIFont fontWithName:@"CircularStd-Medium"
                                     size:24];
+    
+    
+   
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -113,13 +117,29 @@
                 }
             }
             [arrResults removeObjectsInArray:discardedItems];
-            self->dictionary =  [arrResults mutableCopy];
-            [self plotUI];
+            if (isEvent) {
+                if (arrResults.count >0) {
+                    self->dictionary =  [arrResults mutableCopy];
+                    [self plotUI];
+                }
+                else{
+                    [self locationBtnPress:nil];
+                }
+            }else{
+                self->dictionary =  [arrResults mutableCopy];
+                [self plotUI];
+            }
+           
         }
-        
         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        NSString *errorDescription = [error.userInfo valueForKey:NSLocalizedDescriptionKey];
+        
+        NSString *className = NSStringFromClass([self class]);
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate fireBaseUpdateData:className :URL.absoluteString :@"" :errorDescription];
+        
         id responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
         NSString *string = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"detail"]];
         

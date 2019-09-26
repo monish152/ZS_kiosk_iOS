@@ -88,6 +88,11 @@
         
         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSString *errorDescription = [error.userInfo valueForKey:NSLocalizedDescriptionKey];
+        NSString *className = NSStringFromClass([self class]);
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+       
+        [appDelegate fireBaseUpdateData:className :URL.absoluteString :@"" :errorDescription];
         
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         NSData *data = (NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];

@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "GroupsListViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AppDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EventsListViewController : UIViewController
@@ -27,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
     IBOutlet UIButton *eventsBtn;
     IBOutlet UIButton *locationBtn;
 }
+
 -(IBAction)backBtnPress:(id)sender;
 -(IBAction)eventBtnPress:(id)sender;
 -(IBAction)locationBtnPress:(id)sender;

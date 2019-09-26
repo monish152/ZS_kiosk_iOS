@@ -114,6 +114,14 @@
         }
         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
+        
+        NSString *errorDescription = [error.userInfo valueForKey:NSLocalizedDescriptionKey];
+        NSString *className = NSStringFromClass([self class]);
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSString *parameters = [NSString stringWithFormat:@"%@", params];
+        [appDelegate fireBaseUpdateData:className :URL.absoluteString :parameters :errorDescription];
+        
+        
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         id responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
         NSString *string = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"detail"]];

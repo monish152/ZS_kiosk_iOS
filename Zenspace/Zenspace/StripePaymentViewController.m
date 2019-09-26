@@ -137,6 +137,13 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSString *errorDescription = [error.userInfo valueForKey:NSLocalizedDescriptionKey];
+        NSString *className = NSStringFromClass([self class]);
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSString *parameters = [NSString stringWithFormat:@"%@", params];
+        [appDelegate fireBaseUpdateData:className :URL.absoluteString :parameters :errorDescription];
+        
+        
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         [self dismissViewControllerAnimated:NO completion:nil];
         id responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
@@ -192,5 +199,19 @@
     NSLog(@"Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv);
     // Use the card info...
     [scanViewController dismissViewControllerAnimated:YES completion:nil];
+}
+-(BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+    }
+    return NO; // We do not want UITextField to insert line-breaks.
 }
 @end

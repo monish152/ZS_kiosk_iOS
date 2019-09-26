@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>132339218455-lmvg2p0lb0nned3iglhh22a062pjkjvj.apps.googleusercontent.com</string>
+	<string>132339218455-1ldmvkv95k4d2ffdar1n1kaalcst6t2l.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.132339218455-lmvg2p0lb0nned3iglhh22a062pjkjvj</string>
+	<string>com.googleusercontent.apps.132339218455-1ldmvkv95k4d2ffdar1n1kaalcst6t2l</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCB45S_VY7uVClsY7_FhKb9gyHUBF3_hWc</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mi.dr.Zenspace</string>
+	<string>com.zenspace.kiosk</string>
 	<key>PROJECT_ID</key>
 	<string>zenspace-kiosk</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:132339218455:ios:aab86a64b221bcad</string>
+	<string>1:132339218455:ios:c6fcc3a2d8ca390a5c4452</string>
 	<key>DATABASE_URL</key>
 	<string>https://zenspace-kiosk.firebaseio.com</string>
 </dict>

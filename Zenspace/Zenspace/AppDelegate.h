@@ -22,7 +22,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+-(void)fireBaseUpdateData :(NSString *)className :(NSString *)apiURL :(NSString *)parameters :(NSString *)error;
 @end
 

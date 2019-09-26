@@ -66,7 +66,6 @@
 		D23C5ABB230BCBA2000B0494 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D23C5AB7230BCBA2000B0494 /* TPKeyboardAvoidingTableView.m */; };
 		D23C5B3D230D4DE6000B0494 /* BookingConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23C5B3B230D4DE5000B0494 /* BookingConfirmationViewController.xib */; };
 		D23C5B3E230D4DE6000B0494 /* BookingConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D23C5B3C230D4DE5000B0494 /* BookingConfirmationViewController.m */; };
-		D25EB5CE2313ED2000B0C65A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D25EB5CD2313ED2000B0C65A /* GoogleService-Info.plist */; };
 		D25EB5D223156EDC00B0C65A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D25EB5D023156EDB00B0C65A /* Reachability.m */; };
 		D292130322F441D300E690ED /* ProcessCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D292130122F441D300E690ED /* ProcessCardViewController.m */; };
 		D292130422F441D300E690ED /* ProcessCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D292130222F441D300E690ED /* ProcessCardViewController.xib */; };
@@ -141,6 +140,7 @@
 		D2F6CF6A233A351C0061CDA7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF69233A351C0061CDA7 /* QuartzCore.framework */; };
 		D2F6CF6C233A35230061CDA7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF6B233A35230061CDA7 /* Security.framework */; };
 		D2F6CF6E233A35290061CDA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F6CF6D233A35280061CDA7 /* UIKit.framework */; };
+		D2F6CF70233B6B430061CDA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F6CF6F233B6B420061CDA7 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,7 +260,6 @@
 		D23C5B3A230D4DE5000B0494 /* BookingConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingConfirmationViewController.h; sourceTree = "<group>"; };
 		D23C5B3B230D4DE5000B0494 /* BookingConfirmationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingConfirmationViewController.xib; sourceTree = "<group>"; };
 		D23C5B3C230D4DE5000B0494 /* BookingConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingConfirmationViewController.m; sourceTree = "<group>"; };
-		D25EB5CD2313ED2000B0C65A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D25EB5D023156EDB00B0C65A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D25EB5D123156EDC00B0C65A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D26DA7DC231C2BDF00E9E718 /* Zenspace-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Zenspace-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -352,6 +351,7 @@
 		D2F6CF69233A351C0061CDA7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D2F6CF6B233A35230061CDA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D2F6CF6D233A35280061CDA7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D2F6CF6F233B6B420061CDA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,7 +424,7 @@
 		D220F6C322DC472D005D8457 = {
 			isa = PBXGroup;
 			children = (
-				D25EB5CD2313ED2000B0C65A /* GoogleService-Info.plist */,
+				D2F6CF6F233B6B420061CDA7 /* GoogleService-Info.plist */,
 				D20636A422F2CFDA0001DE6C /* libMTSCRA.a */,
 				D20636A922F2D1000001DE6C /* libstdc++.dylib */,
 				D20636A822F2CFEB0001DE6C /* MTSCRA.h */,
@@ -886,7 +886,6 @@
 				D2B8C86F2301487B0010FA2E /* settings-f-illed@2x.png in Resources */,
 				D23C5AAC230AA853000B0494 /* time-filled.png in Resources */,
 				D2B8C851230139A20010FA2E /* arrow-copy-7@2x.png in Resources */,
-				D25EB5CE2313ED2000B0C65A /* GoogleService-Info.plist in Resources */,
 				D2B8C873230149050010FA2E /* GlobalKeyViewController.xib in Resources */,
 				D23C5AAD230AA853000B0494 /* time-filled@2x.png in Resources */,
 				D21A6C682302F22300827195 /* BookingSummaryViewController.xib in Resources */,
@@ -923,6 +922,7 @@
 				D2B8C87F23016F230010FA2E /* rectangle@2x.png in Resources */,
 				D2B8C85C23013B9E0010FA2E /* CircularStd-BlackItalic.otf in Resources */,
 				D2F1A99F22F031D0008989B7 /* icons-search.png in Resources */,
+				D2F6CF70233B6B430061CDA7 /* GoogleService-Info.plist in Resources */,
 				D2B8C853230139A20010FA2E /* arrow-copy-7.png in Resources */,
 				D2F1A9BC22F1A869008989B7 /* circle.png in Resources */,
 				D2B8C85B23013B9C0010FA2E /* CircularStd-Black.otf in Resources */,
