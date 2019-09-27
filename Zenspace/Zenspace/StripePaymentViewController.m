@@ -36,6 +36,67 @@
     
     [self.cardNumberField becomeFirstResponder];
     
+    
+    
+    [podImage sd_setImageWithURL:[NSURL URLWithString:_imageurl]
+                placeholderImage:[UIImage imageNamed:@""]];
+    podImage.layer.cornerRadius = 10;
+    podImage.clipsToBounds = YES;
+    
+    podNameLbl.font = [UIFont fontWithName:@"CircularStd-Bold"
+                                      size:16];
+    podNameLbl.text = _podName;
+    
+    poddateLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+                                      size:14];
+    
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    NSDate *date = [format dateFromString:_date];
+    [format setDateFormat:@"MMM dd, yyyy"];
+    [format setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    NSString* finalDateString = [format stringFromDate:date];
+    
+    
+    poddateLbl.text = finalDateString;
+    timeIcon.image = [timeIcon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [timeIcon setTintColor:[UIColor lightGrayColor]];
+    
+    
+    [format setDateFormat:@"HH:mm"];
+    finalDateString = [format stringFromDate:date];
+    podtimeLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+                                      size:14];
+    podtimeLbl.text = [NSString stringWithFormat:@"%@ for %ld min",finalDateString,(long)_duration ];
+    
+    
+    dateIcon.image = [dateIcon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [dateIcon setTintColor:[UIColor lightGrayColor]];
+    
+    salesTaxLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+                                       size:16];
+    salesPriceLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+                                         size:16];
+    discountLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+                                       size:16];
+    amountDueLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+                                        size:16];
+    
+    
+    salesPriceValue.font = [UIFont fontWithName:@"CircularStd-Bold"
+                                           size:18];
+    salesPriceValue.text = [NSString stringWithFormat:@"$%@",_price];
+    
+    salesTaxValue.font = [UIFont fontWithName:@"CircularStd-Bold"
+                                         size:18];
+    discountValue.font = [UIFont fontWithName:@"CircularStd-Bold"
+                                         size:18];
+    
+    amountDueValue.font = [UIFont fontWithName:@"CircularStd-Bold"
+                                          size:18];
+    amountDueValue.text = [NSString stringWithFormat:@"$%@",_price];
+    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

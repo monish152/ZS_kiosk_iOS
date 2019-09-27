@@ -11,11 +11,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StripePaymentViewController">
             <connections>
+                <outlet property="amountDueLbl" destination="Flq-2B-27e" id="vwf-9p-uyJ"/>
+                <outlet property="amountDueValue" destination="6QX-EE-LvA" id="OxS-3j-HSv"/>
                 <outlet property="cardExpiryField" destination="tqb-QV-4mT" id="ZCr-sS-Bre"/>
                 <outlet property="cardHolderName" destination="J15-P8-T6i" id="LEV-CB-9YR"/>
                 <outlet property="cardNumberField" destination="50l-Hf-0Oe" id="Swr-VS-R8d"/>
                 <outlet property="cvcField" destination="n8N-qU-iLO" id="Bj8-Cl-bpf"/>
+                <outlet property="dateIcon" destination="aJg-ze-Osp" id="WHF-TZ-7Q0"/>
+                <outlet property="discountLbl" destination="5hc-WX-V2C" id="9fW-jM-h8m"/>
+                <outlet property="discountValue" destination="u3k-Xa-lyn" id="W2I-8g-wSN"/>
+                <outlet property="podImage" destination="tvZ-Wm-GJh" id="gWX-Sc-WYF"/>
+                <outlet property="podNameLbl" destination="Jb9-DN-0jB" id="6fw-jo-nkO"/>
+                <outlet property="poddateLbl" destination="F6t-Ns-JQ4" id="xOb-pq-a3O"/>
+                <outlet property="podtimeLbl" destination="V9g-4o-kqj" id="Tw9-05-ssL"/>
+                <outlet property="salesPriceLbl" destination="24n-ea-P2U" id="wqi-hL-1eT"/>
+                <outlet property="salesPriceValue" destination="Tdr-lR-4cy" id="VoT-xM-Owe"/>
+                <outlet property="salesTaxLbl" destination="tjt-Gl-mQC" id="Uwt-Gv-Ryy"/>
+                <outlet property="salesTaxValue" destination="zSa-te-iCm" id="dkO-Dc-Ucx"/>
                 <outlet property="submit" destination="2Mz-ns-jbc" id="NGN-jM-NCb"/>
+                <outlet property="timeIcon" destination="Kpr-Ne-9nB" id="4KI-z2-nBz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -61,7 +75,7 @@
                     <color key="backgroundColor" red="0.56956523660000002" green="0.71013736719999998" blue="0.96081060169999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Fd2-Ms-9Yj" customClass="TPKeyboardAvoidingScrollView">
-                    <rect key="frame" x="219" y="227" width="586" height="345"/>
+                    <rect key="frame" x="0.0" y="227" width="586" height="345"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" minimumFontSize="17" id="50l-Hf-0Oe" customClass="BKCardNumberField">
@@ -128,7 +142,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </scrollView>
                 <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Mz-ns-jbc">
-                    <rect key="frame" x="322" y="619" width="380" height="50"/>
+                    <rect key="frame" x="103" y="599" width="380" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.2223100066" green="0.45645785329999999" blue="0.96475261450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -139,6 +153,115 @@
                         <action selector="submitBtnPress:" destination="-1" eventType="touchUpInside" id="Upb-FO-rLT"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" id="Iv2-eh-MZq">
+                    <rect key="frame" x="620" y="181" width="340" height="528"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mask.png" id="X6r-ha-3Ac">
+                            <rect key="frame" x="-12" y="-21" width="367" height="577"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="tvZ-Wm-GJh">
+                            <rect key="frame" x="32" y="55" width="97" height="97"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons-calendar-filled.png" id="aJg-ze-Osp">
+                            <rect key="frame" x="149" y="89" width="24" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jb9-DN-0jB">
+                            <rect key="frame" x="153" y="55" width="155" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F6t-Ns-JQ4">
+                            <rect key="frame" x="180" y="91" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.6980459094" green="0.69803065060000002" blue="0.69803363080000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time-filled.png" id="Kpr-Ne-9nB">
+                            <rect key="frame" x="149" y="120" width="24" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V9g-4o-kqj">
+                            <rect key="frame" x="180" y="122" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.6980459094" green="0.69803065060000002" blue="0.69803363080000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="24n-ea-P2U">
+                            <rect key="frame" x="32" y="240" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales Price:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tdr-lR-4cy">
+                            <rect key="frame" x="153" y="240" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.2223100066" green="0.45645785329999999" blue="0.96475261450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zSa-te-iCm">
+                            <rect key="frame" x="153" y="286" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.2223100066" green="0.45645785329999999" blue="0.96475261450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales Tax:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tjt-Gl-mQC">
+                            <rect key="frame" x="32" y="286" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5hc-WX-V2C">
+                            <rect key="frame" x="32" y="336" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount Due:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Flq-2B-27e">
+                            <rect key="frame" x="32" y="459" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view alpha="0.40000000596046448" contentMode="scaleToFill" id="Mds-Z5-JmP">
+                            <rect key="frame" x="32" y="177" width="276" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view alpha="0.40000000596046448" contentMode="scaleToFill" id="RB8-jc-N2A">
+                            <rect key="frame" x="32" y="422" width="276" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u3k-Xa-lyn">
+                            <rect key="frame" x="153" y="336" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.2223100066" green="0.45645785329999999" blue="0.96475261450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6QX-EE-LvA">
+                            <rect key="frame" x="153" y="459" width="155" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.2223100066" green="0.45645785329999999" blue="0.96475261450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -149,5 +272,8 @@
         <image name="  " width="16" height="16"/>
         <image name="arrow-copy-7.png" width="8" height="17"/>
         <image name="blue-white.png" width="151" height="34"/>
+        <image name="icons-calendar-filled.png" width="24" height="24"/>
+        <image name="mask.png" width="341" height="319"/>
+        <image name="time-filled.png" width="24" height="24"/>
     </resources>
 </document>

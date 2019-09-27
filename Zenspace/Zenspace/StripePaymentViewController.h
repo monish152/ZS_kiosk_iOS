@@ -18,6 +18,24 @@ NS_ASSUME_NONNULL_BEGIN
 @interface StripePaymentViewController : UIViewController<UITextFieldDelegate,CardIOPaymentViewControllerDelegate>{
     IBOutlet UIButton *submit;
     IBOutlet UIButton *scanCard;
+    
+    
+    IBOutlet UILabel *podNameLbl;
+    IBOutlet UILabel *poddateLbl;
+    IBOutlet UILabel *podtimeLbl;
+    IBOutlet UIImageView *podImage;
+    IBOutlet UILabel *salesPriceLbl;
+    IBOutlet UILabel *salesTaxLbl;
+    IBOutlet UILabel *discountLbl;
+    IBOutlet UILabel *amountDueLbl;
+    
+    IBOutlet UILabel *salesPriceValue;
+    IBOutlet UILabel *salesTaxValue;
+    IBOutlet UILabel *discountValue;
+    IBOutlet UILabel *amountDueValue;
+    
+    IBOutlet UIImageView *dateIcon;
+    IBOutlet UIImageView *timeIcon;
 }
 
 @property(nonatomic,retain)NSString *podName;

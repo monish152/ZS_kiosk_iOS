@@ -95,6 +95,7 @@ typedef void(^commandCompletion)(NSString*);
     
     if(self.lib.isDeviceOpened && self.lib.isDeviceConnected)
     {
+        _transactionAmount = @"50";
         NSString *txtAmount =  _transactionAmount;
         if(txtAmount.length == 0)
             txtAmount = @"0";
@@ -170,21 +171,34 @@ typedef void(^commandCompletion)(NSString*);
 -(void)apiConnect:(NSString *)tlvData{
     
     NSString *amountStr = _transactionAmount;
+    
+        NSString *soapMessage;
+    
+     NSString *transactionIdStr = @"1231232";
+    encryptionType = @"80";
 //    NSString *amountStr = @"25";
+    
 //    NSString *custCode = @"QC16736815";
 //    NSString *userName = @"MAG190709002";
 //    NSString *password = @"Md!kgW#V@zBu5A";
-    NSString *soapMessage;
 //    NSString *processorName = @"Rapid Connect v3 - Pilot";
-    NSString *transactionIdStr = @"1231232";
+   
     
-    encryptionType = @"80";
+    
     
     
     //production
-        NSString *custCode = @"QF20436257";
-        NSString *userName = @"MAG190911002";
-        NSString *password = @"ryQbhRu!e@6#Z3";
+//        NSString *custCode = @"QF20436257";
+//        NSString *userName = @"MAG190911002";
+//        NSString *password = @"ryQbhRu!e@6#Z3";
+
+    
+    //Sample working
+    NSString *custCode = @"RU78375046";
+    NSString *userName = @"MAG180419001";
+    NSString *password = @"e!g@8iX9kN#O4k";
+    
+    
         NSString *processorName = @"Rapid Connect v3 - Production";
     
    
@@ -201,51 +215,83 @@ typedef void(^commandCompletion)(NSString*);
     
     
     soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-                   "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
-    "<soapenv:Header/>\n"
-    "<soapenv:Body>\n"
-    "<mpp:ProcessCardSwipe>\n"
-    "<mpp:ProcessCardSwipeRequests>\n"
-    "<mpp1:ProcessCardSwipeRequest>\n"
-    "<mpp1:AdditionalRequestData>\n"
-    "<sys:KeyValuePairOfstringstring>\n"
-    "<sys:key/>\n"
-    "<sys:value/>\n"
-    "</sys:KeyValuePairOfstringstring>\n"
-    "<sys:KeyValuePairOfstringstring>\n"
-    "<sys:key/>\n"
-    "<sys:value/>\n"
-    "</sys:KeyValuePairOfstringstring>\n"
-    "</mpp1:AdditionalRequestData>\n"
-    "<mpp1:Authentication>\n"
-    "<mpp1:CustomerCode>%@</mpp1:CustomerCode>\n"
-    "<mpp1:Password>%@</mpp1:Password>\n"
-    "<mpp1:Username>%@</mpp1:Username>\n"
-    "</mpp1:Authentication>\n"
-    "<mpp1:CustomerTransactionID>%@</mpp1:CustomerTransactionID>\n"
-    "<mpp1:EMVSREDInput>\n"
-    "<mpp1:EMVSREDData>%@</mpp1:EMVSREDData>\n"
-    "<mpp1:EncryptionType>%@</mpp1:EncryptionType>\n"
-    "<mpp1:KSN>%@</mpp1:KSN>\n"
-    "<mpp1:NumberOfPaddedBytes>%@</mpp1:NumberOfPaddedBytes>\n"
-    "<mpp1:PaymentMode>EMV</mpp1:PaymentMode>\n"
-    "</mpp1:EMVSREDInput>\n"
-    "<mpp1:TransactionInput>\n"
-    "<mpp1:Amount>%@</mpp1:Amount>\n"
-    "<mpp1:ProcessorName>%@</mpp1:ProcessorName>\n"
-    "<mpp1:TransactionInputDetails>\n"
-    "<sys:KeyValuePairOfstringstring>\n"
-    "<sys:key>PartAuthrztnApprvlCapablt</sys:key>\n"
-    "<sys:value>0</sys:value>\n"
-    "</sys:KeyValuePairOfstringstring>\n"
-    "</mpp1:TransactionInputDetails>\n"
-    "<mpp1:TransactionType>SALE</mpp1:TransactionType>\n"
-    "</mpp1:TransactionInput>\n"
-    "</mpp1:ProcessCardSwipeRequest>\n"
-    "</mpp:ProcessCardSwipeRequest>\n"
-    "</mpp:ProcessCardSwipe>\n"
-    "</soapenv:Body>\n"
-                   "</soapenv:Envelope>\n",custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,amountStr,processorName];
+                                 "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
+                   "<soapenv:Header/>\n"
+                   "<soapenv:Body>\n"
+                   "<mpp:ProcessEMVSRED>\n"
+                   "<!--Optional:-->\n"
+                   "<mpp:ProcessEMVSREDRequests>\n"
+                   "<mpp1:ProcessEMVSREDRequest>\n"
+                   "<!--Optional:-->\n"
+                   "<mpp1:AdditionalRequestData>\n"
+                   "<sys:KeyValuePairOfstringstring>\n"
+                   "<sys:key></sys:key>\n"
+                   "<sys:value></sys:value>\n"
+                   "</sys:KeyValuePairOfstringstring>\n"
+                   "</mpp1:AdditionalRequestData>\n"
+                   "<mpp1:Authentication>\n"
+                   "<mpp1:CustomerCode>%@</mpp1:CustomerCode>\n"
+                   "<mpp1:Password>%@</mpp1:Password>\n"
+                   "<mpp1:Username>%@</mpp1:Username>\n"
+                   "</mpp1:Authentication>\n"
+                   "<!--Optional:-->\n"
+                   "<mpp1:CustomerTransactionID>%@</mpp1:CustomerTransactionID>\n"
+                   "<mpp1:EMVSREDInput>\n"
+                   "<mpp1:EMVSREDData>%@</mpp1:EMVSREDData>\n"
+                   "<mpp1:EncryptionType>%@</mpp1:EncryptionType>\n"
+                   "<mpp1:KSN>%@</mpp1:KSN>\n"
+                   "<mpp1:NumberOfPaddedBytes>%@</mpp1:NumberOfPaddedBytes>\n"
+                   "<mpp1:PaymentMode>EMV</mpp1:PaymentMode>\n"
+                   "</mpp1:EMVSREDInput>\n"
+                   "<mpp1:TransactionInput>\n"
+                   "<mpp1:ProcessorName>Token</mpp1:ProcessorName>\n"
+                   "<mpp1:TransactionInputDetails>\n"
+                   "<sys:KeyValuePairOfstringstring>\n"
+                   "<sys:key></sys:key>\n"
+                   "<sys:value></sys:value>\n"
+                   "</sys:KeyValuePairOfstringstring>\n"
+                   "</mpp1:TransactionInputDetails>\n"
+                   "<mpp1:TransactionType>TOKEN</mpp1:TransactionType>\n"
+                   "</mpp1:TransactionInput>\n"
+                   "</mpp1:ProcessEMVSREDRequest>\n"
+                   "<mpp1:ProcessEMVSREDRequest>\n"
+                   "<mpp1:AdditionalRequestData>\n"
+                   "<sys:KeyValuePairOfstringstring>\n"
+                   "<sys:key>NonremovableTags</sys:key>\n"
+                   "<sys:value Encoding=\"cdata\"><![CDATA[<NonremovableTags><Tag>CCTrack2</Tag></NonremovableTags>]]></sys:value>\n"
+                   "</sys:KeyValuePairOfstringstring>\n"
+                   "</mpp1:AdditionalRequestData>\n"
+                   "<mpp1:Authentication>\n"
+                   "<mpp1:CustomerCode>%@</mpp1:CustomerCode>\n"
+                   "<mpp1:Password>%@</mpp1:Password>\n"
+                   "<mpp1:Username>%@</mpp1:Username>\n"
+                   "</mpp1:Authentication>\n"
+                   "<mpp1:CustomerTransactionID>%@</mpp1:CustomerTransactionID>\n"
+                   "<mpp1:EMVSREDInput>\n"
+                   "<mpp1:EMVSREDData>%@</mpp1:EMVSREDData>\n"
+                   "<mpp1:EncryptionType>%@</mpp1:EncryptionType>\n"
+                   "<mpp1:KSN>%@</mpp1:KSN>\n"
+                   "<mpp1:NumberOfPaddedBytes>%@</mpp1:NumberOfPaddedBytes>\n"
+                   "<mpp1:PaymentMode>EMV</mpp1:PaymentMode>\n"
+                   "</mpp1:EMVSREDInput>\n"
+                   "<mpp1:TransactionInput>\n"
+                   "<mpp1:Amount>%@</mpp1:Amount>\n"
+                   "<mpp1:ProcessorName>%@</mpp1:ProcessorName>\n"
+                   "<mpp1:TransactionInputDetails>\n"
+                   "<sys:KeyValuePairOfstringstring>\n"
+                   "<sys:key></sys:key>\n"
+                   "<sys:value></sys:value>\n"
+                   "</sys:KeyValuePairOfstringstring>\n"
+                   "</mpp1:TransactionInputDetails>\n"
+                   "<mpp1:TransactionType>SALE</mpp1:TransactionType>\n"
+                   "</mpp1:TransactionInput>\n"
+                   "</mpp1:ProcessEMVSREDRequest>\n"
+                   "</mpp:ProcessEMVSREDRequests>\n"
+                   "</mpp:ProcessEMVSRED>\n"
+                   "</soapenv:Body>\n"
+                   "</soapenv:Envelope>\n",custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,amountStr,processorName];
+    
+     [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessEMVSRED" forHTTPHeaderField:@"SOAPAction"];
     
     
     
@@ -326,7 +372,7 @@ typedef void(^commandCompletion)(NSString*);
 //                   "</soapenv:Body>\n"
 //                   "</soapenv:Envelope>\n",custCode,password,userName,string,encryptionType,ksnStr,paddedBytes,processorName,custCode,password,userName,string,encryptionType,ksnStr,paddedBytes,amountStr,processorName];
     
-    [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessCardSwipe" forHTTPHeaderField:@"SOAPAction"];
+//    [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessCardSwipe" forHTTPHeaderField:@"SOAPAction"];
     
     
     
@@ -336,7 +382,7 @@ typedef void(^commandCompletion)(NSString*);
     
     
     
-    
+    /*
      soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
      "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
      "<soapenv:Header/>\n"
@@ -386,9 +432,11 @@ typedef void(^commandCompletion)(NSString*);
      "</soapenv:Body>\n"
      "</soapenv:Envelope>\n",custCode,password,userName,ksnStr,megPrint,track1,track2,amountStr,processorName];
      
+     [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessCardSwipe" forHTTPHeaderField:@"SOAPAction"];
+     */
     
     NSLog(@"Soap Request : %@",soapMessage);
-     [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessCardSwipe" forHTTPHeaderField:@"SOAPAction"];
+    
      
     
     
@@ -1306,7 +1354,7 @@ typedef void(^commandCompletion)(NSString*);
 }
 
 -(void)bookingApi:(NSString *)transactionID{
-//    return;
+    return;
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     });
