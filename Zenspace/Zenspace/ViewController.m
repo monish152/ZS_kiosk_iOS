@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
 //    EventsListViewController *vc = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
 //    [self.navigationController pushViewController:vc animated:NO];
-//
+
 //        BookingSummaryViewController *vc = [[BookingSummaryViewController alloc] initWithNibName:@"BookingSummaryViewController" bundle:nil];
 //        vc.price = @"10";
 //        [self.navigationController pushViewController:vc animated:NO];
@@ -39,9 +39,9 @@
     self.navigationController.navigationBarHidden = YES;
 }
 - (IBAction)payBtn:(id)sender{
-    ProcessCardViewController *vc = [[ProcessCardViewController alloc] initWithNibName:@"ProcessCardViewController" bundle:nil];
-    vc.transactionAmount = @"50";
-    [self.navigationController pushViewController:vc animated:YES];
+     kDynamoController *kVc = [[kDynamoController alloc] initWithNibName:@"kDynamoController" bundle:nil];
+    kVc.transactionAmount = @"1";
+    [self.navigationController pushViewController:kVc animated:YES];
 }
 - (IBAction)testOtherApp:(id)sender{
     

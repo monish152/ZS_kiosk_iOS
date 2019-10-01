@@ -14,7 +14,7 @@
 #import "BookingSummaryViewController.h"
 #import <Crashlytics/Crashlytics.h>
 #import "StripePaymentViewController.h"
-
+#import "kDynamoController.h"
 @interface ViewController : UIViewController{
     
     

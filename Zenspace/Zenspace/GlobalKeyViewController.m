@@ -34,6 +34,22 @@
     img3.layer.cornerRadius = 10;
     img4.layer.cornerRadius = 10;
     
+    UIBarButtonItem *my0Button = [[UIBarButtonItem alloc] initWithTitle:@"0" style:UIBarButtonItemStyleBordered target:self action:@selector(addNumberToString:)];
+    UIBarButtonItem *my1Button = [[UIBarButtonItem alloc] initWithTitle:@"1" style:UIBarButtonItemStyleBordered target:self action:@selector(addNumberToString:)];
+    
+    UIToolbar *extraRow = [[UIToolbar alloc] init];
+    extraRow.barStyle = UIBarStyleBlack;
+    extraRow.translucent = YES;
+    extraRow.tintColor = [UIColor grayColor];
+    [extraRow sizeToFit];
+    NSArray *buttons = [NSArray arrayWithObjects: my0Button, my1Button, nil];
+    [extraRow setItems:buttons animated:YES];
+    firstTxtField.inputAccessoryView = extraRow;
+    secondTxtField.inputAccessoryView = extraRow;
+    thirdTxtField.inputAccessoryView = extraRow;
+    fourthTxtField.inputAccessoryView = extraRow;
+    
+    
     
      if(emailId) {
         keyType.text = @"Enter Global Pin";
@@ -45,6 +61,9 @@
     [firstTxtField becomeFirstResponder];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+-(IBAction)addNumberToString:(id)sender{
+    [firstTxtField becomeFirstResponder];
 }
 -(IBAction)backButtonPressed:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];

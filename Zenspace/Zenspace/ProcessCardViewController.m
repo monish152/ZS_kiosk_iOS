@@ -181,7 +181,7 @@ typedef void(^commandCompletion)(NSString*);
 //    NSString *custCode = @"QC16736815";
 //    NSString *userName = @"MAG190709002";
 //    NSString *password = @"Md!kgW#V@zBu5A";
-//    NSString *processorName = @"Rapid Connect v3 - Pilot";
+    NSString *processorName = @"Rapid Connect v3 - Pilot";
    
     
     
@@ -199,7 +199,7 @@ typedef void(^commandCompletion)(NSString*);
     NSString *password = @"e!g@8iX9kN#O4k";
     
     
-        NSString *processorName = @"Rapid Connect v3 - Production";
+//        NSString *processorName = @"Rapid Connect v3 - Production";
     
    
     
@@ -213,6 +213,8 @@ typedef void(^commandCompletion)(NSString*);
     
     ///EMV Sale Request
     
+    
+    tlvData = @"0239F9820235DFDF540A00000000000000000000DFDF550182DFDF250F423530363638323038333031384141FA82020B70820207DFDF530100DFDF4D273B353431333030303034303030343131313D32323132303030303030303030303030303030303FDFDF520101F88201CEDFDF598201B0FA0206677371152490850D13399F06A4DE6ECCA00FA917C410038CAF0ADFC0103E04DDDC7294EE756E9438E69C5898CD13CD67041E4AFEFFFA9448EF51FE80866A746649BFFA7033B950E6796B10038165C51DFAA2169986ECF530F4F2A3F45C5DB001CBF689C227EFA5BA537DE1D170B698357AAA1DBD012750340868FC689179E070BB7552593534D074F66CD0CAAEEC9CFEBC0DDE986FCCA16F1C44162B6F4E4E38BFD4BE8A40F374FBB044A69CD1519CF43A45A92D9668ECC4834AF18892A33517CDBB81B791AC107CEF4E1F67975D00D1F464861205B71500FB8E3D47642AA505D5500B5E42546FD6978383A6CEA31E34A5C767A07E8374B493393E7D5C9890F51F7FDE99D5E4D7D961A433018D3C9B69ABE412F317E7247138AB1C941949C21490DC153887FF5CC1FA15D74FCA9024081DFF3758B0C1B3ABD95EF0522C601CB8C3594667CAA969DF475B48D0CA08847ED980A3E70B80132E64C456DC5B3DA1FFFB186D9FAC64ABB7CAF7DC37BEB6F717577B19DA0EA166F9AB248DBC3E7D049FBB3ABE31472FAFC498DDB257639B570B37299A43ADA08956ABB43B79C491B5F6CA2823046737AEDA8107885240DFDF560A9011880B506682000247DFDF570180DFDF580103000000000011223344";
     
     soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
                                  "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
@@ -293,7 +295,10 @@ typedef void(^commandCompletion)(NSString*);
     
      [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessEMVSRED" forHTTPHeaderField:@"SOAPAction"];
     
+
     
+    
+    /*
     
 //    soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 //                   "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
@@ -374,7 +379,7 @@ typedef void(^commandCompletion)(NSString*);
     
 //    [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessCardSwipe" forHTTPHeaderField:@"SOAPAction"];
     
-    
+    */
     
     
     
@@ -382,6 +387,7 @@ typedef void(^commandCompletion)(NSString*);
     
     
     
+  
     /*
      soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
      "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
@@ -433,8 +439,8 @@ typedef void(^commandCompletion)(NSString*);
      "</soapenv:Envelope>\n",custCode,password,userName,ksnStr,megPrint,track1,track2,amountStr,processorName];
      
      [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessCardSwipe" forHTTPHeaderField:@"SOAPAction"];
-     */
-    
+  
+    */
     NSLog(@"Soap Request : %@",soapMessage);
     
      
@@ -546,94 +552,111 @@ typedef void(^commandCompletion)(NSString*);
 
 -(void) onDeviceConnectionDidChange:(MTSCRADeviceType)deviceType connected:(BOOL)connected instance:(id)instance
 {
-    if(deviceType == MAGTEKKDYNAMO)
-    {
-        if(connected)
-        {
-                        CGFloat delay = 0.1;
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-                            [self.lib sendcommandWithLength:@"480102"];
-            
-                        }
-                            );
-            
-            
-            
-        }
-        else
-        {
-            
-        }
-        
-    }
+    
     
     if([(MTSCRA*)instance isDeviceOpened] && [self.lib isDeviceConnected])
     {
         if(connected)
         {
             int delay = 1.0;
-            
+            if (deviceType == MAGTEKAUDIOREADER)
+                delay = 2.0f;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
                 if([self.lib isDeviceConnected] && [self.lib isDeviceOpened])
                 {
+//                    [self->_btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+//                    [self.btnConnect setBackgroundColor:UIColorFromRGB(0xcc3333)];
                     
                     dispatch_async(queue, ^{
                         
                         
-                        [self setText:@"Device Connected..."];
+                        if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO  || deviceType == MAGTEKTDYNAMO)
+                        {
+                            [self setText:[NSString stringWithFormat:@"Connected to %@",[(MTSCRA*)instance getConnectedPeripheral].name]];
+                            
+                            
+                            if(!self->devicePaired)
+                                return;
+                            
+                            if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO || deviceType == MAGTEKTDYNAMO)
+                            {
+                                [self setText:@"Setting data output to Bluetooth LE..."];
+                                NSString* bleOutput = [self sendCommandSync:@"480101"];
+                                [self setText:[NSString stringWithFormat:@"[Output Result]\r%@",bleOutput]];
+                                
+                            }
+                            else if(deviceType == MAGTEKDYNAMAX)
+                            {
+                                [self.lib sendcommandWithLength:@"000101"];
+                            }
+                            
+                        }
                         
-                        //                        [self setText:@"Getting FW ID..."];
-                        //                        NSString* fw ;
-                        //                        fw = [self sendCommandSync:@"000100"];
-                        //                        [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
-                        //
-                        //                        [self setText:@"Getting SN..."];
-                        //                        NSString* sn;
-                        //                        sn = [self sendCommandSync:@"000103"];
-                        //                        [self setText:[NSString stringWithFormat:@"[Device SN]\r%@",sn]];
-                        //
-                        //                        [self setText:@"Getting Security Level..."];
-                        //                        NSString* sl;
-                        //                        sl = [self sendCommandSync:@"1500"];
-                        //
-                        //                        NSString *timeSleep;
-                        //                         sl = [self sendCommandSync:@"1500"];
+                        else
+                        {
+                            [self setText:@"Device Connected..."];// @"Connected...";
+                        }
                         
-                        //                        [self setText:[NSString stringWithFormat:@"[Security Level]\r%@",sl]];
+                        [self setText:@"Getting FW ID..."];
+                        NSString* fw ;
+                        if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
+                        {
+//                            fw = [self sendCommandSync:[self buildCommandForAudioTLV: @"000100"]];
+                            [NSThread sleepForTimeInterval:1];
+                        }
+                        else
+                        {
+                            fw = [self sendCommandSync:@"000100"];
+                        }
+                        [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
                         
-                        //                        NSString* ksn;
-                        //                        ksn = [self.lib getKSN];
-                        //                         [self setText:[NSString stringWithFormat:@"[KSN]\r%@",ksn]];
+                        [self setText:@"Getting SN..."];
+                        NSString* sn;
+                        if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
+                        {
+//                            sn = [self sendCommandSync:[self buildCommandForAudioTLV: @"000103"]];
+                            //[NSThread sleepForTimeInterval:1];
+                        }
+                        else
+                        {
+                            sn = [self sendCommandSync:@"000103"];
+                        }
+                        [self setText:[NSString stringWithFormat:@"[Device SN]\r%@",sn]];
                         
-                        //                        NSString *serialNumber = [self.lib getDeviceSerial];
-                        //                        [self setText:[NSString stringWithFormat:@"[Serial]\r%@",serialNumber]];
+                        [self setText:@"Getting Security Level..."];
+                        NSString* sl;
+                        if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
+                        {
+//                            sl = [self sendCommandSync:[self buildCommandForAudioTLV: @"1500"]];
+                            //[NSThread sleepForTimeInterval:1];
+                        }
+                        else
+                        {
+                            sl = [self sendCommandSync:@"1500"];
+                        }
                         
-                        [self sendCommandSync:@"580101"];
-                        [self sendCommandSync:@"59020F20"];
+                        [self setText:[NSString stringWithFormat:@"[Security Level]\r%@",sl]];
                         
-
+                        
+                        
                         
                         if(deviceType == MAGTEKTDYNAMO || deviceType == MAGTEKKDYNAMO)
                         {
-                            
+                            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
+                                                                                                     style:UIBarButtonItemStylePlain
+                                                                                                    target:self action:@selector(turnMSROn)];
                             [self setText:@"Setting Date Time..."];
-                            int delay = 1.0;
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-                                [self setDateTime];
-                                
-                            }
-                                           );
-                           
+                            [self setDateTime];
                         }
-                        
-                        
-                        [self startEMV];
-                        
                     });
                     
+                    if(deviceType == MAGTEKTDYNAMO)
+                    {
+                        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
+                                                                                                 style:UIBarButtonItemStylePlain
+                                                                                                target:self action:@selector(turnMSROn)];
+                    }
                 };
                 
             });
@@ -642,14 +665,18 @@ typedef void(^commandCompletion)(NSString*);
         {
             devicePaired = YES;
             [self setText:@"Disconnected"];
-            
+//            [_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
+//            [self.btnConnect setBackgroundColor:UIColorFromRGB(0x3465AA)];
         }
+        [self startEMV];
     }
     else
     {
         devicePaired = YES;
         [self setText:@"Disconnected"];
-        
+//        [_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
+//
+//        [self.btnConnect setBackgroundColor:UIColorFromRGB(0x3465AA)];
         if(deviceType == MAGTEKTDYNAMO)
         {
             self.navigationItem.leftBarButtonItem = nil;
@@ -657,8 +684,7 @@ typedef void(^commandCompletion)(NSString*);
         
     }
 #if SHOW_DEBUG_COUNT
-    txtData.text = @"";
-    txtData.text = [txtData.text stringByAppendingString: [NSString stringWithFormat:@" Swipe.Count:%i", swipeCount]];
+    self.txtData.text = [self.txtData.text stringByAppendingString: [NSString stringWithFormat:@"\n\nSwipe.Count:%i", swipeCount]];
 #endif
     
     

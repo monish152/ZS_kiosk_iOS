@@ -54,6 +54,13 @@
 		D220F7F422DDCA17005D8457 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D220F7F322DDCA17005D8457 /* MBProgressHUD.m */; };
 		D220F7F822DDD47C005D8457 /* GroupsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D220F7F522DDD47C005D8457 /* GroupsListViewController.m */; };
 		D220F7F922DDD47C005D8457 /* GroupsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D220F7F722DDD47C005D8457 /* GroupsListViewController.xib */; };
+		D2237A9E234381FE0043C2CC /* kDynamoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2237A9C234381FE0043C2CC /* kDynamoController.m */; };
+		D2237AA12343826D0043C2CC /* eDynamoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2237A9F2343826C0043C2CC /* eDynamoController.m */; };
+		D2237AA42343829C0043C2CC /* BLEScannerList.m in Sources */ = {isa = PBXBuildFile; fileRef = D2237AA22343829B0043C2CC /* BLEScannerList.m */; };
+		D2237AA7234382A50043C2CC /* optionController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2237AA6234382A50043C2CC /* optionController.m */; };
+		D2237AAA234382BF0043C2CC /* blePairDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D2237AA8234382BF0043C2CC /* blePairDemo.m */; };
+		D2237AAD234382F10043C2CC /* eDynamoSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = D2237AAB234382F00043C2CC /* eDynamoSignature.m */; };
+		D2237AB72343C7780043C2CC /* MTDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2237AB62343C7780043C2CC /* MTDataViewController.xib */; };
 		D237C56822F2DFD200ECABFF /* NSObject+TLVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D237C56522F2DFD200ECABFF /* NSObject+TLVParser.m */; };
 		D237C56922F2DFD200ECABFF /* HexUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D237C56722F2DFD200ECABFF /* HexUtil.m */; };
 		D237C56A22F2DFE700ECABFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D220F6D522DC472E005D8457 /* Main.storyboard */; };
@@ -69,6 +76,7 @@
 		D25EB5D223156EDC00B0C65A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D25EB5D023156EDB00B0C65A /* Reachability.m */; };
 		D292130322F441D300E690ED /* ProcessCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D292130122F441D300E690ED /* ProcessCardViewController.m */; };
 		D292130422F441D300E690ED /* ProcessCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D292130222F441D300E690ED /* ProcessCardViewController.xib */; };
+		D2A1ABC92343767100BF5B75 /* MTDataViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A1ABC82343767100BF5B75 /* MTDataViewerViewController.m */; };
 		D2A273A9231D373800E08EF2 /* PCCPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A273A8231D373800E08EF2 /* PCCPViewController.m */; };
 		D2A273AB231D562D00E08EF2 /* Phone-Country-Code-and-Flags.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2A273AA231D562D00E08EF2 /* Phone-Country-Code-and-Flags.bundle */; };
 		D2B8C851230139A20010FA2E /* arrow-copy-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C84E230139A20010FA2E /* arrow-copy-7@2x.png */; };
@@ -100,6 +108,8 @@
 		D2B8C88623017EA10010FA2E /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C88323017EA10010FA2E /* group.png */; };
 		D2B8C88723017EA10010FA2E /* group@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C88423017EA10010FA2E /* group@3x.png */; };
 		D2B8C88823017EA10010FA2E /* group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C88523017EA10010FA2E /* group@2x.png */; };
+		D2E1B6862343F2B200D94D70 /* eDynamoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E1B6852343F2B200D94D70 /* eDynamoController.xib */; };
+		D2E1B6882343F47D00D94D70 /* kDynamoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E1B6872343F47D00D94D70 /* kDynamoController.xib */; };
 		D2F1A98E22F02010008989B7 /* blue-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A98B22F02010008989B7 /* blue-white@2x.png */; };
 		D2F1A98F22F02010008989B7 /* blue-white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A98C22F02010008989B7 /* blue-white@3x.png */; };
 		D2F1A99022F02010008989B7 /* blue-white.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A98D22F02010008989B7 /* blue-white.png */; };
@@ -242,6 +252,19 @@
 		D220F7F522DDD47C005D8457 /* GroupsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsListViewController.m; sourceTree = "<group>"; };
 		D220F7F622DDD47C005D8457 /* GroupsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsListViewController.h; sourceTree = "<group>"; };
 		D220F7F722DDD47C005D8457 /* GroupsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsListViewController.xib; sourceTree = "<group>"; };
+		D2237A9C234381FE0043C2CC /* kDynamoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kDynamoController.m; sourceTree = "<group>"; };
+		D2237A9D234381FE0043C2CC /* kDynamoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kDynamoController.h; sourceTree = "<group>"; };
+		D2237A9F2343826C0043C2CC /* eDynamoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eDynamoController.m; sourceTree = "<group>"; };
+		D2237AA02343826C0043C2CC /* eDynamoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eDynamoController.h; sourceTree = "<group>"; };
+		D2237AA22343829B0043C2CC /* BLEScannerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEScannerList.m; sourceTree = "<group>"; };
+		D2237AA32343829C0043C2CC /* BLEScannerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEScannerList.h; sourceTree = "<group>"; };
+		D2237AA5234382A50043C2CC /* optionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optionController.h; sourceTree = "<group>"; };
+		D2237AA6234382A50043C2CC /* optionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionController.m; sourceTree = "<group>"; };
+		D2237AA8234382BF0043C2CC /* blePairDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = blePairDemo.m; sourceTree = "<group>"; };
+		D2237AA9234382BF0043C2CC /* blePairDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blePairDemo.h; sourceTree = "<group>"; };
+		D2237AAB234382F00043C2CC /* eDynamoSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eDynamoSignature.m; sourceTree = "<group>"; };
+		D2237AAC234382F10043C2CC /* eDynamoSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eDynamoSignature.h; sourceTree = "<group>"; };
+		D2237AB62343C7780043C2CC /* MTDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MTDataViewController.xib; sourceTree = "<group>"; };
 		D237C56422F2DFD200ECABFF /* NSObject+TLVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+TLVParser.h"; sourceTree = "<group>"; };
 		D237C56522F2DFD200ECABFF /* NSObject+TLVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TLVParser.m"; sourceTree = "<group>"; };
 		D237C56622F2DFD200ECABFF /* HexUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexUtil.h; sourceTree = "<group>"; };
@@ -266,6 +289,8 @@
 		D292130022F441D300E690ED /* ProcessCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessCardViewController.h; sourceTree = "<group>"; };
 		D292130122F441D300E690ED /* ProcessCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessCardViewController.m; sourceTree = "<group>"; };
 		D292130222F441D300E690ED /* ProcessCardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProcessCardViewController.xib; sourceTree = "<group>"; };
+		D2A1ABC72343767000BF5B75 /* MTDataViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDataViewerViewController.h; sourceTree = "<group>"; };
+		D2A1ABC82343767100BF5B75 /* MTDataViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDataViewerViewController.m; sourceTree = "<group>"; };
 		D2A27371231D195100E08EF2 /* libFlagPhoneNumber.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlagPhoneNumber.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A273A7231D373100E08EF2 /* PCCPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCCPViewController.h; sourceTree = "<group>"; };
 		D2A273A8231D373800E08EF2 /* PCCPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCCPViewController.m; sourceTree = "<group>"; };
@@ -300,6 +325,8 @@
 		D2B8C88323017EA10010FA2E /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
 		D2B8C88423017EA10010FA2E /* group@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group@3x.png"; sourceTree = "<group>"; };
 		D2B8C88523017EA10010FA2E /* group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group@2x.png"; sourceTree = "<group>"; };
+		D2E1B6852343F2B200D94D70 /* eDynamoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eDynamoController.xib; sourceTree = "<group>"; };
+		D2E1B6872343F47D00D94D70 /* kDynamoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = kDynamoController.xib; sourceTree = "<group>"; };
 		D2F1A98B22F02010008989B7 /* blue-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-white@2x.png"; sourceTree = "<group>"; };
 		D2F1A98C22F02010008989B7 /* blue-white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-white@3x.png"; sourceTree = "<group>"; };
 		D2F1A98D22F02010008989B7 /* blue-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-white.png"; sourceTree = "<group>"; };
@@ -500,6 +527,23 @@
 				D292130022F441D300E690ED /* ProcessCardViewController.h */,
 				D292130122F441D300E690ED /* ProcessCardViewController.m */,
 				D292130222F441D300E690ED /* ProcessCardViewController.xib */,
+				D2237AAC234382F10043C2CC /* eDynamoSignature.h */,
+				D2237AAB234382F00043C2CC /* eDynamoSignature.m */,
+				D2237AA9234382BF0043C2CC /* blePairDemo.h */,
+				D2237AA8234382BF0043C2CC /* blePairDemo.m */,
+				D2237AA32343829C0043C2CC /* BLEScannerList.h */,
+				D2237AA22343829B0043C2CC /* BLEScannerList.m */,
+				D2237AA5234382A50043C2CC /* optionController.h */,
+				D2237AA6234382A50043C2CC /* optionController.m */,
+				D2237AA02343826C0043C2CC /* eDynamoController.h */,
+				D2237A9F2343826C0043C2CC /* eDynamoController.m */,
+				D2E1B6852343F2B200D94D70 /* eDynamoController.xib */,
+				D2A1ABC72343767000BF5B75 /* MTDataViewerViewController.h */,
+				D2A1ABC82343767100BF5B75 /* MTDataViewerViewController.m */,
+				D2237AB62343C7780043C2CC /* MTDataViewController.xib */,
+				D2237A9D234381FE0043C2CC /* kDynamoController.h */,
+				D2237A9C234381FE0043C2CC /* kDynamoController.m */,
+				D2E1B6872343F47D00D94D70 /* kDynamoController.xib */,
 				D23C5B3A230D4DE5000B0494 /* BookingConfirmationViewController.h */,
 				D23C5B3C230D4DE5000B0494 /* BookingConfirmationViewController.m */,
 				D23C5B3B230D4DE5000B0494 /* BookingConfirmationViewController.xib */,
@@ -877,6 +921,7 @@
 				D23C5AAE230AA853000B0494 /* time-filled@3x.png in Resources */,
 				D220F73522DC8A8E005D8457 /* SearchPodViewController.xib in Resources */,
 				D220F7B122DD967D005D8457 /* PodsListViewController.xib in Resources */,
+				D2237AB72343C7780043C2CC /* MTDataViewController.xib in Resources */,
 				D2B8C88823017EA10010FA2E /* group@2x.png in Resources */,
 				D2A273AB231D562D00E08EF2 /* Phone-Country-Code-and-Flags.bundle in Resources */,
 				D2F1A9A022F031D0008989B7 /* icons-search@3x.png in Resources */,
@@ -904,7 +949,9 @@
 				D2F1A99C22F031D0008989B7 /* icons-location-f-ill@2x.png in Resources */,
 				D2F1A9B822F1A499008989B7 /* setting.png in Resources */,
 				D2B8C86023013BA80010FA2E /* CircularStd-BookItalic.otf in Resources */,
+				D2E1B6862343F2B200D94D70 /* eDynamoController.xib in Resources */,
 				D2B8C88723017EA10010FA2E /* group@3x.png in Resources */,
+				D2E1B6882343F47D00D94D70 /* kDynamoController.xib in Resources */,
 				D2187F6923340A2100D163A4 /* StripePaymentViewController.xib in Resources */,
 				D2B8C85923013A1A0010FA2E /* mask@2x.png in Resources */,
 				D2F1A9A922F0566D008989B7 /* minus.png in Resources */,
@@ -1028,6 +1075,7 @@
 				D2F1A9AC22F195CB008989B7 /* TIMERUIApplication.m in Sources */,
 				D2F6CF5A233A0EF60061CDA7 /* BKCurrencyTextField.m in Sources */,
 				D220F7E922DDC069005D8457 /* FSCalendarConstants.m in Sources */,
+				D2237AAD234382F10043C2CC /* eDynamoSignature.m in Sources */,
 				D220F6D422DC472E005D8457 /* ViewController.m in Sources */,
 				D2F6CF59233A0EF60061CDA7 /* BKMoneyUtils.m in Sources */,
 				D220F7B222DD967D005D8457 /* PodsListViewController.m in Sources */,
@@ -1039,7 +1087,9 @@
 				D237C56822F2DFD200ECABFF /* NSObject+TLVParser.m in Sources */,
 				D220F7F422DDCA17005D8457 /* MBProgressHUD.m in Sources */,
 				D25EB5D223156EDC00B0C65A /* Reachability.m in Sources */,
+				D2237AA7234382A50043C2CC /* optionController.m in Sources */,
 				D220F7DE22DDC069005D8457 /* FSCalendarWeekdayView.m in Sources */,
+				D2237A9E234381FE0043C2CC /* kDynamoController.m in Sources */,
 				D23C5B3E230D4DE6000B0494 /* BookingConfirmationViewController.m in Sources */,
 				D220F7E422DDC069005D8457 /* FSCalendarCollectionView.m in Sources */,
 				D2F6CF58233A0EF60061CDA7 /* BKCardPatternInfo.m in Sources */,
@@ -1047,8 +1097,11 @@
 				D220F7E522DDC069005D8457 /* FSCalendar.m in Sources */,
 				D2F6CF54233A0EF60061CDA7 /* BKForwardingTextField.m in Sources */,
 				D23C5AB9230BCBA2000B0494 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				D2237AAA234382BF0043C2CC /* blePairDemo.m in Sources */,
 				D2B8C874230149050010FA2E /* GlobalKeyViewController.m in Sources */,
+				D2237AA42343829C0043C2CC /* BLEScannerList.m in Sources */,
 				D220F6DF22DC4730005D8457 /* main.m in Sources */,
+				D2A1ABC92343767100BF5B75 /* MTDataViewerViewController.m in Sources */,
 				D220F7EB22DDC069005D8457 /* FSCalendarCollectionViewLayout.m in Sources */,
 				D21A6C672302F22300827195 /* BookingSummaryViewController.m in Sources */,
 				D2F1A9B522F1987A008989B7 /* ScreensaverViewController.m in Sources */,
@@ -1056,6 +1109,7 @@
 				D220F7DF22DDC069005D8457 /* FSCalendarAppearance.m in Sources */,
 				D23C5ABB230BCBA2000B0494 /* TPKeyboardAvoidingTableView.m in Sources */,
 				D220F7B722DDAC53005D8457 /* PodListTableCell.m in Sources */,
+				D2237AA12343826D0043C2CC /* eDynamoController.m in Sources */,
 				D220F7EC22DDC069005D8457 /* FSCalendarDelegationFactory.m in Sources */,
 				D220F7E322DDC069005D8457 /* FSCalendarExtensions.m in Sources */,
 				D2A273A9231D373800E08EF2 /* PCCPViewController.m in Sources */,
