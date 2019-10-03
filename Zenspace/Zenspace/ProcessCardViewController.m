@@ -1168,9 +1168,14 @@ typedef void(^commandCompletion)(NSString*);
             {
                 response = [self buildAcquirerResponse:[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF25"] value]] encryptionType:[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF55"] value]] ksn:[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF54"] value]] approved:YES];
             }
-            txtData.text = @"";
+            self->txtData.text = @"";
             txtData.text = [txtData.text stringByAppendingString: [NSString stringWithFormat:@" [Send Respond] %@", [self getHexString:response]]];
             [self setText:[NSString stringWithFormat:@"\n[Send Response]\n%@", response]];
+            
+            
+            self->megPrint =  [self.lib getMagnePrint];
+            self->track1 =  [self.lib getTrack1];
+            self->track2 =  [self.lib getTrack2];
             
             [self.lib setAcquirerResponse:(unsigned char *)[response bytes] length:(int)response.length];
             
@@ -1322,9 +1327,7 @@ typedef void(^commandCompletion)(NSString*);
                 self->encryptionType = [(MTTLV*)[tlv objectForKey:@"DFDF55"] value];
                 self->paddedBytes = [(MTTLV*)[tlv objectForKey:@"DFDF58"] value];
                 
-                self->megPrint =  [self.lib getMagnePrint];
-                self->track1 =  [self.lib getTrack1];
-                self->track2 =  [self.lib getTrack2];
+               
                
                 
                 

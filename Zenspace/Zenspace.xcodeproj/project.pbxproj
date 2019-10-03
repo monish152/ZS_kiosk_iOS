@@ -60,7 +60,6 @@
 		D2237AA7234382A50043C2CC /* optionController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2237AA6234382A50043C2CC /* optionController.m */; };
 		D2237AAA234382BF0043C2CC /* blePairDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D2237AA8234382BF0043C2CC /* blePairDemo.m */; };
 		D2237AAD234382F10043C2CC /* eDynamoSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = D2237AAB234382F00043C2CC /* eDynamoSignature.m */; };
-		D2237AB72343C7780043C2CC /* MTDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2237AB62343C7780043C2CC /* MTDataViewController.xib */; };
 		D237C56822F2DFD200ECABFF /* NSObject+TLVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D237C56522F2DFD200ECABFF /* NSObject+TLVParser.m */; };
 		D237C56922F2DFD200ECABFF /* HexUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D237C56722F2DFD200ECABFF /* HexUtil.m */; };
 		D237C56A22F2DFE700ECABFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D220F6D522DC472E005D8457 /* Main.storyboard */; };
@@ -108,7 +107,6 @@
 		D2B8C88623017EA10010FA2E /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C88323017EA10010FA2E /* group.png */; };
 		D2B8C88723017EA10010FA2E /* group@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C88423017EA10010FA2E /* group@3x.png */; };
 		D2B8C88823017EA10010FA2E /* group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C88523017EA10010FA2E /* group@2x.png */; };
-		D2E1B6862343F2B200D94D70 /* eDynamoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E1B6852343F2B200D94D70 /* eDynamoController.xib */; };
 		D2E1B6882343F47D00D94D70 /* kDynamoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E1B6872343F47D00D94D70 /* kDynamoController.xib */; };
 		D2F1A98E22F02010008989B7 /* blue-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A98B22F02010008989B7 /* blue-white@2x.png */; };
 		D2F1A98F22F02010008989B7 /* blue-white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A98C22F02010008989B7 /* blue-white@3x.png */; };
@@ -264,7 +262,6 @@
 		D2237AA9234382BF0043C2CC /* blePairDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blePairDemo.h; sourceTree = "<group>"; };
 		D2237AAB234382F00043C2CC /* eDynamoSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eDynamoSignature.m; sourceTree = "<group>"; };
 		D2237AAC234382F10043C2CC /* eDynamoSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eDynamoSignature.h; sourceTree = "<group>"; };
-		D2237AB62343C7780043C2CC /* MTDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MTDataViewController.xib; sourceTree = "<group>"; };
 		D237C56422F2DFD200ECABFF /* NSObject+TLVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+TLVParser.h"; sourceTree = "<group>"; };
 		D237C56522F2DFD200ECABFF /* NSObject+TLVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TLVParser.m"; sourceTree = "<group>"; };
 		D237C56622F2DFD200ECABFF /* HexUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexUtil.h; sourceTree = "<group>"; };
@@ -325,7 +322,6 @@
 		D2B8C88323017EA10010FA2E /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
 		D2B8C88423017EA10010FA2E /* group@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group@3x.png"; sourceTree = "<group>"; };
 		D2B8C88523017EA10010FA2E /* group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group@2x.png"; sourceTree = "<group>"; };
-		D2E1B6852343F2B200D94D70 /* eDynamoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = eDynamoController.xib; sourceTree = "<group>"; };
 		D2E1B6872343F47D00D94D70 /* kDynamoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = kDynamoController.xib; sourceTree = "<group>"; };
 		D2F1A98B22F02010008989B7 /* blue-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-white@2x.png"; sourceTree = "<group>"; };
 		D2F1A98C22F02010008989B7 /* blue-white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-white@3x.png"; sourceTree = "<group>"; };
@@ -537,10 +533,8 @@
 				D2237AA6234382A50043C2CC /* optionController.m */,
 				D2237AA02343826C0043C2CC /* eDynamoController.h */,
 				D2237A9F2343826C0043C2CC /* eDynamoController.m */,
-				D2E1B6852343F2B200D94D70 /* eDynamoController.xib */,
 				D2A1ABC72343767000BF5B75 /* MTDataViewerViewController.h */,
 				D2A1ABC82343767100BF5B75 /* MTDataViewerViewController.m */,
-				D2237AB62343C7780043C2CC /* MTDataViewController.xib */,
 				D2237A9D234381FE0043C2CC /* kDynamoController.h */,
 				D2237A9C234381FE0043C2CC /* kDynamoController.m */,
 				D2E1B6872343F47D00D94D70 /* kDynamoController.xib */,
@@ -921,7 +915,6 @@
 				D23C5AAE230AA853000B0494 /* time-filled@3x.png in Resources */,
 				D220F73522DC8A8E005D8457 /* SearchPodViewController.xib in Resources */,
 				D220F7B122DD967D005D8457 /* PodsListViewController.xib in Resources */,
-				D2237AB72343C7780043C2CC /* MTDataViewController.xib in Resources */,
 				D2B8C88823017EA10010FA2E /* group@2x.png in Resources */,
 				D2A273AB231D562D00E08EF2 /* Phone-Country-Code-and-Flags.bundle in Resources */,
 				D2F1A9A022F031D0008989B7 /* icons-search@3x.png in Resources */,
@@ -949,7 +942,6 @@
 				D2F1A99C22F031D0008989B7 /* icons-location-f-ill@2x.png in Resources */,
 				D2F1A9B822F1A499008989B7 /* setting.png in Resources */,
 				D2B8C86023013BA80010FA2E /* CircularStd-BookItalic.otf in Resources */,
-				D2E1B6862343F2B200D94D70 /* eDynamoController.xib in Resources */,
 				D2B8C88723017EA10010FA2E /* group@3x.png in Resources */,
 				D2E1B6882343F47D00D94D70 /* kDynamoController.xib in Resources */,
 				D2187F6923340A2100D163A4 /* StripePaymentViewController.xib in Resources */,

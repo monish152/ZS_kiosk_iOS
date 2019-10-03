@@ -13,5 +13,6 @@
     
 }
 
--(IBAction)api:(id)sender;
+-(IBAction)backBtnPress:(id)sender;
+
 @end

@@ -34,9 +34,9 @@
     self.lib.delegate = self;
     
 
-    self.txtData.frame = CGRectMake(5, 60, 500, 500);
-    self.txtData.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:self.txtData];
+//    self.txtData.frame = CGRectMake(5, 60, 500, 500);
+//    self.txtData.backgroundColor = [UIColor lightGrayColor];
+//    [self.view addSubview:self.txtData];
     
     [self.lib setDeviceType:MAGTEKKDYNAMO];
     [self.lib setDeviceProtocolString:@"com.magtek.idynamo"];
@@ -82,17 +82,7 @@
     firstLED.backgroundColor = [UIColor grayColor];
     [self.view addSubview:firstLED];
     
-    secondLED = [[UIView alloc]initWithFrame:CGRectMake(self.btnCancel.frame.origin.x, self.btnCancel.frame.origin.y - 60- xOffset, self.btnCancel.frame.size.width, self.btnCancel.frame.size.height)];
-    secondLED.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:secondLED];
-    
-    thirdLED = [[UIView alloc]initWithFrame:CGRectMake(self.btnReset.frame.origin.x, self.btnReset.frame.origin.y - 60- xOffset, self.btnReset.frame.size.width, self.btnReset.frame.size.height)];
-    thirdLED.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:thirdLED];
-    
-    fourthLED = [[UIView alloc]initWithFrame:CGRectMake(self.btnOptions.frame.origin.x, self.btnOptions.frame.origin.y - 60- xOffset, self.btnOptions.frame.size.width, self.btnOptions.frame.size.height)];
-    fourthLED.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:fourthLED];
+  
 }
 - (void)onDeviceConnectionDidChange:(MTSCRADeviceType)deviceType connected:(BOOL)connected instance:(id)instance
 {
@@ -249,6 +239,9 @@
 - (void)onDataReceived:(MTCardData *)cardDataObj instance:(id)instance
 {
     [super onDataReceived:cardDataObj instance:instance];
+}
+-(IBAction)backBtnPress:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 /*
  #pragma mark - Navigation

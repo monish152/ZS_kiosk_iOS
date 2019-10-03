@@ -40,11 +40,13 @@ typedef void(^commandCompletion)(NSString*);
     
     // Do any additional setup after loading the view.
     self.title = @"Bluetooth LE EMV";
-    self.txtData.frame = CGRectMake(5, 60, self.view.frame.size.width - 10, self.view.frame.size.height - 300 - xOffset);
-    self.txtData.backgroundColor = [UIColor darkGrayColor];
-    [self.view addSubview:self.txtData];
+   
     
     int btnWidth = self.view.frame.size.width / 4;
+    
+    self.cardView.layer.cornerRadius = 20;
+    self.swipeCardLbl.font = [UIFont fontWithName:@"CircularStd-Medium"
+                                        size:28];
     
     _btnStartEMV = [[UIButton alloc]initWithFrame:CGRectMake(5, self.view.frame.size.height - 98 - 65 - 60, btnWidth - 7, 40)];
     [_btnStartEMV setTitle:@"Start" forState:UIControlStateNormal];
@@ -431,10 +433,10 @@ typedef void(^commandCompletion)(NSString*);
 }
 - (void)startEMV
 {
-    NSLog(@"startEMV 1" );
+    
     if(self.lib.isDeviceOpened && self.lib.isDeviceConnected)
     {
-         NSLog(@"startEMV 2" );
+
         // dispatch_async(dispatch_get_main_queue(), ^{
         
             NSString *txtAmount = self.transactionAmount;
@@ -482,40 +484,6 @@ typedef void(^commandCompletion)(NSString*);
                 Byte reportingOption =   0x02;
                 
                 
-//                if([opt getPurchaseOption] & 0x02)
-//                {
-//                    if(alertView.tag != 1)
-//                    {
-//                        dispatch_async(dispatch_get_main_queue(), ^{
-//                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter Cashback Amount"
-//                                                                            message:@"Enter amout for Cashback"
-//                                                                           delegate:self
-//                                                                  cancelButtonTitle:@"Cancel"
-//                                                                  otherButtonTitles:@"OK", nil];
-//                            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-//                            [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
-//                            alert.tag = 1;
-//                            [alert show];
-//
-//                        });
-//                        return;
-//                    }
-//                    else
-//                    {
-//                        NSData* dataAmount = [HexUtil dataFromHexString:txtAmount];
-//
-//
-//                        memcpy(tempAmount, [dataAmount bytes],6);
-//
-//                        for (int i = 5; i >= 0; i--) {
-//                            cashBack[i] = tempAmount[5 - i];
-//                        }
-//
-//
-//                    }
-//
-//
-//                }
                 [self getARQCFormat:^(NSString *format) {
                     
                     if([[format substringToIndex:1] isEqualToString:@"02"])
@@ -539,16 +507,12 @@ typedef void(^commandCompletion)(NSString*);
                 }];
                 //});
             }
-            
-            
-            
-        
-        
-        
     }
 }
 
-
+-(IBAction)getSwipeCard{
+    [self apiCardSwipeConnect];
+}
 - (void)onDeviceError:(NSError *)error
 {
     [super onDeviceError:error];
@@ -591,6 +555,21 @@ typedef void(^commandCompletion)(NSString*);
     if ([dataString isEqualToString:@"PRESENT CARD"]) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         self.cardView.hidden = NO;
+        
+    }
+    if ([dataString isEqualToString:@"INSERT AGAIN"]) {
+        self.cardView.hidden = NO;
+        self.swipeCardLbl.text = @"Insert Again";
+        
+    }
+    if ([dataString isEqualToString:@"PLEASE WAIT"]) {
+        self.cardView.hidden = NO;
+        self.swipeCardLbl.text = @"Please Wait";
+        
+    }
+    if ([dataString isEqualToString:@"TRANSACTION TERMINATED"]) {
+        self.cardView.hidden = NO;
+        self.swipeCardLbl.text = @"Please Try Again";
         
     }
     if ([dataString isEqualToString:@"PROCESSING ERROR"]) {
@@ -713,7 +692,8 @@ typedef void(^commandCompletion)(NSString*);
     
     NSData *emvBytes = [HexUtil getBytesFromHexString:dataString];
     NSMutableDictionary* tlv = [emvBytes parseTLVData];
-    // NSLog([tlv dumpTags]);
+    NSString* dataDump = [tlv dumpTags];
+    NSLog(@"%@",dataDump);
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setText:[NSString stringWithFormat:@"\n[ARQC Received]\n%@", dataString]];
         if(tlv != nil)
@@ -728,6 +708,7 @@ typedef void(^commandCompletion)(NSString*);
             [self setText:[NSString stringWithFormat:@"\nSN Bytes = %@", [(MTTLV*)[tlv objectForKey:@"DFDF25"] value]]];
             [self setText:[NSString stringWithFormat:@"\nSN String = %@", deviceSN]];
             NSData* response;
+            
             if(self->arqcFormat == ARQC_EDYNAMO_FORMAT)
             {
                 
@@ -737,7 +718,7 @@ typedef void(^commandCompletion)(NSString*);
             {
                 response = [self buildAcquirerResponse:[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF25"] value]] encryptionType:[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF55"] value]] ksn:[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF54"] value]] approved:[self->opt shouldSendApprove]];
             }
-            //self.txtData.text = [self.txtData.text stringByAppendingString: [NSString stringWithFormat:@"\n[Send Respond]\n%@", [self getHexString:response]]];
+            
             [self setText:[NSString stringWithFormat:@"\n[Send Response]\n%@", response]];
             
             [self.lib setAcquirerResponse:(unsigned char *)[response bytes] length:(int)response.length];
@@ -864,7 +845,7 @@ typedef void(^commandCompletion)(NSString*);
         NSData *emvBytes = [HexUtil getBytesFromHexString:dataString];
         NSMutableDictionary* tlv = [emvBytes parseTLVData];
         NSString* dataDump = [tlv dumpTags];
-        // NSLog(@"%@", dataDump);
+//         NSLog(@"%@", dataDump);
         if(self->arqcFormat == ARQC_EDYNAMO_FORMAT)
         {
             Byte* responseTag = (unsigned char*)[[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF1A"] value]]bytes] ;
@@ -888,17 +869,17 @@ typedef void(^commandCompletion)(NSString*);
         }
         
         self->ksnStr = [(MTTLV*)[tlv objectForKey:@"DFDF56"] value];
-        self->encryptionType = [(MTTLV*)[tlv objectForKey:@"DFDF55"] value];
+        self->encryptionType = [(MTTLV*)[tlv objectForKey:@"DFDF57"] value];
         self->paddedBytes = [(MTTLV*)[tlv objectForKey:@"DFDF58"] value];
-        
         
         NSLog(@"self.cardPaymentStatus :%@",self.cardPaymentStatus);
         if ([self.cardPaymentStatus isEqualToString:@"APPROVED"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             });
-//            [self.lib closeDevice];
-            [self apiConnect:dataString];
+            
+            [self apiEVMConnect:dataString];
+            
         }
     });
     [self ledON:0 completion:nil];
@@ -924,7 +905,7 @@ typedef void(^commandCompletion)(NSString*);
 }
 
 
--(void)apiConnect:(NSString *)tlvData{
+-(void)apiEVMConnect:(NSString *)tlvData{
     NSString *soapMessage;
     
     
@@ -933,11 +914,6 @@ typedef void(^commandCompletion)(NSString*);
     NSString *transactionIdStr = @"1231232";
     encryptionType = @"80";
     paddedBytes = @"0";
-    //    tlvData = @"0239F9820235DFDF540A00000000000000000000DFDF550182DFDF250F423530363638323038333031384141FA82020B70820207DFDF530100DFDF4D273B353431333030303034303030343131313D32323132303030303030303030303030303030303FDFDF520101F88201CEDFDF598201B0FA0206677371152490850D13399F06A4DE6ECCA00FA917C410038CAF0ADFC0103E04DDDC7294EE756E9438E69C5898CD13CD67041E4AFEFFFA9448EF51FE80866A746649BFFA7033B950E6796B10038165C51DFAA2169986ECF530F4F2A3F45C5DB001CBF689C227EFA5BA537DE1D170B698357AAA1DBD012750340868FC689179E070BB7552593534D074F66CD0CAAEEC9CFEBC0DDE986FCCA16F1C44162B6F4E4E38BFD4BE8A40F374FBB044A69CD1519CF43A45A92D9668ECC4834AF18892A33517CDBB81B791AC107CEF4E1F67975D00D1F464861205B71500FB8E3D47642AA505D5500B5E42546FD6978383A6CEA31E34A5C767A07E8374B493393E7D5C9890F51F7FDE99D5E4D7D961A433018D3C9B69ABE412F317E7247138AB1C941949C21490DC153887FF5CC1FA15D74FCA9024081DFF3758B0C1B3ABD95EF0522C601CB8C3594667CAA969DF475B48D0CA08847ED980A3E70B80132E64C456DC5B3DA1FFFB186D9FAC64ABB7CAF7DC37BEB6F717577B19DA0EA166F9AB248DBC3E7D049FBB3ABE31472FAFC498DDB257639B570B37299A43ADA08956ABB43B79C491B5F6CA2823046737AEDA8107885240DFDF560A9011880B506682000247DFDF570180DFDF580103000000000011223344";
-    //    ksnStr = @"";
-    
-    
-    
     
     
     
@@ -971,17 +947,153 @@ typedef void(^commandCompletion)(NSString*);
     ///EMV Sale Request
     
     
+        soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+                       "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
+                       "<soapenv:Header/>\n"
+                       "<soapenv:Body>\n"
+                       "<mpp:ProcessEMVSRED>\n"
+                       "<!--Optional:-->\n"
+                       "<mpp:ProcessEMVSREDRequests>\n"
+                       "<mpp1:ProcessEMVSREDRequest>\n"
+                       "<!--Optional:-->\n"
+                       "<mpp1:AdditionalRequestData>\n"
+                       "<sys:KeyValuePairOfstringstring>\n"
+                       "<sys:key></sys:key>\n"
+                       "<sys:value></sys:value>\n"
+                       "</sys:KeyValuePairOfstringstring>\n"
+                       "</mpp1:AdditionalRequestData>\n"
+                       "<mpp1:Authentication>\n"
+                       "<mpp1:CustomerCode>%@</mpp1:CustomerCode>\n"
+                       "<mpp1:Password>%@</mpp1:Password>\n"
+                       "<mpp1:Username>%@</mpp1:Username>\n"
+                       "</mpp1:Authentication>\n"
+                       "<!--Optional:-->\n"
+                       "<mpp1:CustomerTransactionID>%@</mpp1:CustomerTransactionID>\n"
+                       "<mpp1:EMVSREDInput>\n"
+                       "<mpp1:EMVSREDData>%@</mpp1:EMVSREDData>\n"
+                       "<mpp1:EncryptionType>%@</mpp1:EncryptionType>\n"
+                       "<mpp1:KSN>%@</mpp1:KSN>\n"
+                       "<mpp1:NumberOfPaddedBytes>%@</mpp1:NumberOfPaddedBytes>\n"
+                       "<mpp1:PaymentMode>EMV</mpp1:PaymentMode>\n"
+                       "</mpp1:EMVSREDInput>\n"
+                       "<mpp1:TransactionInput>\n"
+                       "<mpp1:ProcessorName>Token</mpp1:ProcessorName>\n"
+                       "<mpp1:TransactionInputDetails>\n"
+                       "<sys:KeyValuePairOfstringstring>\n"
+                       "<sys:key></sys:key>\n"
+                       "<sys:value></sys:value>\n"
+                       "</sys:KeyValuePairOfstringstring>\n"
+                       "</mpp1:TransactionInputDetails>\n"
+                       "<mpp1:TransactionType>TOKEN</mpp1:TransactionType>\n"
+                       "</mpp1:TransactionInput>\n"
+                       "</mpp1:ProcessEMVSREDRequest>\n"
+                       "<mpp1:ProcessEMVSREDRequest>\n"
+                       "<mpp1:AdditionalRequestData>\n"
+                       "<sys:KeyValuePairOfstringstring>\n"
+                       "<sys:key>NonremovableTags</sys:key>\n"
+                       "<sys:value Encoding=\"cdata\"><![CDATA[<NonremovableTags><Tag>CCTrack2</Tag></NonremovableTags>]]></sys:value>\n"
+                       "</sys:KeyValuePairOfstringstring>\n"
+                       "</mpp1:AdditionalRequestData>\n"
+                       "<mpp1:Authentication>\n"
+                       "<mpp1:CustomerCode>%@</mpp1:CustomerCode>\n"
+                       "<mpp1:Password>%@</mpp1:Password>\n"
+                       "<mpp1:Username>%@</mpp1:Username>\n"
+                       "</mpp1:Authentication>\n"
+                       "<mpp1:CustomerTransactionID>%@</mpp1:CustomerTransactionID>\n"
+                       "<mpp1:EMVSREDInput>\n"
+                       "<mpp1:EMVSREDData>%@</mpp1:EMVSREDData>\n"
+                       "<mpp1:EncryptionType>%@</mpp1:EncryptionType>\n"
+                       "<mpp1:KSN>%@</mpp1:KSN>\n"
+                       "<mpp1:NumberOfPaddedBytes>%@</mpp1:NumberOfPaddedBytes>\n"
+                       "<mpp1:PaymentMode>EMV</mpp1:PaymentMode>\n"
+                       "</mpp1:EMVSREDInput>\n"
+                       "<mpp1:TransactionInput>\n"
+                       "<mpp1:Amount>%@</mpp1:Amount>\n"
+                       "<mpp1:ProcessorName>%@</mpp1:ProcessorName>\n"
+                       "<mpp1:TransactionInputDetails>\n"
+                       "<sys:KeyValuePairOfstringstring>\n"
+                       "<sys:key></sys:key>\n"
+                       "<sys:value></sys:value>\n"
+                       "</sys:KeyValuePairOfstringstring>\n"
+                       "</mpp1:TransactionInputDetails>\n"
+                       "<mpp1:TransactionType>SALE</mpp1:TransactionType>\n"
+                       "</mpp1:TransactionInput>\n"
+                       "</mpp1:ProcessEMVSREDRequest>\n"
+                       "</mpp:ProcessEMVSREDRequests>\n"
+                       "</mpp:ProcessEMVSRED>\n"
+                       "</soapenv:Body>\n"
+                       "</soapenv:Envelope>\n",custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,amountStr,processorName];
+        
+        [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessEMVSRED" forHTTPHeaderField:@"SOAPAction"];
+   
+        
+    
+    
+    
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    AFHTTPSessionManager *sManager = [[AFHTTPSessionManager alloc] init];
+    sManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSURLSessionDataTask *dataTask = [sManager dataTaskWithRequest:(NSURLRequest *)request
+                                                 completionHandler:^( NSURLResponse *response, id responseObject, NSError *error){
+                                                     NSString *resString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                                     NSLog(@"MPPGResult: %@", resString);
+                                                     NSData *myData = [resString dataUsingEncoding:NSUTF8StringEncoding];
+                                                     
+                                                     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:myData];
+                                                     
+                                                     // Don't forget to set the delegate!
+                                                     xmlParser.delegate = self;
+                                                     
+                                                     // Run the parser
+                                                     BOOL parsingResult = [xmlParser parse];
+                                                     //NSLog(@"Resp: %@", [response ]);
+                                                     NSLog(@"Err: %@", error);
+                                                 }];
+    [dataTask resume];
+}
+-(void)apiCardSwipeConnect{
+    NSString *soapMessage;
+    
+    NSString *amountStr = self.transactionAmount;
+    NSString *transactionIdStr = @"1231232";
+  
+    
+    //production
+//    NSString *custCode = @"QF20436257";
+//    NSString *userName = @"MAG190911002";
+//    NSString *password = @"ryQbhRu!e@6#Z3";
+//    NSString *processorName = @"Rapid Connect v3 - Production";
+    
+    
+    //Pilot
+    NSString *custCode = @"RU78375046";
+    NSString *userName = @"MAG180419001";
+    NSString *password = @"e!g@8iX9kN#O4k";
+    NSString *processorName = @"Rapid Connect v3 - Pilot";
+//
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://mppg.magensa.net/v3/MPPGv3Service.svc"]];
+    [request setValue:@"text/xml;charset=UTF-8" forHTTPHeaderField:@"Content-type"];
+    [request setValue:@"gzip,deflate" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setValue:@"mppg.magensa.net" forHTTPHeaderField:@"Host"];
+    [request setValue:@"Keep-Alive" forHTTPHeaderField:@"Connection"];
+    [request setValue:@"Apache-HttpClient/4.1.1" forHTTPHeaderField:@"User-Agent"];
+    
     
     
     soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
                    "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mpp=\"http://www.magensa.net/MPPGv3/\" xmlns:mpp1=\"http://schemas.datacontract.org/2004/07/MPPGv3WS.Core\" xmlns:sys=\"http://schemas.datacontract.org/2004/07/System.Collections.Generic\">\n"
                    "<soapenv:Header/>\n"
                    "<soapenv:Body>\n"
-                   "<mpp:ProcessEMVSRED>\n"
-                   "<!--Optional:-->\n"
-                   "<mpp:ProcessEMVSREDRequests>\n"
-                   "<mpp1:ProcessEMVSREDRequest>\n"
-                   "<!--Optional:-->\n"
+                   "<mpp:ProcessCardSwipe>\n"
+                   "<mpp:ProcessCardSwipeRequests>\n"
+                   "<!--Zero or more repetitions:-->\n"
+                   "<mpp1:ProcessCardSwipeRequest>\n"
                    "<mpp1:AdditionalRequestData>\n"
                    "<sys:KeyValuePairOfstringstring>\n"
                    "<sys:key></sys:key>\n"
@@ -993,50 +1105,23 @@ typedef void(^commandCompletion)(NSString*);
                    "<mpp1:Password>%@</mpp1:Password>\n"
                    "<mpp1:Username>%@</mpp1:Username>\n"
                    "</mpp1:Authentication>\n"
-                   "<!--Optional:-->\n"
-                   "<mpp1:CustomerTransactionID>%@</mpp1:CustomerTransactionID>\n"
-                   "<mpp1:EMVSREDInput>\n"
-                   "<mpp1:EMVSREDData>%@</mpp1:EMVSREDData>\n"
-                   "<mpp1:EncryptionType>%@</mpp1:EncryptionType>\n"
+                   "<mpp1:CardSwipeInput>\n"
+                   "<mpp1:EncryptedCardSwipe>\n"
+                   "<mpp1:DeviceSN>%@</mpp1:DeviceSN>\n"
                    "<mpp1:KSN>%@</mpp1:KSN>\n"
-                   "<mpp1:NumberOfPaddedBytes>%@</mpp1:NumberOfPaddedBytes>\n"
-                   "<mpp1:PaymentMode>EMV</mpp1:PaymentMode>\n"
-                   "</mpp1:EMVSREDInput>\n"
-                   "<mpp1:TransactionInput>\n"
-                   "<mpp1:ProcessorName>Token</mpp1:ProcessorName>\n"
-                   "<mpp1:TransactionInputDetails>\n"
-                   "<sys:KeyValuePairOfstringstring>\n"
-                   "<sys:key></sys:key>\n"
-                   "<sys:value></sys:value>\n"
-                   "</sys:KeyValuePairOfstringstring>\n"
-                   "</mpp1:TransactionInputDetails>\n"
-                   "<mpp1:TransactionType>TOKEN</mpp1:TransactionType>\n"
-                   "</mpp1:TransactionInput>\n"
-                   "</mpp1:ProcessEMVSREDRequest>\n"
-                   "<mpp1:ProcessEMVSREDRequest>\n"
-                   "<mpp1:AdditionalRequestData>\n"
-                   "<sys:KeyValuePairOfstringstring>\n"
-                   "<sys:key>NonremovableTags</sys:key>\n"
-                   "<sys:value Encoding=\"cdata\"><![CDATA[<NonremovableTags><Tag>CCTrack2</Tag></NonremovableTags>]]></sys:value>\n"
-                   "</sys:KeyValuePairOfstringstring>\n"
-                   "</mpp1:AdditionalRequestData>\n"
-                   "<mpp1:Authentication>\n"
-                   "<mpp1:CustomerCode>%@</mpp1:CustomerCode>\n"
-                   "<mpp1:Password>%@</mpp1:Password>\n"
-                   "<mpp1:Username>%@</mpp1:Username>\n"
-                   "</mpp1:Authentication>\n"
+                   "<mpp1:MagnePrint>%@</mpp1:MagnePrint>\n"
+                   "<mpp1:MagnePrintStatus>%@</mpp1:MagnePrintStatus>\n"
+                   "<mpp1:Track1>%@</mpp1:Track1>\n"
+                   "<mpp1:Track2>%@</mpp1:Track2>\n"
+                   "<mpp1:Track3></mpp1:Track3>\n"
+                   "</mpp1:EncryptedCardSwipe>\n"
+                   "</mpp1:CardSwipeInput>\n"
                    "<mpp1:CustomerTransactionID>%@</mpp1:CustomerTransactionID>\n"
-                   "<mpp1:EMVSREDInput>\n"
-                   "<mpp1:EMVSREDData>%@</mpp1:EMVSREDData>\n"
-                   "<mpp1:EncryptionType>%@</mpp1:EncryptionType>\n"
-                   "<mpp1:KSN>%@</mpp1:KSN>\n"
-                   "<mpp1:NumberOfPaddedBytes>%@</mpp1:NumberOfPaddedBytes>\n"
-                   "<mpp1:PaymentMode>EMV</mpp1:PaymentMode>\n"
-                   "</mpp1:EMVSREDInput>\n"
                    "<mpp1:TransactionInput>\n"
                    "<mpp1:Amount>%@</mpp1:Amount>\n"
                    "<mpp1:ProcessorName>%@</mpp1:ProcessorName>\n"
                    "<mpp1:TransactionInputDetails>\n"
+                   "<!--Zero or more repetitions:-->\n"
                    "<sys:KeyValuePairOfstringstring>\n"
                    "<sys:key></sys:key>\n"
                    "<sys:value></sys:value>\n"
@@ -1044,20 +1129,17 @@ typedef void(^commandCompletion)(NSString*);
                    "</mpp1:TransactionInputDetails>\n"
                    "<mpp1:TransactionType>SALE</mpp1:TransactionType>\n"
                    "</mpp1:TransactionInput>\n"
-                   "</mpp1:ProcessEMVSREDRequest>\n"
-                   "</mpp:ProcessEMVSREDRequests>\n"
-                   "</mpp:ProcessEMVSRED>\n"
+                   "</mpp1:ProcessCardSwipeRequest>\n"
+                   "</mpp:ProcessCardSwipeRequests>\n"
+                   "</mpp:ProcessCardSwipe>\n"
                    "</soapenv:Body>\n"
-                   "</soapenv:Envelope>\n",custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,amountStr,processorName];
+                   "</soapenv:Envelope>\n",custCode,password,userName,deviceSNStr,ksnStr,magnePrintStr,magnePrintStatus,track1Str,track2Str,transactionIdStr,amountStr,processorName];
     
-    [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessEMVSRED" forHTTPHeaderField:@"SOAPAction"];
+    [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessCardSwipe" forHTTPHeaderField:@"SOAPAction"];
+    
+    
+    
     NSLog(@"Soap Request : %@",soapMessage);
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1116,41 +1198,16 @@ typedef void(^commandCompletion)(NSString*);
         
     }
     if ([currentElement isEqualToString:@"a:TransactionID"]) {
-         self.txtData.text = [self.txtData.text stringByAppendingString:[NSString stringWithFormat:@"\n\nTrasaction Id : %@",string]];
-       
-        if (paymentApproved) {
-//            [self bookingApi:string];
-        }
-        else{
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Sorry..Payment not approved. Please try after some time." preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-                [self.lib closeDevice];
-                [self.navigationController popViewControllerAnimated:YES];
-                // Ok action example
-            }];
-            
-            [alert addAction:okAction];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-        
+        self.transactionid = string;
     }
-    if ([currentElement isEqualToString:@"a:IsTransactionApproved"]) {
+    if ([currentElement isEqualToString:@"a:TransactionMessage"]) {
         NSLog(@"payment Status : %@",string);
-        if ([string isEqualToString:@"true"]) {
-            
-            paymentApproved = YES;
-        }
-        else{
-            paymentApproved = NO;
+        if ([string isEqualToString:@"APPROVAL"]) {
+            NSLog(@"self.transactionid : %@",self.transactionid);
+            self.swipeCardLbl.text = @"Thanks. Payment Approved";
+             [self bookingApi:self.transactionid];
         }
     }
-    
-    if ([currentElement isEqualToString:@"a:TransactionUTCTimestamp"]) {
-         self.txtData.text = [self.txtData.text stringByAppendingString:[NSString stringWithFormat:@"\n\nTime : %@",string]];
-    }
-    
-    
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
@@ -1158,6 +1215,85 @@ typedef void(^commandCompletion)(NSString*);
 }
 
 - (void) parserDidEndDocument:(NSXMLParser *)parser {
+    
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [self.lib closeDevice];
+}
+
+-(void)bookingApi:(NSString *)transactionID{
+   
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    });
+    
+    
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@api/pod/reservation/%@/",KBASEPATH,self.sfid]];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    NSString *token = [NSString stringWithFormat:@"Bearer %@",[[NSUserDefaults standardUserDefaults]
+                                                               stringForKey:@"token"]];
+    
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
+    
+    NSDictionary *params = @{@"startdate":self.date,
+                             @"duration":[NSNumber numberWithInteger:self.duration],
+                             @"capacity":[NSNumber numberWithInteger:self.capacity],
+                             @"stripe_source":@"",
+                             @"email":self.email,
+                             @"amount_due":self.price,
+                             @"save_card":[NSNumber numberWithInteger:0],
+                             @"magtek_transaction_id" :transactionID,
+                             @"phonenumber" :self.phoneNumber,
+                             @"name" :self.name
+                             };
+    
+    //    NSDictionary *params = @{@"startdate":_date,
+    //                             @"duration":[NSNumber numberWithInteger:_duration],
+    //                             @"capacity":[NSNumber numberWithInteger:_capacity],
+    //                             @"stripe_source":@"",
+    //                             @"email":_email,
+    //                             @"amount_due":[NSNumber numberWithInteger:[_price integerValue]],
+    //                             @"save_card":[NSNumber numberWithInteger:0],
+    //                             @"magtek_transaction_id" :@"",
+    //                             @"phonenumber" :number,
+    //                             @"name" :name.text
+    //                             };
+    
+    [manager POST:URL.absoluteString parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        NSDictionary *dict = [responseObject objectForKey:@"result"];
+        BookingConfirmationViewController *vc = [[BookingConfirmationViewController alloc] initWithNibName:@"BookingConfirmationViewController" bundle:nil];
+        vc.userKey = [dict valueForKey:@"userkey"];
+        vc.podName =self.podName;
+        vc.date = self.date;
+        vc.duration = [NSString stringWithFormat:@"%ld",(long)self.duration];
+        vc.imageurl = self.imageurl;
+        vc.price = self.price;
+        vc.capacity = self.capacity;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSString *errorDescription = [error.userInfo valueForKey:NSLocalizedDescriptionKey];
+        NSString *className = NSStringFromClass([self class]);
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSString *parameters = [NSString stringWithFormat:@"%@", params];
+        [appDelegate fireBaseUpdateData:className :URL.absoluteString :parameters :errorDescription];
+        
+        
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        id responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
+        NSString *string = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"detail"]];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:string preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+            
+        }];
+        
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        NSLog(@"Error: %@", error);
+    }];
     
 }
 @end

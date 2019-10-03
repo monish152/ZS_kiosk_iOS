@@ -27,7 +27,7 @@ typedef void (^cmdCompBlock)(NSString*);
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+   
     [self setUpUI];
     
     // Do any additional setup after loading the view.
@@ -395,7 +395,9 @@ typedef void (^cmdCompBlock)(NSString*);
                         
                         
                         
-                        
+//                        [self sendCommandSync:@"580101"];
+//                        [self sendCommandSync:@"59020F20"];
+
                         if(deviceType == MAGTEKTDYNAMO || deviceType == MAGTEKKDYNAMO)
                         {
                             self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
@@ -454,7 +456,80 @@ typedef void (^cmdCompBlock)(NSString*);
 
 -(void)onDataReceived:(MTCardData *)cardDataObj instance:(id)instance
 {
-    
+    NSLog(@"onDataReceived : %@",[NSString stringWithFormat:      @"Track.Status: %@\n\n"
+                                              "Track1.Status: %@\n\n"
+                                              "Track2.Status: %@\n\n"
+                                              "Track3.Status: %@\n\n"
+                                              "Encryption.Status: %@\n\n"
+                                              "Battery.Level: %ld\n\n"
+                                              "Swipe.Count: %ld\n\n"
+                                              "Track.Masked: %@\n\n"
+                                              "Track1.Masked: %@\n\n"
+                                              "Track2.Masked: %@\n\n"
+                                              "Track3.Masked: %@\n\n"
+                                              "Track1.Encrypted: %@\n\n"
+                                              "Track2.Encrypted: %@\n\n"
+                                              "Track3.Encrypted: %@\n\n"
+                                              "Card.PAN: %@\n\n"
+                                              "MagnePrint.Encrypted: %@\n\n"
+                                              "MagnePrint.Length: %i\n\n"
+                                              "MagnePrint.Status: %@\n\n"
+                                              "SessionID: %@\n\n"
+                                              "Card.IIN: %@\n\n"
+                                              "Card.Name: %@\n\n"
+                                              "Card.Last4: %@\n\n"
+                                              "Card.ExpDate: %@\n\n"
+                                              "Card.ExpDateMonth: %@\n\n"
+                                              "Card.ExpDateYear: %@\n\n"
+                                              "Card.SvcCode: %@\n\n"
+                                              "Card.PANLength: %ld\n\n"
+                                              "KSN: %@\n\n"
+                                              "Device.SerialNumber: %@\n\n"
+                                              "MagTek SN: %@\n\n"
+                                              "Firmware Part Number: %@\n\n"
+                                              "Device Model Name: %@\n\n"
+                                              "TLV Payload: %@\n\n"
+                                              "DeviceCapMSR: %@\n\n"
+                                              "Operation.Status: %@\n\n"
+                                              "Card.Status: %@\n\n"
+                                              "Raw Data: \n\n%@",
+                                              cardDataObj.trackDecodeStatus,
+                                              cardDataObj.track1DecodeStatus,
+                                              cardDataObj.track2DecodeStatus,
+                                              cardDataObj.track3DecodeStatus,
+                                              cardDataObj.encryptionStatus,
+                                              cardDataObj.batteryLevel,
+                                              cardDataObj.swipeCount,
+                                              cardDataObj.maskedTracks,
+                                              cardDataObj.maskedTrack1,
+                                              cardDataObj.maskedTrack2,
+                                              cardDataObj.maskedTrack3,
+                                              cardDataObj.encryptedTrack1,
+                                              cardDataObj.encryptedTrack2,
+                                              cardDataObj.encryptedTrack3,
+                                              cardDataObj.cardPAN,
+                                              cardDataObj.encryptedMagneprint,
+                                              cardDataObj.magnePrintLength,
+                                              cardDataObj.magneprintStatus,
+                                              cardDataObj.encrypedSessionID,
+                                              cardDataObj.cardIIN,
+                                              cardDataObj.cardName,
+                                              cardDataObj.cardLast4,
+                                              cardDataObj.cardExpDate,
+                                              cardDataObj.cardExpDateMonth,
+                                              cardDataObj.cardExpDateYear,
+                                              cardDataObj.cardServiceCode,
+                                              cardDataObj.cardPANLength,
+                                              cardDataObj.deviceKSN,
+                                              cardDataObj.deviceSerialNumber,
+                                              cardDataObj.deviceSerialNumberMagTek,
+                                              cardDataObj.firmware,
+                                              cardDataObj.deviceName,
+                                              [(MTSCRA*)instance getTLVPayload],
+                                              cardDataObj.deviceCaps,
+                                              [(MTSCRA*)instance getOperationStatus],
+                                              cardDataObj.cardStatus,
+                                              [(MTSCRA*)instance getResponseData]]);
     
     [self setText:  [NSString stringWithFormat:      @"Track.Status: %@\n\n"
                      "Track1.Status: %@\n\n"
@@ -532,7 +607,14 @@ typedef void (^cmdCompBlock)(NSString*);
                      [(MTSCRA*)instance getResponseData]]];
     
     
+    ksnStr = cardDataObj.deviceKSN;
+    deviceSNStr = cardDataObj.deviceSerialNumber;
+    magnePrintStr = cardDataObj.encryptedMagneprint;
+    magnePrintStatus = cardDataObj.magneprintStatus;
+    track1Str = cardDataObj.encryptedTrack1;
+    track2Str = cardDataObj.encryptedTrack2;
     
+    [self getSwipeCard];
     
 }
 - (void)scrollTextViewToBottom:(UITextView *)textView {
