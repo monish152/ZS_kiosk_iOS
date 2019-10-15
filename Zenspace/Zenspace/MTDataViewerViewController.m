@@ -395,17 +395,10 @@ typedef void (^cmdCompBlock)(NSString*);
                         
                         
                         
-//                        [self sendCommandSync:@"580101"];
-//                        [self sendCommandSync:@"59020F20"];
-
-                        if(deviceType == MAGTEKTDYNAMO || deviceType == MAGTEKKDYNAMO)
-                        {
-                            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
-                                                                                                     style:UIBarButtonItemStylePlain
-                                                                                                    target:self action:@selector(turnMSROn)];
-                            [self setText:@"Setting Date Time..."];
-                            [self setDateTime];
-                        }
+                        [self sendCommandSync:@"580101"];
+                        [self sendCommandSync:@"59020F20"];
+                         [self setDateTime];
+                       
                     });
                     
                     if(deviceType == MAGTEKTDYNAMO)

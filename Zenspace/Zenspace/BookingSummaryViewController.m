@@ -290,6 +290,7 @@
         vc.capacity = self->_capacity;
         vc.email = email.text;
         vc.phoneNumber = number;
+        vc.name = name.text;
         [self.navigationController pushViewController:vc animated:YES];
    
         /*

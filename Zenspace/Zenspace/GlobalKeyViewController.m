@@ -34,22 +34,7 @@
     img3.layer.cornerRadius = 10;
     img4.layer.cornerRadius = 10;
     
-    UIBarButtonItem *my0Button = [[UIBarButtonItem alloc] initWithTitle:@"0" style:UIBarButtonItemStyleBordered target:self action:@selector(addNumberToString:)];
-    UIBarButtonItem *my1Button = [[UIBarButtonItem alloc] initWithTitle:@"1" style:UIBarButtonItemStyleBordered target:self action:@selector(addNumberToString:)];
-    
-    UIToolbar *extraRow = [[UIToolbar alloc] init];
-    extraRow.barStyle = UIBarStyleBlack;
-    extraRow.translucent = YES;
-    extraRow.tintColor = [UIColor grayColor];
-    [extraRow sizeToFit];
-    NSArray *buttons = [NSArray arrayWithObjects: my0Button, my1Button, nil];
-    [extraRow setItems:buttons animated:YES];
-    firstTxtField.inputAccessoryView = extraRow;
-    secondTxtField.inputAccessoryView = extraRow;
-    thirdTxtField.inputAccessoryView = extraRow;
-    fourthTxtField.inputAccessoryView = extraRow;
-    
-    
+  
     
      if(emailId) {
         keyType.text = @"Enter Global Pin";
@@ -59,8 +44,116 @@
          fourthTxtField.keyboardType = UIKeyboardTypeNumberPad;
     }
     [firstTxtField becomeFirstResponder];
+    
+    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                      target:nil action:nil];
+    
+    
+    
+    UIToolbar *extraRow = [[UIToolbar alloc] init];
+    //    extraRow.barStyle = UIBarStyleBlack;
+    extraRow.translucent = NO;
+    extraRow.barTintColor = [UIColor colorWithRed:207.0/255.0 green:210.0/255.0 blue:216.0/255.0 alpha:1.0];
+    [extraRow sizeToFit];
+    NSArray *buttons = [NSArray arrayWithObjects: flexBarButton,
+                        [self keyboardButton:@"1"],
+                        flexBarButton,
+                        [self keyboardButton:@"2"],
+                        flexBarButton,
+                        [self keyboardButton:@"3"],
+                        flexBarButton,
+                        [self keyboardButton:@"4"],
+                        flexBarButton,
+                        [self keyboardButton:@"5"],
+                        flexBarButton,
+                        [self keyboardButton:@"6"],
+                        flexBarButton,
+                        [self keyboardButton:@"7"],
+                        flexBarButton,
+                        [self keyboardButton:@"8"],
+                        flexBarButton,
+                        [self keyboardButton:@"9"],
+                        flexBarButton,
+                        [self keyboardButton:@"0"],
+                        flexBarButton,
+                        nil];
+    [extraRow setItems:buttons animated:YES];
+    
+    
+    
+    
+    
+    firstTxtField.inputAccessoryView = extraRow;
+    secondTxtField.inputAccessoryView = extraRow;
+    thirdTxtField.inputAccessoryView = extraRow;
+    fourthTxtField.inputAccessoryView = extraRow;
+    
+    firstTxtField.autocorrectionType = UITextAutocorrectionTypeNo;
+    UITextInputAssistantItem* shortcut = [firstTxtField inputAssistantItem];
+    shortcut.leadingBarButtonGroups = @[];
+    shortcut.trailingBarButtonGroups = @[];
+    
+    secondTxtField.autocorrectionType = UITextAutocorrectionTypeNo;
+    shortcut = [secondTxtField inputAssistantItem];
+    shortcut.leadingBarButtonGroups = @[];
+    shortcut.trailingBarButtonGroups = @[];
+    
+    
+    thirdTxtField.autocorrectionType = UITextAutocorrectionTypeNo;
+    shortcut = [thirdTxtField inputAssistantItem];
+    shortcut.leadingBarButtonGroups = @[];
+    shortcut.trailingBarButtonGroups = @[];
+    
+    fourthTxtField.autocorrectionType = UITextAutocorrectionTypeNo;
+    shortcut = [fourthTxtField inputAssistantItem];
+    shortcut.leadingBarButtonGroups = @[];
+    shortcut.trailingBarButtonGroups = @[];
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+-(UIBarButtonItem*)keyboardButton :(NSString *)text{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:text forState:UIControlStateNormal];
+    button.layer.backgroundColor = [UIColor whiteColor].CGColor;
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button addTarget:self
+               action:@selector(barButtonCustomPressed:)
+     forControlEvents:UIControlEventTouchUpInside];
+    button.layer.cornerRadius = 4.0;
+    
+    UIBarButtonItem *my0Button = [[UIBarButtonItem alloc] initWithCustomView:button];
+    CGRect resizedFrame = my0Button.customView.frame;
+    resizedFrame.origin.y = 10;
+    resizedFrame.size.width = 45;
+    resizedFrame.size.height = 45;
+    my0Button.customView.frame = resizedFrame;
+    
+    
+    return my0Button;
+    
+}
+-(IBAction)barButtonCustomPressed:(UIButton*)btn {
+    //    NSLog(@"button tapped %@", btn.titleLabel.text);
+    if ([firstTxtField isFirstResponder]) {
+        firstTxtField.text = btn.titleLabel.text;
+        [secondTxtField becomeFirstResponder];
+    }
+    else if ([secondTxtField isFirstResponder]){
+        secondTxtField.text = btn.titleLabel.text;
+        [thirdTxtField becomeFirstResponder];
+    }
+    else if ([thirdTxtField isFirstResponder]){
+        thirdTxtField.text = btn.titleLabel.text;
+        [fourthTxtField becomeFirstResponder];
+    }
+    else if ([fourthTxtField isFirstResponder]){
+        fourthTxtField.text = btn.titleLabel.text;
+        [fourthTxtField resignFirstResponder];
+        [self unlockButtonPressed:nil];
+    }
 }
 -(IBAction)addNumberToString:(id)sender{
     [firstTxtField becomeFirstResponder];
@@ -296,6 +389,13 @@
         return NO;
     }
     return YES;
+}
+- (BOOL)keyboardInputShouldDelete:(UITextField *)textField {
+    UITextField *preTextField = ((UITextField *)[self.view viewWithTag:textField.tag-1]);
+    preTextField.text = @"";
+    [preTextField becomeFirstResponder];
+    return YES;
+    
 }
 -(void)cleanData{
     firstTxtField.text = @"";

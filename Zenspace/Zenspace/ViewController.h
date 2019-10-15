@@ -15,6 +15,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "StripePaymentViewController.h"
 #import "kDynamoController.h"
+#import "SupportScreen1ViewController.h"
 @interface ViewController : UIViewController{
     
     

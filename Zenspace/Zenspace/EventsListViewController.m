@@ -42,6 +42,8 @@
     self.navigationController.navigationBarHidden = YES;
 }
 -(IBAction)eventBtnPress:(id)sender{
+    titleLbl.text = @"Upcoming Events";
+    
     NSUserDefaults* def=[NSUserDefaults standardUserDefaults];
     [def setObject:@"event" forKey:@"eventorlocation"];
     [def synchronize];
@@ -50,6 +52,8 @@
     [self getEvents:YES];
 }
 -(IBAction)locationBtnPress:(id)sender{
+    titleLbl.text = @"Locations";
+    
     NSUserDefaults* def=[NSUserDefaults standardUserDefaults];
     [def setObject:@"location" forKey:@"eventorlocation"];
     [def synchronize];

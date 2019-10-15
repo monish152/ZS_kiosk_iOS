@@ -287,6 +287,7 @@ typedef void(^commandCompletion)(NSString*);
     
     
 }
+/*
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     
@@ -406,6 +407,7 @@ typedef void(^commandCompletion)(NSString*);
     }
     //});
 }
+ */
 
 //setLED:(BOOL)
 -(int)ledON:(int)on completion:(commandCompletion)completion
@@ -459,7 +461,7 @@ typedef void(^commandCompletion)(NSString*);
                     
                
                 Byte timeLimit = 0x3C;
-                Byte cardType = [opt getCardType];
+                Byte cardType = 0x03;
                 
                 
                 Byte option = 0x00;
@@ -1057,6 +1059,7 @@ typedef void(^commandCompletion)(NSString*);
     [dataTask resume];
 }
 -(void)apiCardSwipeConnect{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSString *soapMessage;
     
     NSString *amountStr = self.transactionAmount;
@@ -1222,7 +1225,7 @@ typedef void(^commandCompletion)(NSString*);
 }
 
 -(void)bookingApi:(NSString *)transactionID{
-   
+    return;
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     });
