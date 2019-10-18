@@ -22,14 +22,6 @@
                                   size:24];
     title3.font = [UIFont fontWithName:@"Roboto-Regular"
                                   size:16];
-    
-//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:title1.text];
-    
-//    float letterSpacing = 2.0f; // change spacing here
-//    [attributedString addAttribute:NSKernAttributeName value:@(letterSpacing) range:NSMakeRange(0, [title1.text length])];
-//    [title1 setAttributedText:attributedString];
-    
-   
 }
 -(IBAction)backButtonPressed:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];

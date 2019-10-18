@@ -19,13 +19,13 @@
 
 -(void)viewDidLoad{
     
-    eventsBtn.titleLabel.font = [UIFont fontWithName:@"CircularStd-Medium"
-                                                size:24];
-    locationBtn.titleLabel.font = [UIFont fontWithName:@"CircularStd-Medium"
-                                                  size:24];
+    eventsBtn.titleLabel.font = [UIFont fontWithName:@"Roboto-Regular"
+                                                size:20];
+    locationBtn.titleLabel.font = [UIFont fontWithName:@"Roboto-Regular"
+                                                  size:20];
     
     
-    titleLbl.font = [UIFont fontWithName:@"CircularStd-Medium"
+    titleLbl.font = [UIFont fontWithName:@"Roboto-Medium"
                                     size:24];
     
     

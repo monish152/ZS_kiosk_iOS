@@ -256,8 +256,8 @@
         if (![phone.text isEqualToString:@""]) {
             number = [NSString stringWithFormat:@"+%@%@",countrycodeStr,phone.text];
         }
-        
-        /*
+    
+     
         StripePaymentViewController *vc = [[StripePaymentViewController alloc] initWithNibName:@"StripePaymentViewController" bundle:nil];
         NSString *amount = [NSString stringWithFormat:@"%@", _price];
         vc.transactionAmount =amount ;
@@ -272,8 +272,9 @@
         vc.phoneNumber = number;
         vc.name = name.text;
         [self.navigationController pushViewController:vc animated:YES];
-         */
         
+        
+        /*
         kDynamoController *vc = [[kDynamoController alloc] initWithNibName:@"kDynamoController" bundle:nil];
         CGFloat value = [_price floatValue] *100;
         NSString *amount = [NSString stringWithFormat:@"%f",value];
@@ -292,6 +293,7 @@
         vc.phoneNumber = number;
         vc.name = name.text;
         [self.navigationController pushViewController:vc animated:YES];
+        */
    
         /*
         ProcessCardViewController *vc = [[ProcessCardViewController alloc] initWithNibName:@"ProcessCardViewController" bundle:nil];

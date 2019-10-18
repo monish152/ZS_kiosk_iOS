@@ -114,7 +114,6 @@
 		D292130422F441D300E690ED /* ProcessCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D292130222F441D300E690ED /* ProcessCardViewController.xib */; };
 		D2A1ABC92343767100BF5B75 /* MTDataViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A1ABC82343767100BF5B75 /* MTDataViewerViewController.m */; };
 		D2A273A9231D373800E08EF2 /* PCCPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A273A8231D373800E08EF2 /* PCCPViewController.m */; };
-		D2A273AB231D562D00E08EF2 /* Phone-Country-Code-and-Flags.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2A273AA231D562D00E08EF2 /* Phone-Country-Code-and-Flags.bundle */; };
 		D2B8C851230139A20010FA2E /* arrow-copy-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C84E230139A20010FA2E /* arrow-copy-7@2x.png */; };
 		D2B8C852230139A20010FA2E /* arrow-copy-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C84F230139A20010FA2E /* arrow-copy-7@3x.png */; };
 		D2B8C853230139A20010FA2E /* arrow-copy-7.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C850230139A20010FA2E /* arrow-copy-7.png */; };
@@ -144,6 +143,9 @@
 		D2B8C88623017EA10010FA2E /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C88323017EA10010FA2E /* group.png */; };
 		D2B8C88723017EA10010FA2E /* group@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C88423017EA10010FA2E /* group@3x.png */; };
 		D2B8C88823017EA10010FA2E /* group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B8C88523017EA10010FA2E /* group@2x.png */; };
+		D2CB0F7623559CF80077C6C4 /* Phone-Country-Code-and-Flags.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2CB0F7523559CF80077C6C4 /* Phone-Country-Code-and-Flags.bundle */; };
+		D2CB0F792355AC310077C6C4 /* emailSelecgted.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CB0F772355AC300077C6C4 /* emailSelecgted.png */; };
+		D2CB0F7A2355AC310077C6C4 /* mobile_unSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CB0F782355AC300077C6C4 /* mobile_unSelected.png */; };
 		D2E1B6882343F47D00D94D70 /* kDynamoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E1B6872343F47D00D94D70 /* kDynamoController.xib */; };
 		D2F1A98E22F02010008989B7 /* blue-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A98B22F02010008989B7 /* blue-white@2x.png */; };
 		D2F1A98F22F02010008989B7 /* blue-white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F1A98C22F02010008989B7 /* blue-white@3x.png */; };
@@ -370,7 +372,6 @@
 		D2A27371231D195100E08EF2 /* libFlagPhoneNumber.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlagPhoneNumber.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A273A7231D373100E08EF2 /* PCCPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCCPViewController.h; sourceTree = "<group>"; };
 		D2A273A8231D373800E08EF2 /* PCCPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCCPViewController.m; sourceTree = "<group>"; };
-		D2A273AA231D562D00E08EF2 /* Phone-Country-Code-and-Flags.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "Phone-Country-Code-and-Flags.bundle"; path = "Pods/Phone-Country-Code-and-Flags/Phone-Country-Code-and-Flags.bundle"; sourceTree = SOURCE_ROOT; };
 		D2B8C846230137510010FA2E /* CircularStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Medium.otf"; sourceTree = "<group>"; };
 		D2B8C847230137510010FA2E /* CircularStd-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-BlackItalic.otf"; sourceTree = "<group>"; };
 		D2B8C848230137510010FA2E /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.otf"; sourceTree = "<group>"; };
@@ -401,6 +402,9 @@
 		D2B8C88323017EA10010FA2E /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
 		D2B8C88423017EA10010FA2E /* group@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group@3x.png"; sourceTree = "<group>"; };
 		D2B8C88523017EA10010FA2E /* group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group@2x.png"; sourceTree = "<group>"; };
+		D2CB0F7523559CF80077C6C4 /* Phone-Country-Code-and-Flags.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "Phone-Country-Code-and-Flags.bundle"; sourceTree = "<group>"; };
+		D2CB0F772355AC300077C6C4 /* emailSelecgted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emailSelecgted.png; sourceTree = "<group>"; };
+		D2CB0F782355AC300077C6C4 /* mobile_unSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobile_unSelected.png; sourceTree = "<group>"; };
 		D2E1B6872343F47D00D94D70 /* kDynamoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = kDynamoController.xib; sourceTree = "<group>"; };
 		D2F1A98B22F02010008989B7 /* blue-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-white@2x.png"; sourceTree = "<group>"; };
 		D2F1A98C22F02010008989B7 /* blue-white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-white@3x.png"; sourceTree = "<group>"; };
@@ -569,7 +573,6 @@
 				D220F7F322DDCA17005D8457 /* MBProgressHUD.m */,
 				D2F1A9AA22F195CB008989B7 /* TIMERUIApplication.h */,
 				D2F1A9AB22F195CB008989B7 /* TIMERUIApplication.m */,
-				D2A273AA231D562D00E08EF2 /* Phone-Country-Code-and-Flags.bundle */,
 				D220F7B822DDAD4D005D8457 /* Resources */,
 				D220F76722DCA0B2005D8457 /* FSCalendar */,
 				D220F70122DC58A6005D8457 /* NSXML */,
@@ -797,6 +800,8 @@
 			children = (
 				D25635E623548C5D009CA088 /* email_unSelected.png */,
 				D25635E523548C5D009CA088 /* phone_Selected.png */,
+				D2CB0F772355AC300077C6C4 /* emailSelecgted.png */,
+				D2CB0F782355AC300077C6C4 /* mobile_unSelected.png */,
 				D25635E32354879A009CA088 /* name_textfield.png */,
 				D25635E12354874C009CA088 /* phone_textField.png */,
 				D25635DF235485EF009CA088 /* email_icon.png */,
@@ -908,6 +913,7 @@
 		D2F6CF40233A0EF60061CDA7 /* BKMoneyKit */ = {
 			isa = PBXGroup;
 			children = (
+				D2CB0F7523559CF80077C6C4 /* Phone-Country-Code-and-Flags.bundle */,
 				D2F6CF41233A0EF60061CDA7 /* BKCardPatternInfo.h */,
 				D2F6CF42233A0EF60061CDA7 /* BKCardExpiryField.h */,
 				D2F6CF43233A0EF60061CDA7 /* BKCardNumberField.m */,
@@ -1057,7 +1063,6 @@
 				D2B8C88823017EA10010FA2E /* group@2x.png in Resources */,
 				D25635DE2354828B009CA088 /* Rectangle 15.png in Resources */,
 				D25635BF23546DE9009CA088 /* Roboto-Medium.ttf in Resources */,
-				D2A273AB231D562D00E08EF2 /* Phone-Country-Code-and-Flags.bundle in Resources */,
 				D25635CB23546DE9009CA088 /* Roboto-Black.ttf in Resources */,
 				D2F1A9A022F031D0008989B7 /* icons-search@3x.png in Resources */,
 				D25635C923546DE9009CA088 /* Roboto-Bold.ttf in Resources */,
@@ -1072,6 +1077,7 @@
 				D25635C023546DE9009CA088 /* Roboto-Light.ttf in Resources */,
 				D2B8C86F2301487B0010FA2E /* settings-f-illed@2x.png in Resources */,
 				D23C5AAC230AA853000B0494 /* time-filled.png in Resources */,
+				D2CB0F792355AC310077C6C4 /* emailSelecgted.png in Resources */,
 				D25635B023546627009CA088 /* SupportSuccessViewController.xib in Resources */,
 				D2B8C851230139A20010FA2E /* arrow-copy-7@2x.png in Resources */,
 				D2B8C873230149050010FA2E /* GlobalKeyViewController.xib in Resources */,
@@ -1096,6 +1102,7 @@
 				D220F7BC22DDAD5A005D8457 /* pod-web-1.png in Resources */,
 				D220F7F122DDC849005D8457 /* EventsListViewController.xib in Resources */,
 				D2F1A99C22F031D0008989B7 /* icons-location-f-ill@2x.png in Resources */,
+				D2CB0F7623559CF80077C6C4 /* Phone-Country-Code-and-Flags.bundle in Resources */,
 				D2F1A9B822F1A499008989B7 /* setting.png in Resources */,
 				D25635D0235471CA009CA088 /* emergency.png in Resources */,
 				D2B8C86023013BA80010FA2E /* CircularStd-BookItalic.otf in Resources */,
@@ -1103,6 +1110,7 @@
 				D2E1B6882343F47D00D94D70 /* kDynamoController.xib in Resources */,
 				D2187F6923340A2100D163A4 /* StripePaymentViewController.xib in Resources */,
 				D2B8C85923013A1A0010FA2E /* mask@2x.png in Resources */,
+				D2CB0F7A2355AC310077C6C4 /* mobile_unSelected.png in Resources */,
 				D25635C823546DE9009CA088 /* Roboto-BlackItalic.ttf in Resources */,
 				D2F1A9A922F0566D008989B7 /* minus.png in Resources */,
 				D2B8C877230149CC0010FA2E /* delete.png in Resources */,
@@ -1211,14 +1219,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Zenspace/Pods-Zenspace-resources.sh",
-				"${PODS_ROOT}/Phone-Country-Code-and-Flags/Phone-Country-Code-and-Flags.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Phone-Country-Code-and-Flags.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

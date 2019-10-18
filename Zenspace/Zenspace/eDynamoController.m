@@ -691,7 +691,7 @@ typedef void(^commandCompletion)(NSString*);
 {
     
     NSString* dataString = [self getHexString:data];
-    
+     NSLog(@"OnARQCReceived dataString:%@",dataString);
     NSData *emvBytes = [HexUtil getBytesFromHexString:dataString];
     NSMutableDictionary* tlv = [emvBytes parseTLVData];
     NSString* dataDump = [tlv dumpTags];
@@ -700,6 +700,14 @@ typedef void(^commandCompletion)(NSString*);
         [self setText:[NSString stringWithFormat:@"\n[ARQC Received]\n%@", dataString]];
         if(tlv != nil)
         {
+            NSString *transactionTypeValue = [(MTTLV*)[tlv objectForKey:@"DFDF52"] value];
+                   if ([transactionTypeValue isEqualToString:@"01"]) {
+                       self->transactionType = @"MagStripe";
+                   }
+                   if ([transactionTypeValue isEqualToString:@"05"]) {
+                       self->transactionType = @"EMV";
+                   }
+            
             
             if([self->opt isQuickChip])
             {
@@ -869,10 +877,11 @@ typedef void(^commandCompletion)(NSString*);
             }
            
         }
-        
+        NSString *transactionTypeValue;
         self->ksnStr = [(MTTLV*)[tlv objectForKey:@"DFDF56"] value];
         self->encryptionType = [(MTTLV*)[tlv objectForKey:@"DFDF57"] value];
         self->paddedBytes = [(MTTLV*)[tlv objectForKey:@"DFDF58"] value];
+       
         
         NSLog(@"self.cardPaymentStatus :%@",self.cardPaymentStatus);
         if ([self.cardPaymentStatus isEqualToString:@"APPROVED"]) {
@@ -918,7 +927,7 @@ typedef void(^commandCompletion)(NSString*);
     paddedBytes = @"0";
     
     
-    
+//    tlvData = @"0239F9820235DFDF540A00000000000000000000DFDF550182DFDF250F423530363638323038333031384141FA82020B70820207DFDF530100DFDF4D273B343736313030303039303030303131393D32323132303030303030303030303030303030303FDFDF520101F88201CEDFDF598201B0958A12029DAC7AB21299D32BDD9EFBA5D9727AAC191195D8ACA6B1603CAE5E2035BE65C140361CE269A321DBA8D094C06CBA98C7DC745D588416CBD650B8B337C01449B9C59BDC4EEF57CD2DED7C0B683C2165902FF4F5D53638768B1DFB1F65EF09B43FB4AE7389EB30CA4A52DD42407D8AE9107BE5CD30080F0305ED87B99617B2EA68D0924611EDD1807D88458351D7C41C3229FB19046D0A0BC4C3C534EF20BC459F47248A87CE07A31F78D91DB2F8F82A9D4533FD19F5CB955EF4C2962C69E0EEFE5A2E9727BE5C92A8ADAE88AF544E8F3B1CC461F020719EFDAE1B49061BA6066683387F6781F880CB085012CA07F5D43295640DBC1A61E35746AD2A05067E643AA1D0D5A62C6464BD0FC7E0CDD562F8A1940608C8A1F3BD8EB826CFAB543434514EF336AD037EAAFA513AD98C3073D26422DD2165C936372F1C7B4762315CE545B7C74883ABA56ACBCA1D62D84B2B7900FC8D7A31B972D65DB14EB77FAF6B2D8062471850BEC956D0C3F09104C0AC80F7F8A8C3B57C5150202981DCD9D0B5E84613FD86E336CC2E1F966C055FC26366A461BC4FF5DCFC529B648FA628D9651BAB8EF8B2BC197CF80A14131359DFDF560A9011880B50668200036ADFDF570180DFDF5801030000000000000000000000";
     
     //production
 //            NSString *custCode = @"QF20436257";
@@ -976,7 +985,7 @@ typedef void(^commandCompletion)(NSString*);
                        "<mpp1:EncryptionType>%@</mpp1:EncryptionType>\n"
                        "<mpp1:KSN>%@</mpp1:KSN>\n"
                        "<mpp1:NumberOfPaddedBytes>%@</mpp1:NumberOfPaddedBytes>\n"
-                       "<mpp1:PaymentMode>EMV</mpp1:PaymentMode>\n"
+                       "<mpp1:PaymentMode>%@</mpp1:PaymentMode>\n"
                        "</mpp1:EMVSREDInput>\n"
                        "<mpp1:TransactionInput>\n"
                        "<mpp1:ProcessorName>Token</mpp1:ProcessorName>\n"
@@ -1007,7 +1016,7 @@ typedef void(^commandCompletion)(NSString*);
                        "<mpp1:EncryptionType>%@</mpp1:EncryptionType>\n"
                        "<mpp1:KSN>%@</mpp1:KSN>\n"
                        "<mpp1:NumberOfPaddedBytes>%@</mpp1:NumberOfPaddedBytes>\n"
-                       "<mpp1:PaymentMode>EMV</mpp1:PaymentMode>\n"
+                       "<mpp1:PaymentMode>%@</mpp1:PaymentMode>\n"
                        "</mpp1:EMVSREDInput>\n"
                        "<mpp1:TransactionInput>\n"
                        "<mpp1:Amount>%@</mpp1:Amount>\n"
@@ -1024,14 +1033,14 @@ typedef void(^commandCompletion)(NSString*);
                        "</mpp:ProcessEMVSREDRequests>\n"
                        "</mpp:ProcessEMVSRED>\n"
                        "</soapenv:Body>\n"
-                       "</soapenv:Envelope>\n",custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,amountStr,processorName];
+                       "</soapenv:Envelope>\n",custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,transactionType,custCode,password,userName,transactionIdStr,tlvData,encryptionType,ksnStr,paddedBytes,transactionType,amountStr,processorName];
         
         [request setValue:@"http://www.magensa.net/MPPGv3/IMPPGv3Service/ProcessEMVSRED" forHTTPHeaderField:@"SOAPAction"];
    
         
     
     
-    
+    NSLog(@"soap request : %@",soapMessage);
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[soapMessage dataUsingEncoding:NSUTF8StringEncoding]];

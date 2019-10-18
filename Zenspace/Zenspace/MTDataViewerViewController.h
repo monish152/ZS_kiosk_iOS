@@ -25,6 +25,7 @@
     NSString *magnePrintStatus;
     NSString *track1Str;
     NSString *track2Str;
+    NSString *transactionType;
     
 }
 - (void)connect;
@@ -37,6 +38,7 @@
 @property (nonatomic, strong) UIButton* btnGetSN ;
 @property (nonatomic, strong) NSString *cardPaymentStatus;
 @property (nonatomic, strong) NSString *transactionAmount;
+
 
 @property (nonatomic, strong) NSString *transactionid;
 

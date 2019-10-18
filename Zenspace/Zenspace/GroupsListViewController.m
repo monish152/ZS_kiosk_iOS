@@ -20,7 +20,7 @@
 -(void)viewDidLoad{
     self.title = @"Group List";
     self.navigationController.navigationBarHidden = YES;
-    searchEvent.titleLabel.font = [UIFont fontWithName:@"CircularStd-Medium"
+    searchEvent.titleLabel.font = [UIFont fontWithName:@"Roboto-Regular"
                                              size:16];
     searchEvent.layer.cornerRadius = 10;
     [self getApi];
