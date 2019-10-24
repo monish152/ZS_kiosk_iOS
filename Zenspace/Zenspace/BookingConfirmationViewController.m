@@ -110,7 +110,7 @@
     NSArray *viewControllers = self.navigationController.viewControllers;
     for( int i=0;i<[viewControllers count];i++){
         id obj=[viewControllers objectAtIndex:i];
-        if([obj isKindOfClass:[CalenderViewController class]]){
+        if([obj isKindOfClass:[SelectionViewController class]]){
             [self.navigationController popToViewController:obj animated:YES];
             break;
         }
@@ -146,7 +146,7 @@
     NSArray *viewControllers = self.navigationController.viewControllers;
     for( int i=0;i<[viewControllers count];i++){
         id obj=[viewControllers objectAtIndex:i];
-        if([obj isKindOfClass:[CalenderViewController class]]){
+        if([obj isKindOfClass:[SelectionViewController class]]){
             [self.navigationController popToViewController:obj animated:YES];
             break;
         }
@@ -183,7 +183,7 @@
     NSArray *viewControllers = self.navigationController.viewControllers;
     for( int i=0;i<[viewControllers count];i++){
         id obj=[viewControllers objectAtIndex:i];
-        if([obj isKindOfClass:[CalenderViewController class]]){
+        if([obj isKindOfClass:[SelectionViewController class]]){
             [self.navigationController popToViewController:obj animated:YES];
             break;
         }
@@ -196,5 +196,9 @@
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:email];
+}
+-(IBAction)helpButtonpressed:(id)sender{
+    SupportScreen1ViewController *vc = [[SupportScreen1ViewController alloc] initWithNibName:@"SupportScreen1ViewController" bundle:nil];
+       [self.navigationController pushViewController:vc animated:YES];
 }
 @end

@@ -191,7 +191,9 @@
                              @"email":emailTxtFld.text,
                              @"issuedetail1":_issueType,
                              @"preferredContact":selectedOption,
-                             @"issuedetail2":@""
+                             @"issuedetail2":@"",
+                                    @"devicetype":@"iPad",
+                                    @"podid":@""
                              };
     
     [manager POST:URL.absoluteString parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {

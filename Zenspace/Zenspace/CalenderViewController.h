@@ -16,11 +16,12 @@
 #import "SearchPodViewController.h"
 #import "GlobalKeyViewController.h"
 #import "GroupsListViewController.h"
+#import "SupportScreen1ViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-#define WIDTH 94
-#define HEIGHT 40
-#define PADDING 15
+#define WIDTH 216
+#define HEIGHT 60
+#define PADDING 10
 #define NUMBEROFBUTTONSINAROW 4
 
 

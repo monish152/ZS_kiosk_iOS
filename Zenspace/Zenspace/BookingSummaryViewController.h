@@ -18,7 +18,7 @@
 #import "PCCPViewController.h"
 #import "StripePaymentViewController.h"
 #import <Stripe/Stripe.h>
-
+#import "SupportScreen1ViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -20,26 +20,28 @@
 -(void)viewDidLoad{
     [self.navigationController setNavigationBarHidden:YES];
     
-    editButton.titleLabel.font = [UIFont fontWithName:@"CircularStd-Medium"
+    editButton.titleLabel.font = [UIFont fontWithName:@"Roboto-Medium"
                                                  size:16];
-    editButton.layer.cornerRadius = 10;
+    editButton.layer.cornerRadius = 30;
+    editButton.layer.borderWidth = 1.0;
+    editButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     
-    titleLbl.font = [UIFont fontWithName:@"CircularStd-Medium"
+    titleLbl.font = [UIFont fontWithName:@"Roboto-Medium"
                                     size:24];
     
     NSString *imgName = [[NSUserDefaults standardUserDefaults]
                          stringForKey:@"image"];
     [imageViewGroup sd_setImageWithURL:[NSURL URLWithString:imgName]
                       placeholderImage:[UIImage imageNamed:@""]];
-    imageViewGroup.layer.cornerRadius = 10;
-    imageViewGroup.clipsToBounds = YES;
+//    imageViewGroup.layer.cornerRadius = 10;
+//    imageViewGroup.clipsToBounds = YES;
     
     
     NameLbl.text = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults]
                                                       stringForKey:@"groupName"]];
-    NameLbl.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                   size:19];
+    NameLbl.font = [UIFont fontWithName:@"Roboto-Medium"
+                                   size:20];
     
     
     dateIcon.image = [dateIcon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -55,7 +57,7 @@
     NSString* finalDateString = [format stringFromDate:date];
     
     dateLbl.text = [NSString stringWithFormat:@"%@",finalDateString];
-    dateLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+    dateLbl.font = [UIFont fontWithName:@"Roboto-Regular"
                                    size:14];
     
     
@@ -67,7 +69,7 @@
     
     [format setDateFormat:@"HH:mm"];
     finalDateString = [format stringFromDate:date];
-    timeLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+    timeLbl.font = [UIFont fontWithName:@"Roboto-Regular"
                                    size:14];
     timeLbl.text = [NSString stringWithFormat:@"%@ for %@ min",finalDateString,[NSString stringWithFormat:@"%ld",(long)duration] ];
     [self getPodsApi];
@@ -252,8 +254,8 @@
         NSString *imgName = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:indexPath.row] valueForKey:@"card_image__c"]];
         [cell.img sd_setImageWithURL:[NSURL URLWithString:imgName]
                     placeholderImage:[UIImage imageNamed:@""]];
-        cell.img.layer.cornerRadius = 10;
-        cell.img.clipsToBounds = YES;
+//        cell.img.layer.cornerRadius = 10;
+//        cell.img.clipsToBounds = YES;
         
         cell.locationIcon.image = [cell.locationIcon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [cell.locationIcon setTintColor:[UIColor lightGrayColor]];
@@ -263,34 +265,34 @@
         
         
         cell.title.text = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:indexPath.row] valueForKey:@"name"]];
-        cell.title.font = [UIFont fontWithName:@"CircularStd-Bold"
+        cell.title.font = [UIFont fontWithName:@"Roboto-Medium"
                                           size:16];
         
         cell.address.text =  [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:indexPath.row] valueForKey:@"indoor_location__c"]];
-        cell.address.font = [UIFont fontWithName:@"CircularStd-Book"
+        cell.address.font = [UIFont fontWithName:@"Roboto-Medium"
                                             size:14];
         
         
         cell.occupancy.text = [NSString stringWithFormat:@"%@ People", [[arrResults objectAtIndex:indexPath.row] valueForKey:@"capacity__c"]];
-        cell.occupancy.font = [UIFont fontWithName:@"CircularStd-Book"
+        cell.occupancy.font = [UIFont fontWithName:@"Roboto-Medium"
                                               size:14];
         
         NSString *price = [NSString stringWithFormat:@"%@",[[arrResults objectAtIndex:indexPath.row] valueForKey:@"unitprice"]];
         if ([price isEqualToString:@"0"]) {
-            cell.price.text = [NSString stringWithFormat:@"Free"];
+            cell.price.text = [NSString stringWithFormat:@"FREE"];
         }
         else{
             cell.price.text = [NSString stringWithFormat:@"$%@/hr ",price];
         }
         
-        cell.price.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                          size:18];
+        cell.price.font = [UIFont fontWithName:@"Roboto-Medium"
+                                          size:16];
         
         
         cell.bookBtn.tag = indexPath.row;
-        cell.bookBtn.layer.cornerRadius = 10;
+        cell.bookBtn.layer.cornerRadius = 24;
         cell.bookBtn.clipsToBounds = YES;
-        cell.bookBtn.titleLabel.font = [UIFont fontWithName:@"CircularStd-Medium"
+        cell.bookBtn.titleLabel.font = [UIFont fontWithName:@"Roboto-Medium"
                                                        size:16];
         [cell.bookBtn addTarget:self action:@selector(bookBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -359,5 +361,9 @@
         }
     }
     
+}
+-(IBAction)helpButtonpressed:(id)sender{
+    SupportScreen1ViewController *vc = [[SupportScreen1ViewController alloc] initWithNibName:@"SupportScreen1ViewController" bundle:nil];
+       [self.navigationController pushViewController:vc animated:YES];
 }
 @end

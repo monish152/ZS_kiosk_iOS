@@ -63,7 +63,7 @@
         NSArray *viewControllers = [(UINavigationController *)self.window.rootViewController viewControllers];
         for( int i=0;i<[viewControllers count];i++){
             id obj=[viewControllers objectAtIndex:i];
-            if([obj isKindOfClass:[CalenderViewController class]]){
+            if([obj isKindOfClass:[SelectionViewController class]]){
                 [obj viewDidLoad];
                 [(UINavigationController *)self.window.rootViewController popToViewController:obj animated:NO];
                 
@@ -82,7 +82,7 @@
         NSArray *viewControllers = [(UINavigationController *)self.window.rootViewController viewControllers];
         for( int i=0;i<[viewControllers count];i++){
             id obj=[viewControllers objectAtIndex:i];
-            if([obj isKindOfClass:[CalenderViewController class]]){
+            if([obj isKindOfClass:[SelectionViewController class]]){
                 [obj viewDidLoad];
                 [(UINavigationController *)self.window.rootViewController popToViewController:obj animated:NO];
                 

@@ -23,10 +23,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blue-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="bfI-CJ-G0V">
-                            <rect key="frame" x="417" y="32" width="191" height="36"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jgz-yC-cwF">
                             <rect key="frame" x="8" y="39" width="62" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -37,14 +33,10 @@
                                 <action selector="backBtnPress:" destination="-1" eventType="touchUpInside" id="nAN-mN-2cO"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJE-Cq-paq">
-                            <rect key="frame" x="949" y="33" width="35" height="35"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" backgroundImage="settings-f-illed.png"/>
-                            <connections>
-                                <action selector="settingButtonPressed:" destination="-1" eventType="touchUpInside" id="9nP-7L-3c9"/>
-                            </connections>
-                        </button>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blue-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="eev-ZP-AmL">
+                            <rect key="frame" x="421" y="30" width="181" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.23288005589999999" green="0.36756750939999999" blue="0.80396109819999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
@@ -56,7 +48,7 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Mw-d9-17i">
                     <rect key="frame" x="368" y="704" width="288" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.22231000661849976" green="0.45645785331726074" blue="0.96475261449813843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" red="0.23288005589999999" green="0.36756750939999999" blue="0.80396109819999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="Search Entire Event">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,7 +58,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.9882771372795105" green="0.98817819356918335" blue="0.99214965105056763" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.96873527770000001" green="0.97640961410000005" blue="0.98038524390000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="137.68115942028987" y="132.58928571428572"/>
@@ -76,6 +68,5 @@
         <image name="  " width="16" height="16"/>
         <image name="arrow-copy-7.png" width="8" height="17"/>
         <image name="blue-white.png" width="151" height="34"/>
-        <image name="settings-f-illed.png" width="40" height="40"/>
     </resources>
 </document>

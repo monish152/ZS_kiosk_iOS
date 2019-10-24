@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "GlobalKeyViewController.h"
 #import "GroupsListViewController.h"
+#import "SupportScreen1ViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 #define WIDTH 94

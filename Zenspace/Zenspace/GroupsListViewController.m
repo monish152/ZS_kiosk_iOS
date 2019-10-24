@@ -22,7 +22,7 @@
     self.navigationController.navigationBarHidden = YES;
     searchEvent.titleLabel.font = [UIFont fontWithName:@"Roboto-Regular"
                                              size:16];
-    searchEvent.layer.cornerRadius = 10;
+    searchEvent.layer.cornerRadius = 25;
     [self getApi];
 }
 -(void)getApi{
@@ -78,20 +78,20 @@
         }
         
         UIView *view = [[UIView alloc]init];
-        view.frame = CGRectMake(xPos, yPos, 300, 326);
-        view.layer.cornerRadius = 10;
+        view.frame = CGRectMake(xPos, yPos, 300, 370);
+//        view.layer.cornerRadius = 10;
         view.backgroundColor = [UIColor whiteColor];
         [scrollView addSubview:view];
         
-        UIImageView *bg = [[UIImageView alloc]init];
-        bg.frame = CGRectMake(0, 0, 300, 171);
-         bg.image = [UIImage imageNamed:@"mask"];
-        [view addSubview:bg];
+//        UIImageView *bg = [[UIImageView alloc]init];
+//        bg.frame = CGRectMake(0, 0, 300, 200);
+//         bg.image = [UIImage imageNamed:@"mask"];
+//        [view addSubview:bg];
         
         
         UIImageView *img = [[UIImageView alloc]init];
-        img.frame = CGRectMake(0, 0, 300, 171);
-        img.layer.cornerRadius = 10;
+        img.frame = CGRectMake(0, 0, 300, 200);
+//        img.layer.cornerRadius = 10;
         img.clipsToBounds = YES;
         [view addSubview:img];
         
@@ -102,41 +102,41 @@
                placeholderImage:[UIImage imageNamed:@""]];
         
         UILabel *eventName = [[UILabel alloc]init];
-        eventName.frame = CGRectMake(29, 201, 270, 20);
-        eventName.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                         size:16];
+        eventName.frame = CGRectMake(29, 221, 280, 25);
+        eventName.font = [UIFont fontWithName:@"Roboto-Medium"
+                                         size:20];
         eventName.textColor = [UIColor blackColor];
         eventName.text = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:i] valueForKey:@"name"]];
         [view addSubview:eventName];
         
         UIImageView *icon = [[UIImageView alloc]init];
-        icon.frame = CGRectMake(22, 240, 24, 27);
-        icon.image = [UIImage imageNamed:@"icons-location-f-ill"];
-        icon.image = [icon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [icon setTintColor:[UIColor lightGrayColor]];
+        icon.frame = CGRectMake(23, 261, 15, 22);
+        icon.image = [UIImage imageNamed:@"MAP ICON"];
+//        icon.image = [icon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//        [icon setTintColor:[UIColor lightGrayColor]];
         [view addSubview:icon];
         
         
         UILabel *address = [[UILabel alloc]init];
-        address.frame = CGRectMake(49, 241, 230, 21);
-        address.font = [UIFont fontWithName:@"CircularStd-Book"
-                                       size:16];
+        address.frame = CGRectMake(60, 261, 240, 22);
+        address.font = [UIFont fontWithName:@"Roboto-Regular"
+                                       size:14];
         address.textColor = [UIColor lightGrayColor];
         address.text = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:i] valueForKey:@"indoor_location__c"]];
         [view addSubview:address];
         
         
         icon = [[UIImageView alloc]init];
-        icon.frame = CGRectMake(22, 275, 24, 27);
-        icon.image = [UIImage imageNamed:@"icons-search"];
+        icon.frame = CGRectMake(21, 296, 20, 18);
+        icon.image = [UIImage imageNamed:@"PEOPLE ICON"];
         icon.image = [icon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [icon setTintColor:[UIColor lightGrayColor]];
         [view addSubview:icon];
         
         UILabel *capacity = [[UILabel alloc]init];
-        capacity.frame = CGRectMake(49, 280, 100, 21);
-        capacity.font = [UIFont fontWithName:@"CircularStd-Book"
-                                        size:16];
+        capacity.frame = CGRectMake(60, 296, 100, 20);
+        capacity.font = [UIFont fontWithName:@"Roboto-Regular"
+        size:14];
         capacity.textColor = [UIColor lightGrayColor];
         NSString *capacityStr = [[arrResults objectAtIndex:i] valueForKey:@"maximum_pod_capacity__c"];
         if (capacityStr == nil || capacityStr == (id)[NSNull null]) {
@@ -148,11 +148,11 @@
         [view addSubview:capacity];
         
         UILabel *time = [[UILabel alloc]init];
-        time.frame = CGRectMake(175, 280, 100, 17);
-        time.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                    size:16];
+        time.frame = CGRectMake(60, 331, 100, 17);
+        time.font = [UIFont fontWithName:@"Roboto-Regular"
+        size:14];
         time.textColor = [UIColor colorWithRed:22.0/255.0 green:91.0/255.0 blue:254.0/255.0 alpha:1.0];
-        time.textAlignment = NSTextAlignmentRight;
+//        time.textAlignment = NSTextAlignmentRight;
         
         NSString *minimumPrice = [[arrResults objectAtIndex:i] valueForKey:@"minimum_pod_pricing__c"];
         if (minimumPrice == nil || minimumPrice == (id)[NSNull null]) {
@@ -193,7 +193,7 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    CalenderViewController *vc = [[CalenderViewController alloc] initWithNibName:@"CalenderViewController" bundle:nil];
+    SelectionViewController *vc = [[SelectionViewController alloc] initWithNibName:@"SelectionViewController" bundle:nil];
     vc.eventId = eventId;
     vc.groupId =  [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:i] valueForKey:@"sfid"]];
     NSString *valueToSave = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:i] valueForKey:@"sfid"]];
@@ -209,7 +209,7 @@
 }
 -(IBAction)searchEntireEvent:(id)sender
 {
-    CalenderViewController *vc = [[CalenderViewController alloc] initWithNibName:@"CalenderViewController" bundle:nil];
+    SelectionViewController *vc = [[SelectionViewController alloc] initWithNibName:@"SelectionViewController" bundle:nil];
     vc.eventId = eventId;
     vc.groupId =  eventId;
     NSString *valueToSave = eventId;

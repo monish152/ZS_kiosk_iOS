@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     submitBtn.layer.cornerRadius = 10;
     
-    keyType.font = [UIFont fontWithName:@"CircularStd-Bold"
+    keyType.font = [UIFont fontWithName:@"Roboto-Regular"
                                     size:32];
     firstTxtField.font = [UIFont fontWithName:@"CircularStd-Medium"
                                          size:22];

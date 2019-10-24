@@ -18,6 +18,7 @@
 #import "GroupsListViewController.h"
 #import "ProcessCardViewController.h"
 #import "BookingSummaryViewController.h"
+#import "SupportScreen1ViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PodsListViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,GlobalKeyViewControllerDelegate>
