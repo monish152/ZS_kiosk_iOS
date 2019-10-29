@@ -78,6 +78,18 @@
 		D214EFAE236199BA006FE72F /* ReservationIssue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214EFAC236199B9006FE72F /* ReservationIssue@3x.png */; };
 		D214EFB1236199E5006FE72F /* Other@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214EFAF236199E4006FE72F /* Other@2x.png */; };
 		D214EFB2236199E5006FE72F /* Other@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214EFB0236199E4006FE72F /* Other@3x.png */; };
+		D214F0082361C068006FE72F /* EDIT ICON.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F0072361C068006FE72F /* EDIT ICON.png */; };
+		D214F00A2361C0E7006FE72F /* EDIT ICON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F0092361C0E7006FE72F /* EDIT ICON@2x.png */; };
+		D214F00C2361C0F7006FE72F /* EDIT ICON@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F00B2361C0F7006FE72F /* EDIT ICON@3x.png */; };
+		D214F00E2361C17B006FE72F /* TIME ICON.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F00D2361C17B006FE72F /* TIME ICON.png */; };
+		D214F0102361C18B006FE72F /* TIME ICON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F00F2361C18B006FE72F /* TIME ICON@2x.png */; };
+		D214F0122361C19A006FE72F /* TIME ICON@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F0112361C19A006FE72F /* TIME ICON@3x.png */; };
+		D214F014236811C9006FE72F /* Ellipse.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F013236811C7006FE72F /* Ellipse.png */; };
+		D214F016236811D8006FE72F /* Ellipse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F015236811D8006FE72F /* Ellipse@2x.png */; };
+		D214F018236811F2006FE72F /* unlockicon.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F017236811F2006FE72F /* unlockicon.png */; };
+		D214F01A23681202006FE72F /* unlockicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F01923681202006FE72F /* unlockicon@2x.png */; };
+		D214F01C236812E0006FE72F /* successIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F01B236812E0006FE72F /* successIcon.png */; };
+		D214F01E236812F1006FE72F /* successIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D214F01D236812F1006FE72F /* successIcon@2x.png */; };
 		D2187F6823340A2100D163A4 /* StripePaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2187F6623340A2100D163A4 /* StripePaymentViewController.m */; };
 		D2187F6923340A2100D163A4 /* StripePaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2187F6723340A2100D163A4 /* StripePaymentViewController.xib */; };
 		D21A6C672302F22300827195 /* BookingSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A6C652302F22300827195 /* BookingSummaryViewController.m */; };
@@ -339,6 +351,18 @@
 		D214EFAC236199B9006FE72F /* ReservationIssue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReservationIssue@3x.png"; sourceTree = "<group>"; };
 		D214EFAF236199E4006FE72F /* Other@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Other@2x.png"; sourceTree = "<group>"; };
 		D214EFB0236199E4006FE72F /* Other@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Other@3x.png"; sourceTree = "<group>"; };
+		D214F0072361C068006FE72F /* EDIT ICON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EDIT ICON.png"; sourceTree = "<group>"; };
+		D214F0092361C0E7006FE72F /* EDIT ICON@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EDIT ICON@2x.png"; sourceTree = "<group>"; };
+		D214F00B2361C0F7006FE72F /* EDIT ICON@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EDIT ICON@3x.png"; sourceTree = "<group>"; };
+		D214F00D2361C17B006FE72F /* TIME ICON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TIME ICON.png"; sourceTree = "<group>"; };
+		D214F00F2361C18B006FE72F /* TIME ICON@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TIME ICON@2x.png"; sourceTree = "<group>"; };
+		D214F0112361C19A006FE72F /* TIME ICON@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TIME ICON@3x.png"; sourceTree = "<group>"; };
+		D214F013236811C7006FE72F /* Ellipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ellipse.png; sourceTree = "<group>"; };
+		D214F015236811D8006FE72F /* Ellipse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ellipse@2x.png"; sourceTree = "<group>"; };
+		D214F017236811F2006FE72F /* unlockicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlockicon.png; sourceTree = "<group>"; };
+		D214F01923681202006FE72F /* unlockicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unlockicon@2x.png"; sourceTree = "<group>"; };
+		D214F01B236812E0006FE72F /* successIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = successIcon.png; sourceTree = "<group>"; };
+		D214F01D236812F1006FE72F /* successIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "successIcon@2x.png"; sourceTree = "<group>"; };
 		D2187F6523340A2100D163A4 /* StripePaymentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripePaymentViewController.h; sourceTree = "<group>"; };
 		D2187F6623340A2100D163A4 /* StripePaymentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripePaymentViewController.m; sourceTree = "<group>"; };
 		D2187F6723340A2100D163A4 /* StripePaymentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StripePaymentViewController.xib; sourceTree = "<group>"; };
@@ -725,6 +749,9 @@
 				D2187F6523340A2100D163A4 /* StripePaymentViewController.h */,
 				D2187F6623340A2100D163A4 /* StripePaymentViewController.m */,
 				D2187F6723340A2100D163A4 /* StripePaymentViewController.xib */,
+				D23C5B3A230D4DE5000B0494 /* BookingConfirmationViewController.h */,
+				D23C5B3C230D4DE5000B0494 /* BookingConfirmationViewController.m */,
+				D23C5B3B230D4DE5000B0494 /* BookingConfirmationViewController.xib */,
 				D292130022F441D300E690ED /* ProcessCardViewController.h */,
 				D292130122F441D300E690ED /* ProcessCardViewController.m */,
 				D292130222F441D300E690ED /* ProcessCardViewController.xib */,
@@ -743,9 +770,6 @@
 				D2237A9D234381FE0043C2CC /* kDynamoController.h */,
 				D2237A9C234381FE0043C2CC /* kDynamoController.m */,
 				D2E1B6872343F47D00D94D70 /* kDynamoController.xib */,
-				D23C5B3A230D4DE5000B0494 /* BookingConfirmationViewController.h */,
-				D23C5B3C230D4DE5000B0494 /* BookingConfirmationViewController.m */,
-				D23C5B3B230D4DE5000B0494 /* BookingConfirmationViewController.xib */,
 				D2F1A9B222F1987A008989B7 /* ScreensaverViewController.h */,
 				D2F1A9B322F1987A008989B7 /* ScreensaverViewController.m */,
 				D2F1A9B422F1987A008989B7 /* ScreensaverViewController.xib */,
@@ -841,6 +865,15 @@
 		D220F7B822DDAD4D005D8457 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D214F01B236812E0006FE72F /* successIcon.png */,
+				D214F01D236812F1006FE72F /* successIcon@2x.png */,
+				D214F017236811F2006FE72F /* unlockicon.png */,
+				D214F01923681202006FE72F /* unlockicon@2x.png */,
+				D214F013236811C7006FE72F /* Ellipse.png */,
+				D214F015236811D8006FE72F /* Ellipse@2x.png */,
+				D214F0072361C068006FE72F /* EDIT ICON.png */,
+				D214F0092361C0E7006FE72F /* EDIT ICON@2x.png */,
+				D214F00B2361C0F7006FE72F /* EDIT ICON@3x.png */,
 				D214EF6723617AEB006FE72F /* datebg.png */,
 				D214EF6923617B07006FE72F /* datebg@2x.png */,
 				D214EF6123617AA3006FE72F /* +.png */,
@@ -869,6 +902,9 @@
 				D214EF14235D98DF006FE72F /* HELP.png */,
 				D214EF3D23617302006FE72F /* HELP@2x.png */,
 				D214EF3F23617318006FE72F /* HELP@3x.png */,
+				D214F00D2361C17B006FE72F /* TIME ICON.png */,
+				D214F00F2361C18B006FE72F /* TIME ICON@2x.png */,
+				D214F0112361C19A006FE72F /* TIME ICON@3x.png */,
 				D25635CC235471B0009CA088 /* SUPPORT UI */,
 				D23C5AA8230AA853000B0494 /* time-filled_2019-08-19 */,
 				D2B8C88223017EA10010FA2E /* group_2019-08-12 */,
@@ -1243,16 +1279,19 @@
 				D214EF862361977C006FE72F /* emailSelecgted@3x.png in Resources */,
 				D214EF9423619844006FE72F /* email_icon@2x.png in Resources */,
 				D2B8C88823017EA10010FA2E /* group@2x.png in Resources */,
+				D214F014236811C9006FE72F /* Ellipse.png in Resources */,
 				D214EF4A236173C3006FE72F /* MAP ICON@2x.png in Resources */,
 				D25635DE2354828B009CA088 /* Rectangle 15.png in Resources */,
 				D25635BF23546DE9009CA088 /* Roboto-Medium.ttf in Resources */,
 				D25635CB23546DE9009CA088 /* Roboto-Black.ttf in Resources */,
 				D2F1A9A022F031D0008989B7 /* icons-search@3x.png in Resources */,
 				D25635C923546DE9009CA088 /* Roboto-Bold.ttf in Resources */,
+				D214F016236811D8006FE72F /* Ellipse@2x.png in Resources */,
 				D25635AB23546627009CA088 /* EmergencyViewController.xib in Resources */,
 				D214EF9A23619889006FE72F /* Rectangle 15@3x.png in Resources */,
 				D2F1A99E22F031D0008989B7 /* icons-search@2x.png in Resources */,
 				D214EF6823617AEB006FE72F /* datebg.png in Resources */,
+				D214F00A2361C0E7006FE72F /* EDIT ICON@2x.png in Resources */,
 				D214EF9023619809006FE72F /* phone_textField@2x.png in Resources */,
 				D214EF5C23617A6B006FE72F /* -.png in Resources */,
 				D25635C323546DE9009CA088 /* Apache License.txt in Resources */,
@@ -1272,18 +1311,21 @@
 				D214EFAE236199BA006FE72F /* ReservationIssue@3x.png in Resources */,
 				D25635B023546627009CA088 /* SupportSuccessViewController.xib in Resources */,
 				D2B8C851230139A20010FA2E /* arrow-copy-7@2x.png in Resources */,
+				D214F00E2361C17B006FE72F /* TIME ICON.png in Resources */,
 				D2B8C873230149050010FA2E /* GlobalKeyViewController.xib in Resources */,
 				D214EF762361969D006FE72F /* general@3x.png in Resources */,
 				D25635C623546DE9009CA088 /* Roboto-LightItalic.ttf in Resources */,
 				D214EFA923619983006FE72F /* DidntGetCode@3x.png in Resources */,
 				D23C5AAD230AA853000B0494 /* time-filled@2x.png in Resources */,
 				D25635CA23546DE9009CA088 /* Roboto-Thin.ttf in Resources */,
+				D214F0082361C068006FE72F /* EDIT ICON.png in Resources */,
 				D21A6C682302F22300827195 /* BookingSummaryViewController.xib in Resources */,
 				D214EF482361738D006FE72F /* DATE ICON@3x.png in Resources */,
 				D2B8C86823013F8E0010FA2E /* icons-calendar-filled@3x.png in Resources */,
 				D214EF7D2361971E006FE72F /* email_unSelected@3x.png in Resources */,
 				D214EFB2236199E5006FE72F /* Other@3x.png in Resources */,
 				D25635E723548C5D009CA088 /* phone_Selected.png in Resources */,
+				D214F01A23681202006FE72F /* unlockicon@2x.png in Resources */,
 				D2F1A9B622F1987A008989B7 /* ScreensaverViewController.xib in Resources */,
 				D2B8C88123016F230010FA2E /* rectangle.png in Resources */,
 				D25635C523546DE9009CA088 /* Roboto-BoldItalic.ttf in Resources */,
@@ -1317,7 +1359,9 @@
 				D2B8C85923013A1A0010FA2E /* mask@2x.png in Resources */,
 				D214EF4623617380006FE72F /* DATE ICON@2x.png in Resources */,
 				D2CB0F7A2355AC310077C6C4 /* mobile_unSelected.png in Resources */,
+				D214F0122361C19A006FE72F /* TIME ICON@3x.png in Resources */,
 				D214EFAA23619983006FE72F /* DidntGetCode@2x.png in Resources */,
+				D214F00C2361C0F7006FE72F /* EDIT ICON@3x.png in Resources */,
 				D214EF8E236197E5006FE72F /* name_textfield@3x.png in Resources */,
 				D214EF752361969D006FE72F /* general@2x.png in Resources */,
 				D214EF4223617343006FE72F /* SETTINGS@2x.png in Resources */,
@@ -1327,6 +1371,7 @@
 				D292130422F441D300E690ED /* ProcessCardViewController.xib in Resources */,
 				D2B8C85A23013A1A0010FA2E /* mask.png in Resources */,
 				D2F1A99222F02F51008989B7 /* backBtnPress.png in Resources */,
+				D214F01C236812E0006FE72F /* successIcon.png in Resources */,
 				D214EF4023617318006FE72F /* HELP@3x.png in Resources */,
 				D2B8C86923013F8E0010FA2E /* icons-calendar-filled@2x.png in Resources */,
 				D2F1A99B22F031D0008989B7 /* icons-location-f-ill@3x.png in Resources */,
@@ -1342,6 +1387,7 @@
 				D214EF812361974A006FE72F /* phone_Selected@2x.png in Resources */,
 				D214EF8C236197CF006FE72F /* name_textfield@2x.png in Resources */,
 				D214EF6623617ABF006FE72F /* +@3x.png in Resources */,
+				D214F018236811F2006FE72F /* unlockicon.png in Resources */,
 				D25635D623547A87009CA088 /* ReservationIssue.png in Resources */,
 				D214EF9623619854006FE72F /* email_icon@3x.png in Resources */,
 				D214EF5E23617A78006FE72F /* -@2x.png in Resources */,
@@ -1372,6 +1418,7 @@
 				D214EFA623619947006FE72F /* UnlockCodeIssue@2x.png in Resources */,
 				D214EF3A23603084006FE72F /* SelectionViewController.xib in Resources */,
 				D25635D823547A87009CA088 /* DidntGetCode.png in Resources */,
+				D214F0102361C18B006FE72F /* TIME ICON@2x.png in Resources */,
 				D2B8C85F23013BA60010FA2E /* CircularStd-Book.otf in Resources */,
 				D2F6CF56233A0EF60061CDA7 /* BKMoneyKit.bundle in Resources */,
 				D25635D723547A87009CA088 /* Other.png in Resources */,
@@ -1384,6 +1431,7 @@
 				D2B8C86123013BAA0010FA2E /* CircularStd-Medium.otf in Resources */,
 				D214EF3023601AF6006FE72F /* MAP ICON.png in Resources */,
 				D214EF15235D98DF006FE72F /* HELP.png in Resources */,
+				D214F01E236812F1006FE72F /* successIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

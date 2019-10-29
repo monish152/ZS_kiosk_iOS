@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
     IBOutlet UILabel *changeDate;
     
     
+    
     IBOutlet UILabel *capacityTitle;
     NSInteger selectedCapacity;
     NSDictionary *capacityDictionary;

@@ -16,25 +16,23 @@
 
 - (void)viewDidLoad {
     self.navigationController.navigationBarHidden = YES;
-    title1.font = [UIFont fontWithName:@"CircularStd-Bold"
+    title1.font = [UIFont fontWithName:@"Roboto-Medium"
                                   size:24];
     
-    title2.font = [UIFont fontWithName:@"CircularStd-Book"
-                                  size:16];
-    submit.titleLabel.font = [UIFont fontWithName:@"CircularStd-Medium"
+   
+    submit.titleLabel.font = [UIFont fontWithName:@"Roboto-Medium"
                                              size:16];
-    submit.layer.cornerRadius = 10;
+    submit.layer.cornerRadius = 25;
     
     [podImage sd_setImageWithURL:[NSURL URLWithString:_imageurl]
                 placeholderImage:[UIImage imageNamed:@""]];
-    podImage.layer.cornerRadius = 10;
-    podImage.clipsToBounds = YES;
+   
     
-    podNameLbl.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                      size:16];
+    podNameLbl.font = [UIFont fontWithName:@"Roboto-Medium"
+                                      size:20];
     podNameLbl.text = _podName;
     
-    poddateLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+    poddateLbl.font = [UIFont fontWithName:@"Roboto-Regular"
                                       size:14];
     
     
@@ -53,7 +51,7 @@
     
     [format setDateFormat:@"HH:mm"];
     finalDateString = [format stringFromDate:date];
-    podtimeLbl.font = [UIFont fontWithName:@"CircularStd-Book"
+    podtimeLbl.font = [UIFont fontWithName:@"Roboto-Regular"
                                       size:14];
     podtimeLbl.text = [NSString stringWithFormat:@"%@ for %ld min",finalDateString,(long)_duration ];
     
@@ -61,28 +59,55 @@
     dateIcon.image = [dateIcon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [dateIcon setTintColor:[UIColor lightGrayColor]];
     
-    salesTaxLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                       size:16];
-    salesPriceLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                         size:16];
-    discountLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                       size:16];
-    amountDueLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                        size:16];
+    salesTaxLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                       size:14];
+    salesPriceLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                         size:14];
+    discountLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                       size:14];
+    amountDueLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                        size:14];
     
     
-    salesPriceValue.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                           size:18];
+    salesPriceValue.font = [UIFont fontWithName:@"Roboto-Medium"
+                                           size:14];
     salesPriceValue.text = [NSString stringWithFormat:@"$%@",_price];
     
-    salesTaxValue.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                         size:18];
-    discountValue.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                         size:18];
+    salesTaxValue.font = [UIFont fontWithName:@"Roboto-Medium"
+                                         size:14];
+    discountValue.font = [UIFont fontWithName:@"Roboto-Medium"
+                                         size:14];
     
-    amountDueValue.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                          size:18];
+    amountDueValue.font = [UIFont fontWithName:@"Roboto-Medium"
+                                          size:14];
     amountDueValue.text = [NSString stringWithFormat:@"$%@",_price];
+    
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 8, 20, 16)];
+       imgView.image = [UIImage imageNamed:@"email_icon"];
+       
+       UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 32)];
+       [paddingView addSubview:imgView];
+       [email setLeftViewMode:UITextFieldViewModeAlways];
+       [email setLeftView:paddingView];
+       
+       
+       
+       imgView = [[UIImageView alloc] initWithFrame:CGRectMake(17, 8, 18, 18)];
+       imgView.image = [UIImage imageNamed:@"name_textfield"];
+       
+       paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 32)];
+       [paddingView addSubview:imgView];
+       [name setLeftViewMode:UITextFieldViewModeAlways];
+       [name setLeftView:paddingView];
+       
+       imgView = [[UIImageView alloc] initWithFrame:CGRectMake(17, 4, 14, 22)];
+       imgView.image = [UIImage imageNamed:@"phone_textField"];
+       
+       paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 32)];
+       [paddingView addSubview:imgView];
+       [phone setLeftViewMode:UITextFieldViewModeAlways];
+       [phone setLeftView:paddingView];
     
     
     [self updateViewsWithCountryDic:[PCCPViewController infoFromSimCardAndiOSSettings]];

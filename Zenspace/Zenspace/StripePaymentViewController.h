@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
     IBOutlet UIButton *submit;
     IBOutlet UIButton *scanCard;
     
-    
+    IBOutlet UILabel *title1;
     IBOutlet UILabel *podNameLbl;
     IBOutlet UILabel *poddateLbl;
     IBOutlet UILabel *podtimeLbl;

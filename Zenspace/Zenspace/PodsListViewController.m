@@ -22,7 +22,7 @@
     
     editButton.titleLabel.font = [UIFont fontWithName:@"Roboto-Medium"
                                                  size:16];
-    editButton.layer.cornerRadius = 30;
+    editButton.layer.cornerRadius = 24;
     editButton.layer.borderWidth = 1.0;
     editButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
@@ -129,6 +129,7 @@
         NSString *string = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"detail"]];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:string preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+            [self.navigationController popViewControllerAnimated:YES];
             
         }];
         

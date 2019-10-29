@@ -147,19 +147,37 @@
         [dateView addSubview:button];
         
         
+        date = [datesArray objectAtIndex:i];
+        [formatter setDateFormat:@"MMMM"];
+        dateStr = [formatter stringFromDate:date];
+        
+        
+        UILabel *lbl = [[UILabel alloc]init];
+        lbl.frame = CGRectMake(0, 0, 115, 30);
+        lbl.textColor = [UIColor darkGrayColor];
+        lbl.textAlignment = NSTextAlignmentCenter;
+        lbl.text = dateStr;
+        if ([[dateFormat stringFromDate:selectedDate] isEqualToString:[dateFormat stringFromDate:[datesArray objectAtIndex:i]]]) {
+            lbl.textColor = [UIColor whiteColor];
+        }
+        lbl.font = [UIFont fontWithName:@"Roboto-Medium"
+                                   size:15];
+        [button addSubview:lbl];
+        
+        
         
         NSDate *date = [datesArray objectAtIndex:i];
         [formatter setDateFormat:@"dd"];
         NSString *dateStr = [formatter stringFromDate:date];
         
         
-        UILabel *lbl = [[UILabel alloc]init];
-        lbl.frame = CGRectMake(0, 15, 115, 65);
+        lbl = [[UILabel alloc]init];
+        lbl.frame = CGRectMake(0, 30, 115, 55);
         lbl.textColor = [UIColor darkGrayColor];
         lbl.textAlignment = NSTextAlignmentCenter;
         lbl.text = dateStr;
         lbl.font = [UIFont fontWithName:@"Roboto-Light"
-                                   size:59];
+                                   size:51];
         if ([[dateFormat stringFromDate:selectedDate] isEqualToString:[dateFormat stringFromDate:[datesArray objectAtIndex:i]]]) {
             lbl.textColor = [UIColor whiteColor];
         }
@@ -167,11 +185,11 @@
         
         
         NSDateFormatter* day = [[NSDateFormatter alloc] init];
-        [day setDateFormat: @"EEE"];
+        [day setDateFormat: @"EEEE"];
         
         
         lbl = [[UILabel alloc]init];
-        lbl.frame = CGRectMake(0, 85, 115, 18);
+        lbl.frame = CGRectMake(0, 85, 115, 30);
         lbl.textColor = [UIColor darkGrayColor];
         lbl.textAlignment = NSTextAlignmentCenter;
         lbl.text = [day stringFromDate:date];
@@ -619,7 +637,7 @@
         
     }
     if (slotsArray.count>28) {
-        self.theScrollView.contentSize = CGSizeMake(self.theScrollView.frame.size.width, self.theScrollView.frame.size.height * (slotsArray.count/25));
+        self.theScrollView.contentSize = CGSizeMake(self.theScrollView.frame.size.width, self.theScrollView.frame.size.height * (slotsArray.count/26));
     }
     else{
         self.theScrollView.contentSize = CGSizeMake(self.theScrollView.frame.size.width, self.theScrollView.frame.size.height);

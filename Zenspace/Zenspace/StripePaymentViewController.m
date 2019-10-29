@@ -19,6 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    title1.font = [UIFont fontWithName:@"Roboto-Medium"
+    size:24];
+    
     
     self.cardNumberField.showsCardLogo = YES;
     self.cardNumberField.font = [UIFont fontWithName:@"CircularStd-Book"
@@ -38,17 +41,20 @@
     
     
     
+    
+    submit.titleLabel.font = [UIFont fontWithName:@"Roboto-Medium"
+                                                size:16];
+       submit.layer.cornerRadius = 25;
     [podImage sd_setImageWithURL:[NSURL URLWithString:_imageurl]
                 placeholderImage:[UIImage imageNamed:@""]];
-    podImage.layer.cornerRadius = 10;
-    podImage.clipsToBounds = YES;
+   
     
-    podNameLbl.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                      size:16];
-    podNameLbl.text = _podName;
-    
-    poddateLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                      size:14];
+    podNameLbl.font = [UIFont fontWithName:@"Roboto-Medium"
+                                         size:20];
+       podNameLbl.text = _podName;
+       
+       poddateLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                         size:14];
     
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
@@ -66,35 +72,35 @@
     
     [format setDateFormat:@"HH:mm"];
     finalDateString = [format stringFromDate:date];
-    podtimeLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                      size:14];
+    podtimeLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                         size:14];
     podtimeLbl.text = [NSString stringWithFormat:@"%@ for %ld min",finalDateString,(long)_duration ];
     
     
     dateIcon.image = [dateIcon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [dateIcon setTintColor:[UIColor lightGrayColor]];
     
-    salesTaxLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                       size:16];
-    salesPriceLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                         size:16];
-    discountLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                       size:16];
-    amountDueLbl.font = [UIFont fontWithName:@"CircularStd-Book"
-                                        size:16];
+    salesTaxLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                       size:14];
+    salesPriceLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                         size:14];
+    discountLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                       size:14];
+    amountDueLbl.font = [UIFont fontWithName:@"Roboto-Regular"
+                                        size:14];
     
     
-    salesPriceValue.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                           size:18];
+    salesPriceValue.font = [UIFont fontWithName:@"Roboto-Medium"
+                                           size:14];
     salesPriceValue.text = [NSString stringWithFormat:@"$%@",_price];
     
-    salesTaxValue.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                         size:18];
-    discountValue.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                         size:18];
+    salesTaxValue.font = [UIFont fontWithName:@"Roboto-Medium"
+                                         size:14];
+    discountValue.font = [UIFont fontWithName:@"Roboto-Medium"
+                                         size:14];
     
-    amountDueValue.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                          size:18];
+    amountDueValue.font = [UIFont fontWithName:@"Roboto-Medium"
+                                          size:14];
     amountDueValue.text = [NSString stringWithFormat:@"$%@",_price];
     
 }
