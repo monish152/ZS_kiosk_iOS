@@ -68,4 +68,6 @@
 - (void) setText:(NSString*)text;
 - (void)deviceNotPaired;
 - (void)setDateTime;
+
+- (NSString*)sendCommandSync:(NSString*)command;
 @end

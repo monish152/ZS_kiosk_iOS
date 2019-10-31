@@ -315,132 +315,132 @@ typedef void (^cmdCompBlock)(NSString*);
 -(void) onDeviceConnectionDidChange:(MTSCRADeviceType)deviceType connected:(BOOL)connected instance:(id)instance
 {
     
-    
-    if([(MTSCRA*)instance isDeviceOpened] && [self.lib isDeviceConnected])
-    {
-        if(connected)
-        {
-            int delay = 1.0;
-            if (deviceType == MAGTEKAUDIOREADER)
-                delay = 2.0f;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-                if([self.lib isDeviceConnected] && [self.lib isDeviceOpened])
-                {
-                    
-                    
-                    dispatch_async(queue, ^{
-                        
-                        
-                        if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO  || deviceType == MAGTEKTDYNAMO)
-                        {
-                            [self setText:[NSString stringWithFormat:@"Connected to %@",[(MTSCRA*)instance getConnectedPeripheral].name]];
-                            
-                            
-                            if(!self->devicePaired)
-                                return;
-                            
-                            if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO || deviceType == MAGTEKTDYNAMO)
-                            {
-                                [self setText:@"Setting data output to Bluetooth LE..."];
-                                NSString* bleOutput = [self sendCommandSync:@"480101"];
-                                [self setText:[NSString stringWithFormat:@"[Output Result]\r%@",bleOutput]];
-                                
-                            }
-                            else if(deviceType == MAGTEKDYNAMAX)
-                            {
-//                                [self.lib sendcommandWithLength:@"000101"];
-                            }
-                            
-                        }
-                        
-                        else
-                        {
-                            [self setText:@"Device Connected..."];// @"Connected...";
-                        }
-                        
-                        [self setText:@"Getting FW ID..."];
-                        NSString* fw ;
-                        if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
-                        {
-                            fw = [self sendCommandSync:[self buildCommandForAudioTLV: @"000100"]];
-                            [NSThread sleepForTimeInterval:1];
-                        }
-                        else
-                        {
-//                            fw = [self sendCommandSync:@"000100"];
-                        }
-//                        [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
-                        
-                        [self setText:@"Getting SN..."];
-                        NSString* sn;
-                        if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
-                        {
-                            sn = [self sendCommandSync:[self buildCommandForAudioTLV: @"000103"]];
-                            //[NSThread sleepForTimeInterval:1];
-                        }
-                        else
-                        {
-//                            sn = [self sendCommandSync:@"000103"];
-                        }
-                        [self setText:[NSString stringWithFormat:@"[Device SN]\r%@",sn]];
-                        
-                        [self setText:@"Getting Security Level..."];
-                        NSString* sl;
-                        if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
-                        {
-                            sl = [self sendCommandSync:[self buildCommandForAudioTLV: @"1500"]];
-                            //[NSThread sleepForTimeInterval:1];
-                        }
-                        else
-                        {
-                            sl = [self sendCommandSync:@"1500"];
-                        }
-                        
-                        [self setText:[NSString stringWithFormat:@"[Security Level]\r%@",sl]];
-                        
-                        
-                        [NSThread sleepForTimeInterval:0.5];
-                        [self sendCommandSync:@"580101"];
-                        [self sendCommandSync:@"59020F20"];
-                         [self setDateTime];
-                       
-                    });
-                    
-                    if(deviceType == MAGTEKTDYNAMO)
-                    {
-                        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
-                                                                                                 style:UIBarButtonItemStylePlain
-                                                                                                target:self action:@selector(turnMSROn)];
-                    }
-                };
-                
-            });
-        }
-        else
-        {
-            devicePaired = YES;
-            [self setText:@"Disconnected"];
-           
-        }
-        
-    }
-    else
-    {
-        devicePaired = YES;
-        [self setText:@"Disconnected"];
-        [_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
-        
-       
-        if(deviceType == MAGTEKTDYNAMO)
-        {
-            self.navigationItem.leftBarButtonItem = nil;
-        }
-        
-    }
-#if SHOW_DEBUG_COUNT
-    self.txtData.text = [self.txtData.text stringByAppendingString: [NSString stringWithFormat:@"\n\nSwipe.Count:%i", swipeCount]];
-#endif
+//    
+//    if([(MTSCRA*)instance isDeviceOpened] && [self.lib isDeviceConnected])
+//    {
+//        if(connected)
+//        {
+//            int delay = 1.0;
+//            if (deviceType == MAGTEKAUDIOREADER)
+//                delay = 2.0f;
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+//                if([self.lib isDeviceConnected] && [self.lib isDeviceOpened])
+//                {
+//                    
+//                    
+//                    dispatch_async(queue, ^{
+//                        
+//                        
+//                        if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO  || deviceType == MAGTEKTDYNAMO)
+//                        {
+//                            [self setText:[NSString stringWithFormat:@"Connected to %@",[(MTSCRA*)instance getConnectedPeripheral].name]];
+//                            
+//                            
+//                            if(!self->devicePaired)
+//                                return;
+//                            
+//                            if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO || deviceType == MAGTEKTDYNAMO)
+//                            {
+//                                [self setText:@"Setting data output to Bluetooth LE..."];
+//                                NSString* bleOutput = [self sendCommandSync:@"480101"];
+//                                [self setText:[NSString stringWithFormat:@"[Output Result]\r%@",bleOutput]];
+//                                
+//                            }
+//                            else if(deviceType == MAGTEKDYNAMAX)
+//                            {
+////                                [self.lib sendcommandWithLength:@"000101"];
+//                            }
+//                            
+//                        }
+//                        
+//                        else
+//                        {
+//                            [self setText:@"Device Connected..."];// @"Connected...";
+//                        }
+//                        
+//                        [self setText:@"Getting FW ID..."];
+//                        NSString* fw ;
+//                        if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
+//                        {
+//                            fw = [self sendCommandSync:[self buildCommandForAudioTLV: @"000100"]];
+//                            [NSThread sleepForTimeInterval:1];
+//                        }
+//                        else
+//                        {
+////                            fw = [self sendCommandSync:@"000100"];
+//                        }
+////                        [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
+//                        
+//                        [self setText:@"Getting SN..."];
+//                        NSString* sn;
+//                        if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
+//                        {
+//                            sn = [self sendCommandSync:[self buildCommandForAudioTLV: @"000103"]];
+//                            //[NSThread sleepForTimeInterval:1];
+//                        }
+//                        else
+//                        {
+////                            sn = [self sendCommandSync:@"000103"];
+//                        }
+//                        [self setText:[NSString stringWithFormat:@"[Device SN]\r%@",sn]];
+//                        
+//                        [self setText:@"Getting Security Level..."];
+//                        NSString* sl;
+//                        if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
+//                        {
+//                            sl = [self sendCommandSync:[self buildCommandForAudioTLV: @"1500"]];
+//                            //[NSThread sleepForTimeInterval:1];
+//                        }
+//                        else
+//                        {
+//                            sl = [self sendCommandSync:@"1500"];
+//                        }
+//                        
+//                        [self setText:[NSString stringWithFormat:@"[Security Level]\r%@",sl]];
+//                        
+//                        
+//                        [NSThread sleepForTimeInterval:0.5];
+//                        [self sendCommandSync:@"580101"];
+//                        [self sendCommandSync:@"59020F20"];
+//                         [self setDateTime];
+//                       
+//                    });
+//                    
+//                    if(deviceType == MAGTEKTDYNAMO)
+//                    {
+//                        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
+//                                                                                                 style:UIBarButtonItemStylePlain
+//                                                                                                target:self action:@selector(turnMSROn)];
+//                    }
+//                };
+//                
+//            });
+//        }
+//        else
+//        {
+//            devicePaired = YES;
+//            [self setText:@"Disconnected"];
+//           
+//        }
+//        
+//    }
+//    else
+//    {
+//        devicePaired = YES;
+//        [self setText:@"Disconnected"];
+//        [_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
+//        
+//       
+//        if(deviceType == MAGTEKTDYNAMO)
+//        {
+//            self.navigationItem.leftBarButtonItem = nil;
+//        }
+//        
+//    }
+//#if SHOW_DEBUG_COUNT
+//    self.txtData.text = [self.txtData.text stringByAppendingString: [NSString stringWithFormat:@"\n\nSwipe.Count:%i", swipeCount]];
+//#endif
     
     
 }
