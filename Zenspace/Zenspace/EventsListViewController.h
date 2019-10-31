@@ -27,6 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
     
     IBOutlet UIButton *eventsBtn;
     IBOutlet UIButton *locationBtn;
+    
+    IBOutlet UIView *eventLine;
+    IBOutlet UIView *locationLine;
+    
+    BOOL isFirstTime;
+    IBOutlet UILabel *noEvent;
 }
 
 -(IBAction)backBtnPress:(id)sender;

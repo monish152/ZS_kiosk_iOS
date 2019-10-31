@@ -59,6 +59,13 @@ NS_ASSUME_NONNULL_BEGIN
     IBOutlet UILabel *titleSlot;
     NSMutableArray *slotsArray;
     
+    IBOutlet UIView *dateLine;
+    IBOutlet UIView *capacityLine;
+    IBOutlet UIView *durationLine;
+    IBOutlet UIView *slotLine;
+    
+    NSString *previousSelectedDuration;
+    
 }
 
 

@@ -9,8 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventsListViewController">
             <connections>
+                <outlet property="eventLine" destination="Cwq-jd-AlI" id="IW6-cf-Srq"/>
                 <outlet property="eventsBtn" destination="0UQ-G9-Brx" id="hCo-XA-fU1"/>
                 <outlet property="locationBtn" destination="Cf7-ad-hom" id="V7d-1E-SIy"/>
+                <outlet property="locationLine" destination="6KC-Tz-eps" id="n1c-gj-7ax"/>
+                <outlet property="noEvent" destination="ZG0-d7-fRX" id="1JC-Kg-fXe"/>
                 <outlet property="scrollView" destination="dKI-05-Fwf" id="47l-Xm-DMX"/>
                 <outlet property="titleLbl" destination="z5e-gi-Dtq" id="d0d-zm-xWJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -40,9 +43,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0UQ-G9-Brx">
-                            <rect key="frame" x="378" y="107" width="130" height="35"/>
+                            <rect key="frame" x="299" y="106" width="200" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <state key="normal" title="Events">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -51,9 +54,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-ad-hom">
-                            <rect key="frame" x="516" y="107" width="130" height="35"/>
+                            <rect key="frame" x="524" y="106" width="200" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <state key="normal" title="Locations">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -61,6 +64,16 @@
                                 <action selector="locationBtnPress:" destination="-1" eventType="touchUpInside" id="uh6-bq-kjb"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cwq-jd-AlI">
+                            <rect key="frame" x="299" y="144" width="200" height="6"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.36428534984588623" green="0.66991209983825684" blue="0.97258144617080688" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6KC-Tz-eps">
+                            <rect key="frame" x="524" y="144" width="200" height="6"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.36428534979999999" green="0.66991209979999999" blue="0.97258144619999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.23288005590438843" green="0.3675675094127655" blue="0.80396109819412231" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
@@ -72,6 +85,13 @@
                     <rect key="frame" x="360" y="189" width="304" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently there are no event available for booking." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZG0-d7-fRX">
+                    <rect key="frame" x="277" y="370" width="469" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

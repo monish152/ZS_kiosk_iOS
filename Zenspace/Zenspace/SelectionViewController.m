@@ -23,6 +23,8 @@
     size:24];
     titleSlot.font = [UIFont fontWithName:@"Roboto-Medium"
     size:24];
+    
+    previousSelectedDuration = @"";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -42,6 +44,11 @@
     capacityView.hidden = YES;
     durationView.hidden = YES;
     startTimeView.hidden = YES;
+    
+    dateLine.hidden = NO;
+    capacityLine.hidden = YES;
+    durationLine.hidden = YES;
+    slotLine.hidden = YES;
     
     
     NSDate *minDate;
@@ -217,6 +224,11 @@
     durationView.hidden = YES;
     startTimeView.hidden = YES;
     
+    dateLine.hidden = YES;
+    capacityLine.hidden = NO;
+    durationLine.hidden = YES;
+    slotLine.hidden = YES;
+    
     [self getCapacityApi];
 }
 -(IBAction)durationBtnPress:(id)sender{
@@ -236,6 +248,11 @@
     durationView.hidden = NO;
     startTimeView.hidden = YES;
     
+    dateLine.hidden = YES;
+    capacityLine.hidden = YES;
+    durationLine.hidden = NO;
+    slotLine.hidden = YES;
+    
      [self getDurationApi:selectedDate];
 }
 -(IBAction)startDateBtnPress:(id)sender{
@@ -254,6 +271,11 @@
     capacityView.hidden = YES;
     durationView.hidden = YES;
     startTimeView.hidden = NO;
+    
+    dateLine.hidden = YES;
+    capacityLine.hidden = YES;
+    durationLine.hidden = YES;
+    slotLine.hidden = NO;
     
     [self getSlotsApi:selectedDate];
 }
@@ -457,9 +479,15 @@
             minusBtn.alpha = 0.3;
             self->durationArray = [[NSMutableArray alloc]init];
             self->durationArray =  arrResponse;
-            self->durationLbl.text = [NSString stringWithFormat:@"%@",[self->durationArray objectAtIndex:0]];
-            self->durationIndex = 0;
-            self->selectedDuration = [[self->durationArray objectAtIndex:0] integerValue];
+            if ([previousSelectedDuration isEqualToString:@""]) {
+                self->durationLbl.text = [NSString stringWithFormat:@"%@",[self->durationArray objectAtIndex:0]];
+                self->durationIndex = 0;
+                self->selectedDuration = [[self->durationArray objectAtIndex:0] integerValue];
+            }
+            else{
+                
+            }
+            
             self->durationLbl.font = [UIFont fontWithName:@"Roboto-Light"
             size:59];
         }
@@ -515,6 +543,7 @@
     
 }
 -(IBAction)nextBtnClicked:(id)sender{
+    previousSelectedDuration = durationLbl.text;
     [self startDateBtnPress:nil];
 }
 -(void)getSlotsApi :(NSDate *)date{
@@ -637,7 +666,7 @@
         
     }
     if (slotsArray.count>28) {
-        self.theScrollView.contentSize = CGSizeMake(self.theScrollView.frame.size.width, self.theScrollView.frame.size.height * (slotsArray.count/26));
+        self.theScrollView.contentSize = CGSizeMake(self.theScrollView.frame.size.width, self.theScrollView.frame.size.height * (slotsArray.count/20));
     }
     else{
         self.theScrollView.contentSize = CGSizeMake(self.theScrollView.frame.size.width, self.theScrollView.frame.size.height);

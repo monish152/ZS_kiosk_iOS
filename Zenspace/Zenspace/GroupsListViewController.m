@@ -78,7 +78,7 @@
         }
         
         UIView *view = [[UIView alloc]init];
-        view.frame = CGRectMake(xPos, yPos, 300, 370);
+        view.frame = CGRectMake(xPos, yPos, 300, 335);
 //        view.layer.cornerRadius = 10;
         view.backgroundColor = [UIColor whiteColor];
         [scrollView addSubview:view];
@@ -154,15 +154,15 @@
         time.textColor = [UIColor colorWithRed:22.0/255.0 green:91.0/255.0 blue:254.0/255.0 alpha:1.0];
 //        time.textAlignment = NSTextAlignmentRight;
         
-        NSString *minimumPrice = [[arrResults objectAtIndex:i] valueForKey:@"minimum_pod_pricing__c"];
-        if (minimumPrice == nil || minimumPrice == (id)[NSNull null]) {
-            minimumPrice= @"N/A";
-        }else{
-            minimumPrice =  [NSString stringWithFormat:@"$%@/Hr", capacityStr];
-        }
-        time.text = minimumPrice;
-       
-        [view addSubview:time];
+//        NSString *minimumPrice = [[arrResults objectAtIndex:i] valueForKey:@"minimum_pod_pricing__c"];
+//        if (minimumPrice == nil || minimumPrice == (id)[NSNull null]) {
+//            minimumPrice= @"N/A";
+//        }else{
+//            minimumPrice =  [NSString stringWithFormat:@"$%@/Hr", capacityStr];
+//        }
+//        time.text = minimumPrice;
+//
+//        [view addSubview:time];
         
         
         UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];

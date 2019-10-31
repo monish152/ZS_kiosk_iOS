@@ -11,17 +11,21 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectionViewController">
             <connections>
                 <outlet property="capacityBtn" destination="edY-uN-cjR" id="u6Y-GB-sll"/>
+                <outlet property="capacityLine" destination="Ya0-fZ-XjE" id="hJy-bT-cIr"/>
                 <outlet property="capacityTitle" destination="VEl-ab-Zbm" id="lpV-Wz-mYJ"/>
                 <outlet property="capacityView" destination="dWX-yQ-JKb" id="o5p-Hm-em3"/>
                 <outlet property="changeDate" destination="8Nw-gr-oM0" id="eMC-Fg-89g"/>
                 <outlet property="dateBtn" destination="wyH-Ee-oyS" id="yyI-Fv-n6N"/>
+                <outlet property="dateLine" destination="JHG-Hb-2Ft" id="xwh-Jp-ucK"/>
                 <outlet property="dateView" destination="oYA-eH-wKx" id="JQ2-XZ-6u7"/>
                 <outlet property="durationBtn" destination="Ti6-V6-fUa" id="KKk-dx-2Kv"/>
                 <outlet property="durationLbl" destination="rV4-G7-efr" id="rIg-Gw-2VQ"/>
+                <outlet property="durationLine" destination="9gk-kK-4pp" id="hHg-Al-n7s"/>
                 <outlet property="durationTitle" destination="dAs-H4-Hp1" id="Neg-yq-B8i"/>
                 <outlet property="durationView" destination="dbn-hl-8oo" id="ZOa-0T-NDr"/>
                 <outlet property="minusBtn" destination="XHS-ZI-b0Z" id="mE6-Ci-J54"/>
                 <outlet property="plusBtn" destination="e1L-vC-Hfk" id="Ia1-c0-wr3"/>
+                <outlet property="slotLine" destination="YiI-Bw-oXG" id="b6L-ta-4Og"/>
                 <outlet property="startDateBtn" destination="sHw-1t-sGy" id="yr6-BE-fR3"/>
                 <outlet property="startTimeView" destination="Epj-tj-a6F" id="2wp-at-zXh"/>
                 <outlet property="titleSlot" destination="1Sh-2U-wS0" id="Gie-kZ-xGy"/>
@@ -68,9 +72,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyH-Ee-oyS">
-                            <rect key="frame" x="240" y="107" width="130" height="35"/>
+                            <rect key="frame" x="112" y="110" width="200" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <state key="normal" title="Date">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -79,9 +83,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edY-uN-cjR">
-                            <rect key="frame" x="378" y="107" width="130" height="35"/>
+                            <rect key="frame" x="312" y="110" width="200" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <state key="normal" title="Capacity">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -90,9 +94,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ti6-V6-fUa">
-                            <rect key="frame" x="516" y="107" width="130" height="35"/>
+                            <rect key="frame" x="512" y="110" width="200" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <state key="normal" title="Duration">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -101,9 +105,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHw-1t-sGy">
-                            <rect key="frame" x="654" y="107" width="130" height="35"/>
+                            <rect key="frame" x="712" y="110" width="200" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <state key="normal" title="Start Time">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -111,6 +115,26 @@
                                 <action selector="startDateBtnPress:" destination="-1" eventType="touchUpInside" id="ZOu-lH-1gx"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JHG-Hb-2Ft">
+                            <rect key="frame" x="112" y="144" width="200" height="6"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.36428534979999999" green="0.66991209979999999" blue="0.97258144619999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ya0-fZ-XjE">
+                            <rect key="frame" x="312" y="144" width="200" height="6"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.36428534979999999" green="0.66991209979999999" blue="0.97258144619999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gk-kK-4pp">
+                            <rect key="frame" x="512" y="144" width="200" height="6"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.36428534979999999" green="0.66991209979999999" blue="0.97258144619999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YiI-Bw-oXG">
+                            <rect key="frame" x="712" y="144" width="200" height="6"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.36428534979999999" green="0.66991209979999999" blue="0.97258144619999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.23288005589999999" green="0.36756750939999999" blue="0.80396109819999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>

@@ -156,49 +156,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "363A1A21-4364-41E2-A69D-5F554777E455"
+            uuid = "28A554DD-3B24-4A02-B168-99268C933F58"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Zenspace/PodsListViewController.m"
+            filePath = "Zenspace/eDynamoController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-getPodsApi"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "-onDeviceConnectionDidChange:connected:instance:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "363A1A21-4364-41E2-A69D-5F554777E455 - 6b41c52524c70f0b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PodsListViewController getPodsApi]"
-                  moduleName = "Kiosk app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/monish/Documents/Repos/Zenspace/ZS_Kiosk_iOS/Zenspace/Zenspace/PodsListViewController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "108"
-                  endingLineNumber = "108"
-                  offsetFromSymbolStart = "1242">
-               </Location>
-               <Location
-                  uuid = "363A1A21-4364-41E2-A69D-5F554777E455 - 60814ec546e9a3fc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__36-[PodsListViewController getPodsApi]_block_invoke.310"
-                  moduleName = "Kiosk app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/monish/Documents/Repos/Zenspace/ZS_Kiosk_iOS/Zenspace/Zenspace/PodsListViewController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "108"
-                  endingLineNumber = "108"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F01A556D-472E-45A7-B63B-21DFB3BC933B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zenspace/eDynamoController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "572"
+            endingLineNumber = "572"
+            landmarkName = "-startEMV"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC0643BF-9EE0-4AF2-896E-54B210E17869"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zenspace/EventsListViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-getEvents:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

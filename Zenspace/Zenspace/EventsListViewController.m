@@ -29,7 +29,7 @@
                                     size:24];
     
     
-   
+    
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -38,8 +38,13 @@
     [def synchronize];
     eventsBtn.alpha = 1.0;
     locationBtn.alpha = 0.7;
+    
+    eventLine.hidden = NO;
+    locationLine.hidden = YES;
     [self getEvents:YES];
     self.navigationController.navigationBarHidden = YES;
+    
+    isFirstTime = YES;
 }
 -(IBAction)eventBtnPress:(id)sender{
     titleLbl.text = @"Upcoming Events";
@@ -49,6 +54,9 @@
     [def synchronize];
     eventsBtn.alpha = 1.0;
     locationBtn.alpha = 0.7;
+    
+    eventLine.hidden = NO;
+    locationLine.hidden = YES;
     [self getEvents:YES];
 }
 -(IBAction)locationBtnPress:(id)sender{
@@ -59,6 +67,9 @@
     [def synchronize];
     eventsBtn.alpha = 0.7;
     locationBtn.alpha = 1.0;
+    
+    eventLine.hidden = YES;
+    locationLine.hidden = NO;
     [self getEvents:NO];
 }
 -(void)getEvents:(BOOL)isEvent{
@@ -121,19 +132,32 @@
                 }
             }
             [arrResults removeObjectsInArray:discardedItems];
+            NSArray *viewsToRemove = [scrollView subviews];
+               for (UIView *v in viewsToRemove) {
+                   [v removeFromSuperview];
+               }
             if (isEvent) {
                 if (arrResults.count >0) {
                     self->dictionary =  [arrResults mutableCopy];
                     [self plotUI];
+                    noEvent.hidden = YES;
                 }
                 else{
-                    [self locationBtnPress:nil];
+                    if (isFirstTime) {
+                        isFirstTime = NO;
+                        [self locationBtnPress:nil];
+                    }
+                    else{
+                        noEvent.hidden = NO;
+                    }
+                    
                 }
             }else{
                 self->dictionary =  [arrResults mutableCopy];
                 [self plotUI];
+                isFirstTime = NO;
             }
-           
+            
         }
         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
@@ -172,17 +196,20 @@
         {
             lineCount=0;
             xPos=0;
-            yPos=yPos+239;
+            yPos=yPos+320;
         }
+        UIView *view = [[UIView alloc]init];
+        view.frame = CGRectMake(xPos, yPos, 300, 300);
+        //        view.layer.cornerRadius = 10;
+        view.backgroundColor = [UIColor whiteColor];
+        [scrollView addSubview:view];
         
         
         UIImageView *img = [[UIImageView alloc]init];
-        img.frame = CGRectMake(xPos, yPos, 300, 219);
-        img.layer.cornerRadius = 10;
-        img.image = [UIImage imageNamed:@"mask"];
+        img.frame = CGRectMake(0, 0, 300, 200);
+        //        img.layer.cornerRadius = 10;
         img.clipsToBounds = YES;
-        img.userInteractionEnabled = YES;
-        [scrollView addSubview:img];
+        [view addSubview:img];
         
         
         NSString *imgName = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:i] valueForKey:@"card_image__c"]];
@@ -190,41 +217,58 @@
                placeholderImage:[UIImage imageNamed:@""]];
         
         UILabel *eventName = [[UILabel alloc]init];
-        eventName.frame = CGRectMake(15, 182, 211, 20);
-        eventName.font = [UIFont fontWithName:@"CircularStd-Bold"
-                                         size:16];
-        eventName.textColor = [UIColor whiteColor];
+        eventName.frame = CGRectMake(29, 221, 280, 25);
+        eventName.font = [UIFont fontWithName:@"Roboto-Medium"
+                                         size:20];
+        eventName.textColor = [UIColor blackColor];
         eventName.text = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:i] valueForKey:@"name"]];
-        [img addSubview:eventName];
+        [view addSubview:eventName];
         
-        UIImageView *calimg = [[UIImageView alloc]init];
-        calimg.frame = CGRectMake(157, 15, 24, 24);
-        calimg.image = [UIImage imageNamed:@"icons-calendar-filled"];
-        calimg.image = [calimg.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [calimg setTintColor:[UIColor whiteColor]];
-        [img addSubview:calimg];
         
-        UILabel *time = [[UILabel alloc]init];
-        time.frame = CGRectMake(187, 18, 105, 18);
-        time.font = [UIFont fontWithName:@"CircularStd-Medium"
-                                    size:16];
-        time.textColor = [UIColor whiteColor];
-        time.text = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:i] valueForKey:@"date_of_event__c"]];
-        [img addSubview:time];
+        UIImageView *icon = [[UIImageView alloc]init];
+        icon.frame = CGRectMake(25, 262, 20, 20);
+        icon.image = [UIImage imageNamed:@"TIME ICON.png"];
+        //        icon.image = [icon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        //        [icon setTintColor:[UIColor lightGrayColor]];
+        [view addSubview:icon];
         
+        
+        UILabel *address = [[UILabel alloc]init];
+        address.frame = CGRectMake(60, 261, 240, 22);
+        address.font = [UIFont fontWithName:@"Roboto-Regular"
+                                       size:14];
+        address.textColor = [UIColor lightGrayColor];
+        address.text = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:i] valueForKey:@"date_of_event__c"]];
+        [view addSubview:address];
+        
+        //        UIImageView *calimg = [[UIImageView alloc]init];
+        //        calimg.frame = CGRectMake(157, 15, 24, 24);
+        //        calimg.image = [UIImage imageNamed:@"icons-calendar-filled"];
+        //        calimg.image = [calimg.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        //        [calimg setTintColor:[UIColor whiteColor]];
+        //        [img addSubview:calimg];
+        //
+        //        UILabel *time = [[UILabel alloc]init];
+        //        time.frame = CGRectMake(187, 18, 105, 18);
+        //        time.font = [UIFont fontWithName:@"Roboto-Medium"
+        //                                    size:16];
+        //        time.textColor = [UIColor whiteColor];
+        //        time.text = [NSString stringWithFormat:@"%@", [[arrResults objectAtIndex:i] valueForKey:@"date_of_event__c"]];
+        //        [img addSubview:time];
+        //
         
         UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
         bt.backgroundColor = [UIColor clearColor];
-        bt.frame=CGRectMake(0, 0, img.frame.size.width, img.frame.size.height);
+        bt.frame=CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
         bt.tag = i;
         [bt addTarget:self action:@selector(eventClick:) forControlEvents:UIControlEventTouchUpInside];
-        [img addSubview:bt];
+        [view addSubview:bt];
         
         
         xPos=xPos+320;
         lineCount = lineCount+1;
     }
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width, yPos+239);
+    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width, yPos+320);
     
 }
 -(IBAction)eventClick:(UIButton*)sender{
