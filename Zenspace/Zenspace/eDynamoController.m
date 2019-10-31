@@ -717,10 +717,10 @@ typedef void(^commandCompletion)(NSString*);
             NSString *transactionTypeValue = [(MTTLV*)[tlv objectForKey:@"DFDF52"] value];
                    if ([transactionTypeValue isEqualToString:@"01"]) {
 //                       self->transactionType = @"MagStripe";
-                       
+                       isCardSwipe = YES;
                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Card Swipe not working at this time. Please try EMV." preferredStyle:UIAlertControllerStyleAlert];
                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-//                           [self startEMV];
+                           [self.navigationController popViewControllerAnimated:YES];
                        }];
                        
                        [alert addAction:okAction];
@@ -869,6 +869,12 @@ typedef void(^commandCompletion)(NSString*);
     NSString* dataString = [self getHexString:data];
     NSLog(@"OnTransactionResult dataString:%@",dataString);
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (isCardSwipe) {
+//            [self startEMV];
+            isCardSwipe = NO;
+                   return;
+                   
+               }
         [self setText:[NSString stringWithFormat:@"\n[Transaction Result]\n%@", dataString]];
         
         
@@ -899,11 +905,16 @@ typedef void(^commandCompletion)(NSString*);
             }
            
         }
-        NSString *transactionTypeValue;
+       
         self->ksnStr = [(MTTLV*)[tlv objectForKey:@"DFDF56"] value];
         self->encryptionType = [(MTTLV*)[tlv objectForKey:@"DFDF57"] value];
         self->paddedBytes = [(MTTLV*)[tlv objectForKey:@"DFDF58"] value];
        
+        NSString *transactionTypeValue = [(MTTLV*)[tlv objectForKey:@"DFDF52"] value];
+                           if ([transactionTypeValue isEqualToString:@"01"]) {
+                               return ;
+                           }
+        
         
         NSLog(@"self.cardPaymentStatus :%@",self.cardPaymentStatus);
         if ([self.cardPaymentStatus isEqualToString:@"APPROVED"]) {

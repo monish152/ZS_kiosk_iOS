@@ -12,6 +12,7 @@
 @interface eDynamoController : MTDataViewerViewController<MTSCRAEventDelegate, BLEScanListEvent, optionControllerEvent,NSXMLParserDelegate>
 {
     NSString *currentElement;
+    BOOL isCardSwipe;
 
 }
 - (void)startEMV;
