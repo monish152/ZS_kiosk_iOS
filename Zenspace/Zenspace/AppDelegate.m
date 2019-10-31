@@ -25,6 +25,10 @@
     
     [FIRApp configure];self.ref = [[FIRDatabase database] reference];
     
+    NSUserDefaults* def=[NSUserDefaults standardUserDefaults];
+    [def setObject:@"" forKey:@"stripe"];
+    [def synchronize];
+    
     return YES;
 }
 -(void)fireBaseUpdateData :(NSString *)className :(NSString *)apiURL :(NSString *)parameters :(NSString *)error  {

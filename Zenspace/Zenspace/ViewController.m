@@ -59,6 +59,9 @@
 
 
 }
+- (void)stripeView :(NSString *)emailId{
+  
+}
 - (IBAction)testSupport:(id)sender{
     
     SupportScreen1ViewController *vc = [[SupportScreen1ViewController alloc] initWithNibName:@"SupportScreen1ViewController" bundle:nil];

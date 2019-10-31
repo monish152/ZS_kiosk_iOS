@@ -155,6 +155,7 @@
             }else{
                 self->dictionary =  [arrResults mutableCopy];
                 [self plotUI];
+                noEvent.hidden = YES;
                 isFirstTime = NO;
             }
             

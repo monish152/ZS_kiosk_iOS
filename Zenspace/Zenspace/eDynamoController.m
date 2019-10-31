@@ -509,6 +509,8 @@ typedef void(^commandCompletion)(NSString*);
                 }];
                 //});
             }
+    }else{
+        
     }
 }
 
@@ -626,6 +628,9 @@ typedef void(^commandCompletion)(NSString*);
         
         
         [self setText:[NSString stringWithFormat:@"\n[Device Extended Response]\n%@", data]];
+        ///00000000
+        if ([data isEqualToString:@"00000000"]) {
+        }
     });
 }
 
@@ -636,6 +641,15 @@ typedef void(^commandCompletion)(NSString*);
         
         NSString* dataString = [self getHexString:data];
         [self setText:[NSString stringWithFormat:@"\n[EMV Command Result]\n%@", dataString]];
+        if ([dataString isEqualToString:@"03960000"]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"EMV not working at this time. Please use Stripe payment method." preferredStyle:UIAlertControllerStyleAlert];
+                                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+                                      [self.navigationController popViewControllerAnimated:YES];
+                                  }];
+                                  
+                                  [alert addAction:okAction];
+                                  [self presentViewController:alert animated:YES completion:nil];
+        }
     });
 }
 -(void)OnUserSelectionRequest:(NSData *)data
@@ -702,7 +716,15 @@ typedef void(^commandCompletion)(NSString*);
         {
             NSString *transactionTypeValue = [(MTTLV*)[tlv objectForKey:@"DFDF52"] value];
                    if ([transactionTypeValue isEqualToString:@"01"]) {
-                       self->transactionType = @"MagStripe";
+//                       self->transactionType = @"MagStripe";
+                       
+                       UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Card Swipe not working at this time. Please try EMV." preferredStyle:UIAlertControllerStyleAlert];
+                       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+//                           [self startEMV];
+                       }];
+                       
+                       [alert addAction:okAction];
+                       [self presentViewController:alert animated:YES completion:nil];
                    }
                    if ([transactionTypeValue isEqualToString:@"05"]) {
                        self->transactionType = @"EMV";
@@ -1068,6 +1090,7 @@ typedef void(^commandCompletion)(NSString*);
     [dataTask resume];
 }
 -(void)apiCardSwipeConnect{
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSString *soapMessage;
     
@@ -1258,6 +1281,7 @@ typedef void(^commandCompletion)(NSString*);
                              @"save_card":[NSNumber numberWithInteger:0],
                              @"magtek_transaction_id" :transactionID,
                              @"phonenumber" :self.phoneNumber,
+                             @"booked_through" :@"App",
                              @"name" :self.name
                              };
     

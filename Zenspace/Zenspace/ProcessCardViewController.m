@@ -1407,6 +1407,7 @@ typedef void(^commandCompletion)(NSString*);
                              @"save_card":[NSNumber numberWithInteger:0],
                              @"magtek_transaction_id" :transactionID,
                              @"phonenumber" :_phoneNumber,
+                             @"booked_through" :@"App",
                              @"name" :_name
                              };
     

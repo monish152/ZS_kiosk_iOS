@@ -245,12 +245,18 @@ typedef void (^cmdCompBlock)(NSString*);
             }
             else
             {
-                
+                NSUserDefaults* def=[NSUserDefaults standardUserDefaults];
+                   [def setObject:@"Yes" forKey:@"stripe"];
+                   [def synchronize];
+                [self.navigationController popViewControllerAnimated:YES];
             }
         }
         else
         {
-            
+            NSUserDefaults* def=[NSUserDefaults standardUserDefaults];
+               [def setObject:@"Yes" forKey:@"stripe"];
+               [def synchronize];
+            [self.navigationController popViewControllerAnimated:YES];
             
         }
         
@@ -343,7 +349,7 @@ typedef void (^cmdCompBlock)(NSString*);
                             }
                             else if(deviceType == MAGTEKDYNAMAX)
                             {
-                                [self.lib sendcommandWithLength:@"000101"];
+//                                [self.lib sendcommandWithLength:@"000101"];
                             }
                             
                         }
@@ -362,9 +368,9 @@ typedef void (^cmdCompBlock)(NSString*);
                         }
                         else
                         {
-                            fw = [self sendCommandSync:@"000100"];
+//                            fw = [self sendCommandSync:@"000100"];
                         }
-                        [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
+//                        [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
                         
                         [self setText:@"Getting SN..."];
                         NSString* sn;
@@ -375,7 +381,7 @@ typedef void (^cmdCompBlock)(NSString*);
                         }
                         else
                         {
-                            sn = [self sendCommandSync:@"000103"];
+//                            sn = [self sendCommandSync:@"000103"];
                         }
                         [self setText:[NSString stringWithFormat:@"[Device SN]\r%@",sn]];
                         
@@ -394,7 +400,7 @@ typedef void (^cmdCompBlock)(NSString*);
                         [self setText:[NSString stringWithFormat:@"[Security Level]\r%@",sl]];
                         
                         
-                        
+                        [NSThread sleepForTimeInterval:0.5];
                         [self sendCommandSync:@"580101"];
                         [self sendCommandSync:@"59020F20"];
                          [self setDateTime];

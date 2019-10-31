@@ -94,8 +94,6 @@
         {
             [self setLEDState:1];
             [self.lib sendcommandWithLength:@"480102"];
-            
-            [self startEMV];
         }
         else
         {

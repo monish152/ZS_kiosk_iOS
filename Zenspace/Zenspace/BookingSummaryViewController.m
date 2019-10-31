@@ -116,6 +116,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
+-(void)viewWillAppear:(BOOL)animated{
+    
+    
+    NSString *apiCall = [[NSUserDefaults standardUserDefaults]
+                         stringForKey:@"stripe"];
+    if([apiCall isEqualToString:@"Yes"]){
+        [self stripe:@""];
+        NSUserDefaults* def=[NSUserDefaults standardUserDefaults];
+        [def setObject:@"NO" forKey:@"stripe"];
+        [def synchronize];
+    }
+}
 -(void)getPrice{
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -283,29 +295,30 @@
         }
     
      
-        StripePaymentViewController *vc = [[StripePaymentViewController alloc] initWithNibName:@"StripePaymentViewController" bundle:nil];
-        NSString *amount = [NSString stringWithFormat:@"%@", _price];
-        vc.transactionAmount =amount ;
-        vc.sfid = _sfid;
-        vc.podName = self->_podName;
-        vc.date = self->_date;
-        vc.duration = _duration;
-        vc.imageurl = self->_imageurl;
-        vc.price = amountDue;
-        vc.capacity = self->_capacity;
-        vc.email = email.text;
-        vc.phoneNumber = number;
-        vc.name = name.text;
-        [self.navigationController pushViewController:vc animated:YES];
+//        StripePaymentViewController *vc = [[StripePaymentViewController alloc] initWithNibName:@"StripePaymentViewController" bundle:nil];
+//        NSString *amount = [NSString stringWithFormat:@"%@", _price];
+//        vc.transactionAmount =amount ;
+//        vc.sfid = _sfid;
+//        vc.podName = self->_podName;
+//        vc.date = self->_date;
+//        vc.duration = _duration;
+//        vc.imageurl = self->_imageurl;
+//        vc.price = amountDue;
+//        vc.capacity = self->_capacity;
+//        vc.email = email.text;
+//        vc.phoneNumber = number;
+//        vc.name = name.text;
+//        [self.navigationController pushViewController:vc animated:YES];
         
         
-        /*
+       
         kDynamoController *vc = [[kDynamoController alloc] initWithNibName:@"kDynamoController" bundle:nil];
         CGFloat value = [_price floatValue] *100;
         NSString *amount = [NSString stringWithFormat:@"%f",value];
         NSInteger i = [amount integerValue];
         amount = [NSString stringWithFormat:@"%ld", (long)i];
         // you got your string
+        
         vc.transactionAmount =amount ;
         vc.sfid = _sfid;
         vc.podName = self->_podName;
@@ -318,7 +331,7 @@
         vc.phoneNumber = number;
         vc.name = name.text;
         [self.navigationController pushViewController:vc animated:YES];
-        */
+       
    
         /*
         ProcessCardViewController *vc = [[ProcessCardViewController alloc] initWithNibName:@"ProcessCardViewController" bundle:nil];
@@ -378,6 +391,7 @@
                              @"save_card":[NSNumber numberWithInteger:0],
                              @"magtek_transaction_id" :@"",
                              @"phonenumber" :number,
+                             @"booked_through" :@"App",
                              @"name" :name.text
                              };
     
@@ -468,6 +482,7 @@
                              @"save_card":[NSNumber numberWithInteger:0],
                              @"magtek_transaction_id" :@"",
                              @"phonenumber" :number,
+                             @"booked_through" :@"App",
                              @"name" :name.text
                              };
     
@@ -514,5 +529,27 @@
 -(IBAction)helpButtonpressed:(id)sender{
     SupportScreen1ViewController *vc = [[SupportScreen1ViewController alloc] initWithNibName:@"SupportScreen1ViewController" bundle:nil];
        [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)stripe :(NSString *)emailId{
+  NSString *number = @"";
+          if (![phone.text isEqualToString:@""]) {
+              number = [NSString stringWithFormat:@"+%@%@",countrycodeStr,phone.text];
+          }
+      
+       
+          StripePaymentViewController *vc = [[StripePaymentViewController alloc] initWithNibName:@"StripePaymentViewController" bundle:nil];
+          NSString *amount = [NSString stringWithFormat:@"%@", _price];
+          vc.transactionAmount =amount ;
+          vc.sfid = _sfid;
+          vc.podName = self->_podName;
+          vc.date = self->_date;
+          vc.duration = _duration;
+          vc.imageurl = self->_imageurl;
+          vc.price = amountDue;
+          vc.capacity = self->_capacity;
+          vc.email = email.text;
+          vc.phoneNumber = number;
+          vc.name = name.text;
+          [self.navigationController pushViewController:vc animated:YES];
 }
 @end
