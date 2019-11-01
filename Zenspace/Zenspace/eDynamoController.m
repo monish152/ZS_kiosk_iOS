@@ -350,16 +350,11 @@ typedef void(^commandCompletion)(NSString*);
                              [super sendCommandSync:@"59020F20"];
                               [self setDateTime];
                              
-//                             [NSThread sleepForTimeInterval:1];
+                             [NSThread sleepForTimeInterval:0.5];
+                             [self startEMV];
                             
                          });
                          
-                         if(deviceType == MAGTEKTDYNAMO)
-                         {
-                             self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
-                                                                                                      style:UIBarButtonItemStylePlain
-                                                                                                     target:self action:@selector(turnMSROn)];
-                         }
                      };
                      
                  });

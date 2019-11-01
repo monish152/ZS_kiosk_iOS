@@ -16,7 +16,18 @@
 
 - (void)viewDidLoad {
     
-   
+   title1.font = [UIFont fontWithName:@"Roboto-Medium"
+                                 size:24];
+   title2.font = [UIFont fontWithName:@"Roboto-Regular"
+                                 size:24];
+    title3.font = [UIFont fontWithName:@"Roboto-Regular"
+    size:24];
+    
+    zenCall.font = [UIFont fontWithName:@"Roboto-Bold"
+                                 size:36];
+    emergencyCall.font = [UIFont fontWithName:@"Roboto-Bold"
+    size:36];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

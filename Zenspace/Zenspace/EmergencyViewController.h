@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EmergencyViewController : UIViewController
+@interface EmergencyViewController : UIViewController{
+    IBOutlet UILabel *title1;
+     IBOutlet UILabel *title2;
+     IBOutlet UILabel *title3;
+
+     IBOutlet UILabel *emergencyCall;
+     IBOutlet UILabel *zenCall;
+}
 
 
 -(IBAction)backButtonPressed:(id)sender;

@@ -36,6 +36,7 @@
     for( int i=0;i<[viewControllers count];i++){
         id obj=[viewControllers objectAtIndex:i];
         if([obj isKindOfClass:[SelectionViewController class]]){
+            [obj viewDidLoad];
             [self.navigationController popToViewController:obj animated:YES];
             break;
         }

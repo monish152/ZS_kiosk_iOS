@@ -473,7 +473,7 @@
     NSArray *viewControllers = self.navigationController.viewControllers;
     for( int i=0;i<[viewControllers count];i++){
         id obj=[viewControllers objectAtIndex:i];
-        if([obj isKindOfClass:[GroupsListViewController class]]){
+        if([obj isKindOfClass:[EventsListViewController class]]){
             [self.navigationController popToViewController:obj animated:YES];
             break;
         }

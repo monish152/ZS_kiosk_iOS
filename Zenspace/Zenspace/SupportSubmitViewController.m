@@ -88,11 +88,15 @@
     selectedOption = @"phonenumber";
     [phoneBtn setImage:[UIImage imageNamed:@"phone_Selected"] forState:UIControlStateNormal];
     [emailBtn setImage:[UIImage imageNamed:@"email_unSelected"] forState:UIControlStateNormal];
+    [phoneTxtFld resignFirstResponder];
+    [emailTxtFld resignFirstResponder];
 }
 -(IBAction)emailButtonPressed:(id)sender{
     selectedOption = @"email";
     [phoneBtn setImage:[UIImage imageNamed:@"mobile_unSelected"] forState:UIControlStateNormal];
     [emailBtn setImage:[UIImage imageNamed:@"emailSelecgted"] forState:UIControlStateNormal];
+    [phoneTxtFld resignFirstResponder];
+    [emailTxtFld resignFirstResponder];
 }
 -(IBAction)submitButtonPressed:(id)sender{
     if (![emailTxtFld.text isEqualToString:@""]) {

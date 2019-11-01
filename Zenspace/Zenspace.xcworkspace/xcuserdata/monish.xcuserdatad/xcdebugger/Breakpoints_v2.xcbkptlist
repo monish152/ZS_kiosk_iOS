@@ -92,54 +92,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FF637D3A-E9B5-4057-8F98-46DADCB75532"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Zenspace/SupportSubmitViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "-submitSupport"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FF637D3A-E9B5-4057-8F98-46DADCB75532 - 4dd567c26f85c90d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SupportSubmitViewController submitSupport]"
-                  moduleName = "Kiosk app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/monish/Documents/Repos/Zenspace/ZS_Kiosk_iOS/Zenspace/Zenspace/SupportSubmitViewController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "199"
-                  endingLineNumber = "199"
-                  offsetFromSymbolStart = "1292">
-               </Location>
-               <Location
-                  uuid = "FF637D3A-E9B5-4057-8F98-46DADCB75532 - 43a51aea61c6e821"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__44-[SupportSubmitViewController submitSupport]_block_invoke.334"
-                  moduleName = "Kiosk app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/monish/Documents/Repos/Zenspace/ZS_Kiosk_iOS/Zenspace/Zenspace/SupportSubmitViewController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "199"
-                  endingLineNumber = "199"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EB8CA83E-A765-419B-92A9-CB06D81F552B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"

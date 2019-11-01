@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "SearchPodViewController.h"
 #import "GlobalKeyViewController.h"
-#import "GroupsListViewController.h"
+#import "EventsListViewController.h"
 #import "SupportScreen1ViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 

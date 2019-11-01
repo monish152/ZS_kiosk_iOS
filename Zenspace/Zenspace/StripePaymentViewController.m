@@ -70,7 +70,7 @@
     [timeIcon setTintColor:[UIColor lightGrayColor]];
     
     
-    [format setDateFormat:@"HH:mm"];
+    [format setDateFormat:@"HH:mm a"];
     finalDateString = [format stringFromDate:date];
     podtimeLbl.font = [UIFont fontWithName:@"Roboto-Regular"
                                          size:14];

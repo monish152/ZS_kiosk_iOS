@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "GlobalKeyViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "GroupsListViewController.h"
+#import "EventsListViewController.h"
 #import "ProcessCardViewController.h"
 #import "BookingSummaryViewController.h"
 #import "SupportScreen1ViewController.h"

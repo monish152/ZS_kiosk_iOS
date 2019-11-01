@@ -15,6 +15,7 @@
 #import "GroupsListViewController.h"
 #import "MBProgressHUD.h"
 #import "BookingConfirmationViewController.h"
+#import "EventsListViewController.h"
 #define ARQC_DYNAPRO_FORMAT 0x01
 #define ARQC_EDYNAMO_FORMAT 0x00
 NS_ASSUME_NONNULL_BEGIN

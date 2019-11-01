@@ -14,7 +14,7 @@
 #import "GlobalKeyViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ProcessCardViewController.h"
-#import "BookingConfirmationViewController.h"
+#import "EventsListViewController.h"
 #import "PCCPViewController.h"
 #import "StripePaymentViewController.h"
 #import <Stripe/Stripe.h>

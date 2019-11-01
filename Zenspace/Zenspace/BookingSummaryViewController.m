@@ -49,7 +49,7 @@
     [timeIcon setTintColor:[UIColor lightGrayColor]];
     
     
-    [format setDateFormat:@"HH:mm"];
+    [format setDateFormat:@"HH:mm a"];
     finalDateString = [format stringFromDate:date];
     podtimeLbl.font = [UIFont fontWithName:@"Roboto-Regular"
                                       size:14];
@@ -208,7 +208,7 @@
     NSArray *viewControllers = self.navigationController.viewControllers;
     for( int i=0;i<[viewControllers count];i++){
         id obj=[viewControllers objectAtIndex:i];
-        if([obj isKindOfClass:[GroupsListViewController class]]){
+        if([obj isKindOfClass:[EventsListViewController class]]){
             [self.navigationController popToViewController:obj animated:YES];
             break;
         }
