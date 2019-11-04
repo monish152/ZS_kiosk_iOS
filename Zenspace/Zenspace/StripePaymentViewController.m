@@ -185,6 +185,7 @@
                              @"magtek_transaction_id" :@"",
                              @"phonenumber" :_phoneNumber,
                              @"booked_through" :@"App",
+                             @"payment_type" :@"currency_payment",
                              @"name" :_name
                              };
     

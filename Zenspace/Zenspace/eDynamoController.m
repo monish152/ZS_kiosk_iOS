@@ -48,11 +48,11 @@ typedef void(^commandCompletion)(NSString*);
     self.swipeCardLbl.font = [UIFont fontWithName:@"CircularStd-Medium"
                                         size:28];
     
-    _btnStartEMV = [[UIButton alloc]initWithFrame:CGRectMake(5, self.view.frame.size.height - 98 - 65 - 60, btnWidth - 7, 40)];
-    [_btnStartEMV setTitle:@"Start" forState:UIControlStateNormal];
-    [_btnStartEMV setBackgroundColor:UIColorFromRGB(0x3465AA)];
-    [_btnStartEMV addTarget:self action:@selector(startEMV) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_btnStartEMV];
+//    _btnStartEMV = [[UIButton alloc]initWithFrame:CGRectMake(5, self.view.frame.size.height - 98 - 65 - 60, btnWidth - 7, 40)];
+//    [_btnStartEMV setTitle:@"Start" forState:UIControlStateNormal];
+//    [_btnStartEMV setBackgroundColor:UIColorFromRGB(0x3465AA)];
+//    [_btnStartEMV addTarget:self action:@selector(startEMV) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:_btnStartEMV];
     
 
     
@@ -664,6 +664,18 @@ typedef void(^commandCompletion)(NSString*);
     
     //self.txtData.text = [self.txtData.text stringByAppendingString:[NSString stringWithFormat:@"\n[Transaction Status]\n%@", dataString]];
     [self setText:[NSString stringWithFormat:@"\n[Transaction Status]\n%@", dataString]];
+    if ([dataString isEqualToString:@"0600010000"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Time Out. Please try after some Time.." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+            [self.lib closeDevice];
+            [self.navigationController popViewControllerAnimated:YES];
+            // Ok action example
+        }];
+        
+        [alert addAction:okAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     
     
 }
@@ -759,15 +771,15 @@ typedef void(^commandCompletion)(NSString*);
         
         NSString* dataString = [self getHexString:data];
         [self setText:[NSString stringWithFormat:@"\n[EMV Command Result]\n%@", dataString]];
-//        if ([dataString isEqualToString:@"03960000"]) {
-//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"EMV not working at this time. Please use Stripe payment method." preferredStyle:UIAlertControllerStyleAlert];
-//                                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-//                                      [self.navigationController popViewControllerAnimated:YES];
-//                                  }];
-//                                  
-//                                  [alert addAction:okAction];
-//                                  [self presentViewController:alert animated:YES completion:nil];
-//        }
+        if ([dataString isEqualToString:@"03960000"]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Connection failed. Please try after some time." preferredStyle:UIAlertControllerStyleAlert];
+                                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+                                      [self.navigationController popViewControllerAnimated:YES];
+                                  }];
+
+                                  [alert addAction:okAction];
+                                  [self presentViewController:alert animated:YES completion:nil];
+        }
     });
 }
 -(void)OnUserSelectionRequest:(NSData *)data
@@ -1386,7 +1398,7 @@ typedef void(^commandCompletion)(NSString*);
 }
 
 -(void)bookingApi:(NSString *)transactionID{
-    return;
+  
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     });
@@ -1411,6 +1423,7 @@ typedef void(^commandCompletion)(NSString*);
                              @"magtek_transaction_id" :transactionID,
                              @"phonenumber" :self.phoneNumber,
                              @"booked_through" :@"App",
+                             @"payment_type" :@"currency_payment",
                              @"name" :self.name
                              };
     

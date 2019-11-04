@@ -325,7 +325,7 @@
         vc.date = self->_date;
         vc.duration = _duration;
         vc.imageurl = self->_imageurl;
-        vc.price = amountDue;
+        vc.price = _price;
         vc.capacity = self->_capacity;
         vc.email = email.text;
         vc.phoneNumber = number;
@@ -370,6 +370,7 @@
                              @"magtek_transaction_id" :@"",
                              @"phonenumber" :number,
                              @"booked_through" :@"App",
+                             @"payment_type" :@"currency_payment",
                              @"name" :name.text
                              };
     
@@ -461,6 +462,7 @@
                              @"magtek_transaction_id" :@"",
                              @"phonenumber" :number,
                              @"booked_through" :@"App",
+                             @"payment_type" :@"currency_payment",
                              @"name" :name.text
                              };
     

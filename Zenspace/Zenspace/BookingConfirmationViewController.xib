@@ -14,6 +14,7 @@
                 <outlet property="phone" destination="59A-gK-hOH" id="eZh-fF-Azd"/>
                 <outlet property="podImage" destination="zKX-qz-RkH" id="H6n-tT-6LU"/>
                 <outlet property="podNameLbl" destination="sWM-Q5-HgV" id="Y1R-Yd-dLC"/>
+                <outlet property="poddateLbl" destination="LPl-LX-2yw" id="a4g-24-GD1"/>
                 <outlet property="podtimeLbl" destination="pmb-xw-HDR" id="3Qy-D1-xqX"/>
                 <outlet property="submit" destination="pQa-dt-Not" id="Zgf-QO-9Et"/>
                 <outlet property="title1" destination="PP1-cH-PKD" id="UrS-vB-pXr"/>
