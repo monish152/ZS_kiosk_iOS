@@ -31,6 +31,8 @@
 	<string>Scan Card</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>uDynamo Connection</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>for image capture</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>CircularStd-Black.otf</string>
