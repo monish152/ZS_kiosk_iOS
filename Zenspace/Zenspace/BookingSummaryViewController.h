@@ -13,7 +13,6 @@
 #import "AppDelegate.h"
 #import "GlobalKeyViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "ProcessCardViewController.h"
 #import "EventsListViewController.h"
 #import "PCCPViewController.h"
 #import "StripePaymentViewController.h"

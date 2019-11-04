@@ -675,6 +675,7 @@ typedef void(^commandCompletion)(NSString*);
     NSLog(@"OnDisplayMessageRequest self.cardPaymentStatus :%@",dataString);
     if ([dataString isEqualToString:@"PRESENT CARD"]) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        self.swipeCardLbl.text = @"Insert Card";
         self.cardView.hidden = NO;
         
     }
@@ -758,15 +759,15 @@ typedef void(^commandCompletion)(NSString*);
         
         NSString* dataString = [self getHexString:data];
         [self setText:[NSString stringWithFormat:@"\n[EMV Command Result]\n%@", dataString]];
-        if ([dataString isEqualToString:@"03960000"]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"EMV not working at this time. Please use Stripe payment method." preferredStyle:UIAlertControllerStyleAlert];
-                                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-                                      [self.navigationController popViewControllerAnimated:YES];
-                                  }];
-                                  
-                                  [alert addAction:okAction];
-                                  [self presentViewController:alert animated:YES completion:nil];
-        }
+//        if ([dataString isEqualToString:@"03960000"]) {
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"EMV not working at this time. Please use Stripe payment method." preferredStyle:UIAlertControllerStyleAlert];
+//                                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+//                                      [self.navigationController popViewControllerAnimated:YES];
+//                                  }];
+//                                  
+//                                  [alert addAction:okAction];
+//                                  [self presentViewController:alert animated:YES completion:nil];
+//        }
     });
 }
 -(void)OnUserSelectionRequest:(NSData *)data
