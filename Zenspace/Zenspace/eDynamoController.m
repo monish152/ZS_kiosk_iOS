@@ -40,21 +40,36 @@ typedef void(^commandCompletion)(NSString*);
     
     // Do any additional setup after loading the view.
     self.title = @"Bluetooth LE EMV";
-   
+    self.txtData.frame = CGRectMake(5, 60, self.view.frame.size.width - 10, self.view.frame.size.height - 300 - xOffset);
+    self.navigationController.navigationBarHidden = YES;
     
     int btnWidth = self.view.frame.size.width / 4;
     
-    self.cardView.layer.cornerRadius = 20;
-    self.swipeCardLbl.font = [UIFont fontWithName:@"CircularStd-Medium"
-                                        size:28];
+    _btnStartEMV = [[UIButton alloc]initWithFrame:CGRectMake(5, self.view.frame.size.height - 98 - 65 - 60, btnWidth - 7, 40)];
+    [_btnStartEMV setTitle:@"Start" forState:UIControlStateNormal];
+    [_btnStartEMV setBackgroundColor:UIColorFromRGB(0x3465AA)];
+    [_btnStartEMV addTarget:self action:@selector(startEMV) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_btnStartEMV];
     
-//    _btnStartEMV = [[UIButton alloc]initWithFrame:CGRectMake(5, self.view.frame.size.height - 98 - 65 - 60, btnWidth - 7, 40)];
-//    [_btnStartEMV setTitle:@"Start" forState:UIControlStateNormal];
-//    [_btnStartEMV setBackgroundColor:UIColorFromRGB(0x3465AA)];
-//    [_btnStartEMV addTarget:self action:@selector(startEMV) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_btnStartEMV];
+    _btnCancel = [[UIButton alloc]initWithFrame:CGRectMake(btnWidth, self.view.frame.size.height - 98 - 65 - 60, btnWidth - 2, 40)];
+    [_btnCancel setTitle:@"Cancel" forState:UIControlStateNormal];
+    [_btnCancel setBackgroundColor:UIColorFromRGB(0xCC3333)];
+    [_btnCancel addTarget:self action:@selector(cancelEMV) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_btnCancel];
     
-
+    
+    _btnReset = [[UIButton alloc]initWithFrame:CGRectMake((btnWidth * 2), self.view.frame.size.height - 98 - 65 - 60, btnWidth - 2, 40)];
+    [_btnReset setTitle:@"Reset" forState:UIControlStateNormal];
+    [_btnReset setBackgroundColor:UIColorFromRGB(0xCC3333)];
+    [_btnReset addTarget:self action:@selector(resetDevice) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_btnReset];
+    
+    
+    _btnOptions = [[UIButton alloc]initWithFrame:CGRectMake((btnWidth * 3), self.view.frame.size.height - 98 - 65 - 60, btnWidth - 2, 40)];
+    [_btnOptions setTitle:@"Options" forState:UIControlStateNormal];
+    [_btnOptions setBackgroundColor:UIColorFromRGB(0xFF9900)];
+    [_btnOptions addTarget:self action:@selector(presentOption) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_btnOptions];
     
     self.lib = [MTSCRA new];
     //self.lib.delegate = self;
@@ -62,13 +77,13 @@ typedef void(^commandCompletion)(NSString*);
     [self.lib setDeviceType:MAGTEKEDYNAMO];
     
     
-    [self.btnConnect removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+//    [self.btnConnect removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
     int yOffset = 0;
     if([self isX])
     {
         yOffset = 60;
     }
-    self.btnConnect.frame = CGRectMake(0, self.view.frame.size.height - 98 - 65 - xOffset - yOffset, self.view.frame.size.width, 50);
+    self.btnConnect.frame = CGRectMake(0, self.view.frame.size.height - 98 - 65 - xOffset - yOffset, self.view.frame.size.width, 150);
     [self.btnConnect addTarget:self action:@selector(isTDyanmo) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -78,56 +93,20 @@ typedef void(^commandCompletion)(NSString*);
     self.lib.delegate = self;
 //    [self.navigationController popViewControllerAnimated:YES];
     opt = [[optionController alloc]initWithData];
-    
+//    [self isTDyanmo];
     
 }
 
 -(void)isTDyanmo
 {
     
-    if(self.lib.isDeviceOpened)
-    {
-        [self.lib closeDevice];
-        return;
-    }
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Bluetooth LE EMV Type"
-                                  message:@"Which device are you connecting to"
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* eDynamo = [UIAlertAction
-                            actionWithTitle:@"eDynamo"
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action)
-                            {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    
-                                    [self.lib setDeviceType:MAGTEKEDYNAMO];
-                                    [self scanForBLE];
-                                });
-                                
-                            }];
-    UIAlertAction* tDynamo = [UIAlertAction
-                                actionWithTitle:@"tDynamo"
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action)
-                                {
-                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                        [self.lib setDeviceType:MAGTEKTDYNAMO];
-                                        [self scanForBLE];
-                                    });
-                                }];
-    UIAlertAction* btnCancel = [UIAlertAction
-                              actionWithTitle:@"Cancel"
-                              style:UIAlertActionStyleCancel
-                              handler:^(UIAlertAction * action)
-                              {
-                                  
-                              }];
-    [alert addAction:eDynamo];
-    [alert addAction:tDynamo];
-    [alert addAction:btnCancel];
-    [self presentViewController:alert animated:YES completion:nil];
+//    if(self.lib.isDeviceOpened)
+//    {
+//        [self.lib closeDevice];
+//        return;
+//    }
+   [self.lib setDeviceType:MAGTEKTDYNAMO];
+    [self scanForBLE];
 }
 -(void)presentOption
 {
@@ -264,128 +243,145 @@ typedef void(^commandCompletion)(NSString*);
 }
 -(void) onDeviceConnectionDidChange:(MTSCRADeviceType)deviceType connected:(BOOL)connected instance:(id)instance
 {
-     
-         if([(MTSCRA*)instance isDeviceOpened] && [self.lib isDeviceConnected])
-         {
-             if(connected)
-             {
-                 int delay = 1.0;
-                 if (deviceType == MAGTEKAUDIOREADER)
-                     delay = 2.0f;
-                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-                     if([self.lib isDeviceConnected] && [self.lib isDeviceOpened])
-                     {
-                         
-                         
-                         dispatch_async(queue, ^{
-                             
-                             
-                             if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO  || deviceType == MAGTEKTDYNAMO)
-                             {
-                                 [self setText:[NSString stringWithFormat:@"Connected to %@",[(MTSCRA*)instance getConnectedPeripheral].name]];
-                                 
-                                 
-                                 if(!self->devicePaired)
-                                     return;
-                                 
-                                 if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO || deviceType == MAGTEKTDYNAMO)
-                                 {
-                                     [self setText:@"Setting data output to Bluetooth LE..."];
-                                     
-                                     
-                                 }
-                                 else if(deviceType == MAGTEKDYNAMAX)
-                                 {
-     //                                [self.lib sendcommandWithLength:@"000101"];
-                                 }
-                                 
-                             }
-                             
-                             else
-                             {
-                                 [self setText:@"Device Connected..."];// @"Connected...";
-                             }
-                             
-                             [self setText:@"Getting FW ID..."];
-                             NSString* fw ;
-                             if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
-                             {
-                                
-                             }
-                             else
-                             {
-     //                            fw = [self sendCommandSync:@"000100"];
-                             }
-     //                        [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
-                             
-                             [self setText:@"Getting SN..."];
-                             NSString* sn;
-                             if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
-                             {
-                                 
-                             }
-                             else
-                             {
-     //                            sn = [self sendCommandSync:@"000103"];
-                             }
-                             [self setText:[NSString stringWithFormat:@"[Device SN]\r%@",sn]];
-                             
-                             [self setText:@"Getting Security Level..."];
-                             NSString* sl;
-                             if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
-                             {
-                                
-                             }
-                             else
-                             {
-                                 sl = [super sendCommandSync:@"1500"];
-                             }
-                             
-                             [self setText:[NSString stringWithFormat:@"[Security Level]\r%@",sl]];
-                             
-                             
-                             [NSThread sleepForTimeInterval:0.5];
-                             [super sendCommandSync:@"580101"];
-                             [super sendCommandSync:@"59020F20"];
-                              [self setDateTime];
-                             
-                             [NSThread sleepForTimeInterval:0.5];
-                             [self startEMV];
+    
+//        [super onDeviceConnectionDidChange:deviceType connected:connected instance:instance];
+    
+     if([(MTSCRA*)instance isDeviceOpened] && [self.lib isDeviceConnected])
+        {
+            if(connected)
+            {
+                int delay = 1.0;
+                if (deviceType == MAGTEKAUDIOREADER)
+                    delay = 2.0f;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+                    if([self.lib isDeviceConnected] && [self.lib isDeviceOpened])
+                    {
+//                        [self->_btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+                        [self.btnConnect setBackgroundColor:UIColorFromRGB(0xcc3333)];
+                        
+                        dispatch_async(queue, ^{
                             
-                         });
-                         
-                     };
-                     
-                 });
-             }
-             else
-             {
-                 devicePaired = YES;
-                 [self setText:@"Disconnected"];
-                
-             }
-             
-         }
-         else
-         {
-             devicePaired = YES;
-             [self setText:@"Disconnected"];
-//             [_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
-             
+                            
+                            if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO  || deviceType == MAGTEKTDYNAMO)
+                                
+                            {
+                                [self setText:[NSString stringWithFormat:@"Connected to %@",[(MTSCRA*)instance getConnectedPeripheral].name]];
+                                
+                                
+                                if(!self->devicePaired)
+                                    return;
+                                
+                                if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO || deviceType == MAGTEKTDYNAMO)
+                                {
+                                    [self setText:@"Setting data output to Bluetooth LE..."];
+                                    NSString* bleOutput = [self sendCommandSync:@"480101"];
+                                    [self setText:[NSString stringWithFormat:@"[Output Result]\r%@",bleOutput]];
+                                    
+                                }
+                                else if(deviceType == MAGTEKDYNAMAX)
+                                {
+                                    [self.lib sendcommandWithLength:@"000101"];
+                                }
+                                
+                            }
+                            
+                            else
+                            {
+                                [self setText:@"Device Connected..."];// @"Connected...";
+                            }
+                            
+                            [self setText:@"Getting FW ID..."];
+                            NSString* fw ;
+                            if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
+                            {
+//                                fw = [self sendCommandSync:[self buildCommandForAudioTLV: @"000100"]];
+                                [NSThread sleepForTimeInterval:1];
+                            }
+                            else
+                            {
+                                fw = [self sendCommandSync:@"000100"];
+                            }
+                            [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
+                            
+                            [self setText:@"Getting SN..."];
+                            NSString* sn;
+                            if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
+                            {
+//                                sn = [self sendCommandSync:[self buildCommandForAudioTLV: @"000103"]];
+                                //[NSThread sleepForTimeInterval:1];
+                            }
+                            else
+                            {
+                                sn = [self sendCommandSync:@"000103"];
+                            }
+                            [self setText:[NSString stringWithFormat:@"[Device SN]\r%@",sn]];
+                            
+                            [self setText:@"Getting Security Level..."];
+                            NSString* sl;
+                            if([self.lib getDeviceType] == MAGTEKAUDIOREADER)
+                            {
+//                                sl = [self sendCommandSync:[self buildCommandForAudioTLV: @"1500"]];
+                                //[NSThread sleepForTimeInterval:1];
+                            }
+                            else
+                            {
+                                sl = [self sendCommandSync:@"1500"];
+                            }
+                            
+                            [self setText:[NSString stringWithFormat:@"[Security Level]\r%@",sl]];
+                            
+                            
+                            
+                            
+                            if(deviceType == MAGTEKTDYNAMO || deviceType == MAGTEKKDYNAMO)
+                            {
+                                self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
+                                                                                                         style:UIBarButtonItemStylePlain
+                                                                                                        target:self action:@selector(turnMSROn)];
+                                [self setText:@"Setting Date Time..."];
+                                [self setDateTime];
+                            }
+                        });
+                        [self startEMV];
+                        if(deviceType == MAGTEKTDYNAMO)
+                        {
+                            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
+                                                                                                     style:UIBarButtonItemStylePlain
+                                                                                                    target:self action:@selector(turnMSROn)];
+                        }
+                    };
+                    
+                });
+            }
+            else
+            {
+                devicePaired = YES;
+                [self setText:@"Disconnected"];
+//                [_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
+                [self.btnConnect setBackgroundColor:UIColorFromRGB(0x3465AA)];
+            }
+        }
+        else
+        {
+            devicePaired = YES;
+            [self setText:@"Disconnected"];
+//            [_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
             
-             if(deviceType == MAGTEKTDYNAMO)
-             {
-                 self.navigationItem.leftBarButtonItem = nil;
-             }
-             
-         }
-     #if SHOW_DEBUG_COUNT
-         self.txtData.text = [self.txtData.text stringByAppendingString: [NSString stringWithFormat:@"\n\nSwipe.Count:%i", swipeCount]];
-     #endif
+            [self.btnConnect setBackgroundColor:UIColorFromRGB(0x3465AA)];
+            if(deviceType == MAGTEKTDYNAMO)
+            {
+                self.navigationItem.leftBarButtonItem = nil;
+            }
+            
+        }
+    #if SHOW_DEBUG_COUNT
+        self.txtData.text = [self.txtData.text stringByAppendingString: [NSString stringWithFormat:@"\n\nSwipe.Count:%i", swipeCount]];
+    #endif
     
     
 }
+
 
 
 
@@ -404,13 +400,12 @@ typedef void(^commandCompletion)(NSString*);
     
     
 }
-/*
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     
     // dispatch_async(dispatch_get_main_queue(), ^{
     if (buttonIndex == 1 || buttonIndex == 2) {
-        NSString *txtAmount = self.transactionAmount;
+        NSString *txtAmount = [alertView textFieldAtIndex:0].text;
         if(txtAmount.length == 0)
             txtAmount = @"0";
         if(txtAmount.length > 0)
@@ -436,7 +431,7 @@ typedef void(^commandCompletion)(NSString*);
                 
             }
             Byte timeLimit = 0x3C;
-            Byte cardType = [opt getCardType];
+            Byte cardType = 0x03;
             
             
             Byte option = 0x00;
@@ -524,7 +519,6 @@ typedef void(^commandCompletion)(NSString*);
     }
     //});
 }
- */
 
 //setLED:(BOOL)
 -(int)ledON:(int)on completion:(commandCompletion)completion
@@ -552,88 +546,23 @@ typedef void(^commandCompletion)(NSString*);
 }
 - (void)startEMV
 {
-    
     if(self.lib.isDeviceOpened && self.lib.isDeviceConnected)
     {
-
-        // dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter amount"
+                                                        message:@"Enter amount for transaction"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Start", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
+        alert.tag = 0;
+        [alert show];
         
-            NSString *txtAmount = self.transactionAmount;
-            if(txtAmount.length == 0)
-                txtAmount = @"0";
-            if(txtAmount.length > 0)
-            {
-                // dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                
-                
-                    NSData* dataAmount = [HexUtil dataFromHexString:txtAmount];
-                    
-                    
-                    memcpy(tempAmount, [dataAmount bytes],6);
-                    
-                    for (int i = 5; i >= 0; i--) {
-                        amount[i] = tempAmount[5 - i];
-                    }
-                    memcpy(tempAmount, amount,6);
-                    
-               
-                Byte timeLimit = 0x3C;
-                Byte cardType = 0x03;
-                
-                
-                Byte option = 0x00;
-                
-                if([opt isQuickChip])
-                {
-                    option |= 0x80;
-                }
-                
-                Byte transactionType = [opt getPurchaseOption];
-                
-                cashBack[0] = 0x00;
-                cashBack[1] = 0x00;
-                cashBack[2] = 0x00;
-                cashBack[3] = 0x00;
-                cashBack[4] = 0x00;
-                cashBack[5] = 0x00;
-                
-                
-                currencyCode[0] =  0x08;
-                currencyCode[1] = 0x40;
-                Byte reportingOption =   0x02;
-                
-                
-                [self getARQCFormat:^(NSString *format) {
-                    
-                    if([[format substringToIndex:1] isEqualToString:@"02"])
-                    {
-                        self->arqcFormat = 0x00;
-                    }
-                    else
-                    {
-                        if([HexUtil getBytesFromHexString:format].length > 2)
-                        {
-                            NSData * data = [[HexUtil getBytesFromHexString:format]subdataWithRange:NSMakeRange(2, 1)];
-                            [data getBytes:&self->arqcFormat length:1];
-                        }
-                    }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //[self ledON:1 completion:^(NSString* status) {
-                        [self.lib startTransaction:timeLimit cardType:cardType option:option amount:self->amount transactionType:transactionType cashBack:self->cashBack currencyCode:self->currencyCode reportingOption:reportingOption];
-                        
-                        //}];
-                    });
-                }];
-                //});
-            }
-    }else{
         
     }
 }
 
--(IBAction)getSwipeCard{
-    [self apiCardSwipeConnect];
-}
+
 - (void)onDeviceError:(NSError *)error
 {
     [super onDeviceError:error];
@@ -664,18 +593,6 @@ typedef void(^commandCompletion)(NSString*);
     
     //self.txtData.text = [self.txtData.text stringByAppendingString:[NSString stringWithFormat:@"\n[Transaction Status]\n%@", dataString]];
     [self setText:[NSString stringWithFormat:@"\n[Transaction Status]\n%@", dataString]];
-    if ([dataString isEqualToString:@"0600010000"]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Time Out. Please try after some Time.." preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-            [self.lib closeDevice];
-            [self.navigationController popViewControllerAnimated:YES];
-            // Ok action example
-        }];
-        
-        [alert addAction:okAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
     
     
 }
@@ -684,55 +601,7 @@ typedef void(^commandCompletion)(NSString*);
 {
     NSString* dataString =  [ HexUtil stringFromHexString:[self getHexString:data]];
     self.cardPaymentStatus = dataString;
-    NSLog(@"OnDisplayMessageRequest self.cardPaymentStatus :%@",dataString);
-    if ([dataString isEqualToString:@"PRESENT CARD"]) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        self.swipeCardLbl.text = @"Insert Card";
-        self.cardView.hidden = NO;
-        
-    }
-    if ([dataString isEqualToString:@"INSERT AGAIN"]) {
-        self.cardView.hidden = NO;
-        self.swipeCardLbl.text = @"Insert Again";
-        
-    }
-    if ([dataString isEqualToString:@"PLEASE WAIT"]) {
-        self.cardView.hidden = NO;
-        self.swipeCardLbl.text = @"Please Wait";
-        
-    }
-    if ([dataString isEqualToString:@"TRANSACTION TERMINATED"]) {
-        self.cardView.hidden = NO;
-        self.swipeCardLbl.text = @"Please Try Again";
-        
-    }
-    if ([dataString isEqualToString:@"PROCESSING ERROR"]) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Sorry..Processing Error. Please try again." preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-            [self.lib closeDevice];
-            [self.navigationController popViewControllerAnimated:YES];
-            // Ok action example
-        }];
-        
-        [alert addAction:okAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        
-    }
     
-    if ([dataString isEqualToString:@"DECLINED"]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Sorry..Payment Declined. Please try after some time." preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-            [self.lib closeDevice];
-            [self.navigationController popViewControllerAnimated:YES];
-            // Ok action example
-        }];
-        
-        [alert addAction:okAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
     dispatch_async(dispatch_get_main_queue(), ^{
         // self.txtData.text =  [self.txtData.text stringByAppendingString:[NSString stringWithFormat:@"\n[Display Message Request]\n%@", dataString]];
         [self setText:[NSString stringWithFormat:@"\n[Display Message Request]\n%@", dataString]];
@@ -758,9 +627,6 @@ typedef void(^commandCompletion)(NSString*);
         
         
         [self setText:[NSString stringWithFormat:@"\n[Device Extended Response]\n%@", data]];
-        ///00000000
-        if ([data isEqualToString:@"00000000"]) {
-        }
     });
 }
 
@@ -771,15 +637,6 @@ typedef void(^commandCompletion)(NSString*);
         
         NSString* dataString = [self getHexString:data];
         [self setText:[NSString stringWithFormat:@"\n[EMV Command Result]\n%@", dataString]];
-        if ([dataString isEqualToString:@"03960000"]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Connection failed. Please try after some time." preferredStyle:UIAlertControllerStyleAlert];
-                                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-                                      [self.navigationController popViewControllerAnimated:YES];
-                                  }];
-
-                                  [alert addAction:okAction];
-                                  [self presentViewController:alert animated:YES completion:nil];
-        }
     });
 }
 -(void)OnUserSelectionRequest:(NSData *)data
@@ -833,33 +690,15 @@ typedef void(^commandCompletion)(NSString*);
 
 -(void)OnARQCReceived:(NSData *)data
 {
-    
     NSString* dataString = [self getHexString:data];
-     NSLog(@"OnARQCReceived dataString:%@",dataString);
+    
     NSData *emvBytes = [HexUtil getBytesFromHexString:dataString];
     NSMutableDictionary* tlv = [emvBytes parseTLVData];
-    NSString* dataDump = [tlv dumpTags];
-    NSLog(@"%@",dataDump);
+     NSLog([tlv dumpTags]);
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setText:[NSString stringWithFormat:@"\n[ARQC Received]\n%@", dataString]];
         if(tlv != nil)
         {
-            NSString *transactionTypeValue = [(MTTLV*)[tlv objectForKey:@"DFDF52"] value];
-                   if ([transactionTypeValue isEqualToString:@"01"]) {
-//                       self->transactionType = @"MagStripe";
-                       isCardSwipe = YES;
-                       UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Card Swipe not working at this time. Please try EMV." preferredStyle:UIAlertControllerStyleAlert];
-                       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-                           [self.navigationController popViewControllerAnimated:YES];
-                       }];
-                       
-                       [alert addAction:okAction];
-                       [self presentViewController:alert animated:YES completion:nil];
-                   }
-                   if ([transactionTypeValue isEqualToString:@"05"]) {
-                       self->transactionType = @"EMV";
-                   }
-            
             
             if([self->opt isQuickChip])
             {
@@ -870,7 +709,6 @@ typedef void(^commandCompletion)(NSString*);
             [self setText:[NSString stringWithFormat:@"\nSN Bytes = %@", [(MTTLV*)[tlv objectForKey:@"DFDF25"] value]]];
             [self setText:[NSString stringWithFormat:@"\nSN String = %@", deviceSN]];
             NSData* response;
-            
             if(self->arqcFormat == ARQC_EDYNAMO_FORMAT)
             {
                 
@@ -880,7 +718,7 @@ typedef void(^commandCompletion)(NSString*);
             {
                 response = [self buildAcquirerResponse:[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF25"] value]] encryptionType:[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF55"] value]] ksn:[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF54"] value]] approved:[self->opt shouldSendApprove]];
             }
-            
+            //self.txtData.text = [self.txtData.text stringByAppendingString: [NSString stringWithFormat:@"\n[Send Respond]\n%@", [self getHexString:response]]];
             [self setText:[NSString stringWithFormat:@"\n[Send Response]\n%@", response]];
             
             [self.lib setAcquirerResponse:(unsigned char *)[response bytes] length:(int)response.length];
@@ -999,12 +837,6 @@ typedef void(^commandCompletion)(NSString*);
     NSString* dataString = [self getHexString:data];
     NSLog(@"OnTransactionResult dataString:%@",dataString);
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (isCardSwipe) {
-//            [self startEMV];
-            isCardSwipe = NO;
-                   return;
-                   
-               }
         [self setText:[NSString stringWithFormat:@"\n[Transaction Result]\n%@", dataString]];
         
         
@@ -1013,7 +845,7 @@ typedef void(^commandCompletion)(NSString*);
         NSData *emvBytes = [HexUtil getBytesFromHexString:dataString];
         NSMutableDictionary* tlv = [emvBytes parseTLVData];
         NSString* dataDump = [tlv dumpTags];
-//         NSLog(@"%@", dataDump);
+        //         NSLog(@"%@", dataDump);
         if(self->arqcFormat == ARQC_EDYNAMO_FORMAT)
         {
             Byte* responseTag = (unsigned char*)[[HexUtil getBytesFromHexString:[(MTTLV*)[tlv objectForKey:@"DFDF1A"] value]]bytes] ;
@@ -1033,23 +865,17 @@ typedef void(^commandCompletion)(NSString*);
                 
                 [self.navigationController pushViewController:sig animated:YES];
             }
-           
+            
         }
-       
+        
         self->ksnStr = [(MTTLV*)[tlv objectForKey:@"DFDF56"] value];
         self->encryptionType = [(MTTLV*)[tlv objectForKey:@"DFDF57"] value];
         self->paddedBytes = [(MTTLV*)[tlv objectForKey:@"DFDF58"] value];
-       
-        NSString *transactionTypeValue = [(MTTLV*)[tlv objectForKey:@"DFDF52"] value];
-                           if ([transactionTypeValue isEqualToString:@"01"]) {
-                               return ;
-                           }
-        
         
         NSLog(@"self.cardPaymentStatus :%@",self.cardPaymentStatus);
         if ([self.cardPaymentStatus isEqualToString:@"APPROVED"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+              
             });
             
             [self apiEVMConnect:dataString];
@@ -1059,24 +885,6 @@ typedef void(^commandCompletion)(NSString*);
     [self ledON:0 completion:nil];
 }
 
-
-
-
--(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (tmrTimeout) {
-        [tmrTimeout invalidate];
-        tmrTimeout = nil;
-    }
-    if (buttonIndex == actionSheet.destructiveButtonIndex)
-    {
-        [self.lib setUserSelectionResult:0x01 selection:0x00];
-        return;
-    }
-    
-    [self.lib setUserSelectionResult:0x00 selection:(Byte)buttonIndex];
-    
-}
 
 
 -(void)apiEVMConnect:(NSString *)tlvData{

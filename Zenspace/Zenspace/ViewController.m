@@ -20,8 +20,8 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    EventsListViewController *vc = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:NO];
+//    EventsListViewController *vc = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
+//    [self.navigationController pushViewController:vc animated:NO];
 
 //        BookingSummaryViewController *vc = [[BookingSummaryViewController alloc] initWithNibName:@"BookingSummaryViewController" bundle:nil];
 //        vc.price = @"10";
@@ -41,6 +41,7 @@
 - (IBAction)payBtn:(id)sender{
      kDynamoController *kVc = [[kDynamoController alloc] initWithNibName:@"kDynamoController" bundle:nil];
     kVc.transactionAmount = @"1";
+    kVc.isTDynamo = YES;
     [self.navigationController pushViewController:kVc animated:YES];
 }
 - (IBAction)testOtherApp:(id)sender{

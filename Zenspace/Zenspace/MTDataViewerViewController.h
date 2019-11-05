@@ -55,6 +55,7 @@
 @property(nonatomic,retain)NSString *email;
 @property(nonatomic,retain)NSString *name;
 @property(nonatomic,retain)NSString *phoneNumber;
+@property(nonatomic,assign)BOOL isTDynamo;
 
 
 

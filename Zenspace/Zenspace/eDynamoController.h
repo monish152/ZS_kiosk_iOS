@@ -16,7 +16,7 @@
 
 }
 - (void)startEMV;
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 @property (nonatomic, strong) UIButton* btnStartEMV;
 @property (nonatomic, strong) UIButton* btnCancel;
 @property (nonatomic, strong) UIButton* btnReset;

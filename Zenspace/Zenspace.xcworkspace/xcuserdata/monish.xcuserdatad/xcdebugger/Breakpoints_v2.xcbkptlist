@@ -115,8 +115,8 @@
             filePath = "Zenspace/eDynamoController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1437"
-            endingLineNumber = "1437"
+            startingLineNumber = "1279"
+            endingLineNumber = "1279"
             landmarkName = "-bookingApi:"
             landmarkType = "7">
          </BreakpointContent>
@@ -131,10 +131,8 @@
             filePath = "Zenspace/eDynamoController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1467"
-            endingLineNumber = "1467"
-            landmarkName = "-bookingApi:"
-            landmarkType = "7">
+            startingLineNumber = "1289"
+            endingLineNumber = "1289">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

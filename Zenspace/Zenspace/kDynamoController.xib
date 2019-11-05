@@ -42,7 +42,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.23288005589999999" green="0.36756750939999999" blue="0.80396109819999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
-                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="smy-cj-q2j">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="smy-cj-q2j">
                     <rect key="frame" x="747" y="97" width="277" height="671"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

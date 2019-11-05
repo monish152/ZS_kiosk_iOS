@@ -33,10 +33,7 @@
     self.lib = [MTSCRA new];
     self.lib.delegate = self;
     
-
-//    self.txtData.frame = CGRectMake(5, 60, 500, 500);
-//    self.txtData.backgroundColor = [UIColor lightGrayColor];
-//    [self.view addSubview:self.txtData];
+    self.txtData.frame = CGRectMake(5, 60, self.view.frame.size.width - 10, self.view.frame.size.height - 370 - xOffset);
     
     [self.lib setDeviceType:MAGTEKKDYNAMO];
     [self.lib setDeviceProtocolString:@"com.magtek.idynamo"];
@@ -46,16 +43,14 @@
     //[self.lib openDevice];
     
     // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotNotified:) name:@"kDynamoData" object:nil];
-    [self.btnConnect removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.btnConnect addTarget:self action:@selector(connect) forControlEvents:UIControlEventTouchUpInside];
+//    [self.btnConnect removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [self.btnConnect addTarget:self action:@selector(connect) forControlEvents:UIControlEventTouchUpInside];
     
     [self addLED];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
-    
-    [self connect];
     
 }
 -(void)appWillResignActive:(NSNotification*)note
@@ -65,9 +60,6 @@
 -(void)appDidBecomeActive:(NSNotification*)note
 {
     //[self.lib openDevice];
-}
--(IBAction)api:(id)sender{
-    
 }
 
 - (void) addLED
@@ -82,7 +74,17 @@
     firstLED.backgroundColor = [UIColor grayColor];
     [self.view addSubview:firstLED];
     
-  
+    secondLED = [[UIView alloc]initWithFrame:CGRectMake(self.btnCancel.frame.origin.x, self.btnCancel.frame.origin.y - 60- xOffset, self.btnCancel.frame.size.width, self.btnCancel.frame.size.height)];
+    secondLED.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:secondLED];
+    
+    thirdLED = [[UIView alloc]initWithFrame:CGRectMake(self.btnReset.frame.origin.x, self.btnReset.frame.origin.y - 60- xOffset, self.btnReset.frame.size.width, self.btnReset.frame.size.height)];
+    thirdLED.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:thirdLED];
+    
+    fourthLED = [[UIView alloc]initWithFrame:CGRectMake(self.btnOptions.frame.origin.x, self.btnOptions.frame.origin.y - 60- xOffset, self.btnOptions.frame.size.width, self.btnOptions.frame.size.height)];
+    fourthLED.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:fourthLED];
 }
 - (void)onDeviceConnectionDidChange:(MTSCRADeviceType)deviceType connected:(BOOL)connected instance:(id)instance
 {
@@ -94,8 +96,6 @@
         {
             [self setLEDState:1];
             [self.lib sendcommandWithLength:@"480102"];
-            
-//            [self startEMV];
         }
         else
         {
@@ -196,7 +196,14 @@
     [super startEMV];
     [self hideLED:NO];
 }
-
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [ super alertView:alertView clickedButtonAtIndex:buttonIndex];
+    if(buttonIndex == 0)
+    {
+         [self setLEDState:0];
+    }
+}
 - (void)OnTransactionResult:(NSData *)data
 {
     [super OnTransactionResult:data];
@@ -239,9 +246,6 @@
 - (void)onDataReceived:(MTCardData *)cardDataObj instance:(id)instance
 {
     [super onDataReceived:cardDataObj instance:instance];
-}
--(IBAction)backBtnPress:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 /*
  #pragma mark - Navigation

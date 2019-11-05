@@ -22,14 +22,11 @@ typedef void (^cmdCompBlock)(NSString*);
 @end
 
 @implementation MTDataViewerViewController
--(void)awakeFromNib{
-    
-}
+
 - (void)viewDidLoad {
+    self.navigationController.navigationBarHidden = YES;
     [super viewDidLoad];
-   
     [self setUpUI];
-    
     // Do any additional setup after loading the view.
 }
 
@@ -112,6 +109,44 @@ typedef void (^cmdCompBlock)(NSString*);
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self action:@selector(clearData)];
     
+    
+    
+    _btnConnect = [[UIButton alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height - 98 - 65 - xOffset, self.view.frame.size.width, 50)];
+    [_btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
+    [_btnConnect setBackgroundColor:UIColorFromRGB(0x3465AA)];
+    [_btnConnect addTarget:self action:@selector(connect) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    _txtData = [[UITextView alloc]initWithFrame:CGRectMake(5, 60, self.view.frame.size.width - 10 , self.view.frame.size.height - 240- xOffset)];
+    _txtData.backgroundColor = UIColorFromRGB(0x667788);
+    _txtData.textColor = UIColorFromRGB(0xffffff);
+    [_txtData setEditable:NO];
+    
+//    _txtCommand = [[UITextField alloc]initWithFrame:CGRectMake(5 , 9, self.view.frame.size.width - 170, 40)];
+//    _txtCommand.delegate = self;
+//    _txtCommand.backgroundColor = UIColorFromRGB(0xdddddd);
+//    _txtCommand.placeholder = @"Send Command";
+//
+//
+//    _txtCommand.text = @""; // Extended Command ECHO
+//
+//
+//    _btnSendCommand =  [[UIButton alloc]initWithFrame:CGRectMake(_txtCommand.frame.origin.x + _txtCommand.frame.size.width + 5 , 9, 75, 40)];
+//    [_btnSendCommand setTitle:@"Send" forState:UIControlStateNormal];
+//    [_btnSendCommand addTarget:self action:@selector(sendCommand) forControlEvents:UIControlEventTouchUpInside];
+//    [_btnSendCommand setBackgroundColor:UIColorFromRGB(0x3465AA)];
+//
+//    _btnGetSN =  [[UIButton alloc]initWithFrame:CGRectMake(_btnSendCommand.frame.origin.x + _btnSendCommand.frame.size.width + 5 , 9, 75, 40)];
+//    [_btnGetSN setTitle:@"Get SN" forState:UIControlStateNormal];
+//    [_btnGetSN addTarget:self action:@selector(getSerialNumber) forControlEvents:UIControlEventTouchUpInside];
+//    [_btnGetSN setBackgroundColor:UIColorFromRGB(0x3465AA)];
+    
+    
+//    [self.view addSubview:_txtCommand];
+    [self.view addSubview:_txtData];
+//    [self.view addSubview:_btnSendCommand];
+//    [self.view addSubview:_btnGetSN];
+    [self.view addSubview:_btnConnect];
     
     
 }
@@ -241,23 +276,24 @@ typedef void (^cmdCompBlock)(NSString*);
             if([self.lib isDeviceConnected])
             {
                 
-               
+                [self->_btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+                [self.btnConnect setBackgroundColor:UIColorFromRGB(0xcc3333)];
             }
             else
             {
-                NSUserDefaults* def=[NSUserDefaults standardUserDefaults];
-                   [def setObject:@"Yes" forKey:@"stripe"];
-                   [def synchronize];
-                [self.navigationController popViewControllerAnimated:YES];
+                
+                
+                [self->_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
+                [self.btnConnect setBackgroundColor:UIColorFromRGB(0x3465AA)];
             }
         }
         else
         {
-            NSUserDefaults* def=[NSUserDefaults standardUserDefaults];
-               [def setObject:@"Yes" forKey:@"stripe"];
-               [def synchronize];
-            [self.navigationController popViewControllerAnimated:YES];
             
+            
+            [self->_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
+            
+            [self.btnConnect setBackgroundColor:UIColorFromRGB(0x3465AA)];
         }
         
     });
@@ -315,7 +351,7 @@ typedef void (^cmdCompBlock)(NSString*);
 -(void) onDeviceConnectionDidChange:(MTSCRADeviceType)deviceType connected:(BOOL)connected instance:(id)instance
 {
     
-//    
+    
 //    if([(MTSCRA*)instance isDeviceOpened] && [self.lib isDeviceConnected])
 //    {
 //        if(connected)
@@ -327,12 +363,14 @@ typedef void (^cmdCompBlock)(NSString*);
 //                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
 //                if([self.lib isDeviceConnected] && [self.lib isDeviceOpened])
 //                {
-//                    
+//                    [self->_btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+//                    [self.btnConnect setBackgroundColor:UIColorFromRGB(0xcc3333)];
 //                    
 //                    dispatch_async(queue, ^{
 //                        
 //                        
 //                        if(deviceType == MAGTEKDYNAMAX || deviceType == MAGTEKEDYNAMO  || deviceType == MAGTEKTDYNAMO)
+//                            
 //                        {
 //                            [self setText:[NSString stringWithFormat:@"Connected to %@",[(MTSCRA*)instance getConnectedPeripheral].name]];
 //                            
@@ -349,7 +387,7 @@ typedef void (^cmdCompBlock)(NSString*);
 //                            }
 //                            else if(deviceType == MAGTEKDYNAMAX)
 //                            {
-////                                [self.lib sendcommandWithLength:@"000101"];
+//                                [self.lib sendcommandWithLength:@"000101"];
 //                            }
 //                            
 //                        }
@@ -368,9 +406,9 @@ typedef void (^cmdCompBlock)(NSString*);
 //                        }
 //                        else
 //                        {
-////                            fw = [self sendCommandSync:@"000100"];
+//                            fw = [self sendCommandSync:@"000100"];
 //                        }
-////                        [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
+//                        [self setText:[NSString stringWithFormat:@"[Firmware ID]\r%@",fw]];
 //                        
 //                        [self setText:@"Getting SN..."];
 //                        NSString* sn;
@@ -381,7 +419,7 @@ typedef void (^cmdCompBlock)(NSString*);
 //                        }
 //                        else
 //                        {
-////                            sn = [self sendCommandSync:@"000103"];
+//                            sn = [self sendCommandSync:@"000103"];
 //                        }
 //                        [self setText:[NSString stringWithFormat:@"[Device SN]\r%@",sn]];
 //                        
@@ -400,11 +438,16 @@ typedef void (^cmdCompBlock)(NSString*);
 //                        [self setText:[NSString stringWithFormat:@"[Security Level]\r%@",sl]];
 //                        
 //                        
-//                        [NSThread sleepForTimeInterval:0.5];
-//                        [self sendCommandSync:@"580101"];
-//                        [self sendCommandSync:@"59020F20"];
-//                         [self setDateTime];
-//                       
+//                        
+//                        
+//                        if(deviceType == MAGTEKTDYNAMO || deviceType == MAGTEKKDYNAMO)
+//                        {
+//                            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
+//                                                                                                     style:UIBarButtonItemStylePlain
+//                                                                                                    target:self action:@selector(turnMSROn)];
+//                            [self setText:@"Setting Date Time..."];
+//                            [self setDateTime];
+//                        }
 //                    });
 //                    
 //                    if(deviceType == MAGTEKTDYNAMO)
@@ -421,9 +464,9 @@ typedef void (^cmdCompBlock)(NSString*);
 //        {
 //            devicePaired = YES;
 //            [self setText:@"Disconnected"];
-//           
+//            [_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
+//            [self.btnConnect setBackgroundColor:UIColorFromRGB(0x3465AA)];
 //        }
-//        
 //    }
 //    else
 //    {
@@ -431,7 +474,7 @@ typedef void (^cmdCompBlock)(NSString*);
 //        [self setText:@"Disconnected"];
 //        [_btnConnect setTitle: @"Connect" forState:UIControlStateNormal];
 //        
-//       
+//        [self.btnConnect setBackgroundColor:UIColorFromRGB(0x3465AA)];
 //        if(deviceType == MAGTEKTDYNAMO)
 //        {
 //            self.navigationItem.leftBarButtonItem = nil;
@@ -455,81 +498,9 @@ typedef void (^cmdCompBlock)(NSString*);
 
 -(void)onDataReceived:(MTCardData *)cardDataObj instance:(id)instance
 {
-    NSLog(@"onDataReceived : %@",[NSString stringWithFormat:      @"Track.Status: %@\n\n"
-                                              "Track1.Status: %@\n\n"
-                                              "Track2.Status: %@\n\n"
-                                              "Track3.Status: %@\n\n"
-                                              "Encryption.Status: %@\n\n"
-                                              "Battery.Level: %ld\n\n"
-                                              "Swipe.Count: %ld\n\n"
-                                              "Track.Masked: %@\n\n"
-                                              "Track1.Masked: %@\n\n"
-                                              "Track2.Masked: %@\n\n"
-                                              "Track3.Masked: %@\n\n"
-                                              "Track1.Encrypted: %@\n\n"
-                                              "Track2.Encrypted: %@\n\n"
-                                              "Track3.Encrypted: %@\n\n"
-                                              "Card.PAN: %@\n\n"
-                                              "MagnePrint.Encrypted: %@\n\n"
-                                              "MagnePrint.Length: %i\n\n"
-                                              "MagnePrint.Status: %@\n\n"
-                                              "SessionID: %@\n\n"
-                                              "Card.IIN: %@\n\n"
-                                              "Card.Name: %@\n\n"
-                                              "Card.Last4: %@\n\n"
-                                              "Card.ExpDate: %@\n\n"
-                                              "Card.ExpDateMonth: %@\n\n"
-                                              "Card.ExpDateYear: %@\n\n"
-                                              "Card.SvcCode: %@\n\n"
-                                              "Card.PANLength: %ld\n\n"
-                                              "KSN: %@\n\n"
-                                              "Device.SerialNumber: %@\n\n"
-                                              "MagTek SN: %@\n\n"
-                                              "Firmware Part Number: %@\n\n"
-                                              "Device Model Name: %@\n\n"
-                                              "TLV Payload: %@\n\n"
-                                              "DeviceCapMSR: %@\n\n"
-                                              "Operation.Status: %@\n\n"
-                                              "Card.Status: %@\n\n"
-                                              "Raw Data: \n\n%@",
-                                              cardDataObj.trackDecodeStatus,
-                                              cardDataObj.track1DecodeStatus,
-                                              cardDataObj.track2DecodeStatus,
-                                              cardDataObj.track3DecodeStatus,
-                                              cardDataObj.encryptionStatus,
-                                              cardDataObj.batteryLevel,
-                                              cardDataObj.swipeCount,
-                                              cardDataObj.maskedTracks,
-                                              cardDataObj.maskedTrack1,
-                                              cardDataObj.maskedTrack2,
-                                              cardDataObj.maskedTrack3,
-                                              cardDataObj.encryptedTrack1,
-                                              cardDataObj.encryptedTrack2,
-                                              cardDataObj.encryptedTrack3,
-                                              cardDataObj.cardPAN,
-                                              cardDataObj.encryptedMagneprint,
-                                              cardDataObj.magnePrintLength,
-                                              cardDataObj.magneprintStatus,
-                                              cardDataObj.encrypedSessionID,
-                                              cardDataObj.cardIIN,
-                                              cardDataObj.cardName,
-                                              cardDataObj.cardLast4,
-                                              cardDataObj.cardExpDate,
-                                              cardDataObj.cardExpDateMonth,
-                                              cardDataObj.cardExpDateYear,
-                                              cardDataObj.cardServiceCode,
-                                              cardDataObj.cardPANLength,
-                                              cardDataObj.deviceKSN,
-                                              cardDataObj.deviceSerialNumber,
-                                              cardDataObj.deviceSerialNumberMagTek,
-                                              cardDataObj.firmware,
-                                              cardDataObj.deviceName,
-                                              [(MTSCRA*)instance getTLVPayload],
-                                              cardDataObj.deviceCaps,
-                                              [(MTSCRA*)instance getOperationStatus],
-                                              cardDataObj.cardStatus,
-                                              [(MTSCRA*)instance getResponseData]]);
     
+    NSLog(@"onDataReceived maskedTrack1 1 : %@",cardDataObj.maskedTrack1);
+    NSLog(@"onDataReceived encryptedTrack1 1 : %@",cardDataObj.encryptedTrack1);
     [self setText:  [NSString stringWithFormat:      @"Track.Status: %@\n\n"
                      "Track1.Status: %@\n\n"
                      "Track2.Status: %@\n\n"
@@ -606,14 +577,7 @@ typedef void (^cmdCompBlock)(NSString*);
                      [(MTSCRA*)instance getResponseData]]];
     
     
-    ksnStr = cardDataObj.deviceKSN;
-    deviceSNStr = cardDataObj.deviceSerialNumber;
-    magnePrintStr = cardDataObj.encryptedMagneprint;
-    magnePrintStatus = cardDataObj.magneprintStatus;
-    track1Str = cardDataObj.encryptedTrack1;
-    track2Str = cardDataObj.encryptedTrack2;
     
-    [self getSwipeCard];
     
 }
 - (void)scrollTextViewToBottom:(UITextView *)textView {
@@ -664,7 +628,6 @@ typedef void (^cmdCompBlock)(NSString*);
     
     commandResult = dataString;
     [self setText:[NSString stringWithFormat:@"\n[Device Response]\n%@", dataString]];
-    
     
     
     

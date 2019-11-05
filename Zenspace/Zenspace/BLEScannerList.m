@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    self.navigationController.navigationBarHidden = NO;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TableCell"];
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     
