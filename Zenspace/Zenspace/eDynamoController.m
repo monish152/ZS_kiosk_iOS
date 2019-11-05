@@ -31,7 +31,7 @@ typedef void(^commandCompletion)(NSString*);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBarHidden = YES;
     int xOffset = 0;
     if([self isX])
     {
@@ -40,7 +40,7 @@ typedef void(^commandCompletion)(NSString*);
     
     // Do any additional setup after loading the view.
     self.title = @"Bluetooth LE EMV";
-    self.txtData.frame = CGRectMake(5, 60, self.view.frame.size.width - 10, self.view.frame.size.height - 300 - xOffset);
+    self.txtData.frame = CGRectMake(5, 100, self.view.frame.size.width - 10, self.view.frame.size.height - 300 - xOffset);
     self.navigationController.navigationBarHidden = YES;
     
     int btnWidth = self.view.frame.size.width / 4;
@@ -51,25 +51,7 @@ typedef void(^commandCompletion)(NSString*);
     [_btnStartEMV addTarget:self action:@selector(startEMV) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnStartEMV];
     
-    _btnCancel = [[UIButton alloc]initWithFrame:CGRectMake(btnWidth, self.view.frame.size.height - 98 - 65 - 60, btnWidth - 2, 40)];
-    [_btnCancel setTitle:@"Cancel" forState:UIControlStateNormal];
-    [_btnCancel setBackgroundColor:UIColorFromRGB(0xCC3333)];
-    [_btnCancel addTarget:self action:@selector(cancelEMV) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_btnCancel];
-    
-    
-    _btnReset = [[UIButton alloc]initWithFrame:CGRectMake((btnWidth * 2), self.view.frame.size.height - 98 - 65 - 60, btnWidth - 2, 40)];
-    [_btnReset setTitle:@"Reset" forState:UIControlStateNormal];
-    [_btnReset setBackgroundColor:UIColorFromRGB(0xCC3333)];
-    [_btnReset addTarget:self action:@selector(resetDevice) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_btnReset];
-    
-    
-    _btnOptions = [[UIButton alloc]initWithFrame:CGRectMake((btnWidth * 3), self.view.frame.size.height - 98 - 65 - 60, btnWidth - 2, 40)];
-    [_btnOptions setTitle:@"Options" forState:UIControlStateNormal];
-    [_btnOptions setBackgroundColor:UIColorFromRGB(0xFF9900)];
-    [_btnOptions addTarget:self action:@selector(presentOption) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_btnOptions];
+   
     
     self.lib = [MTSCRA new];
     //self.lib.delegate = self;
@@ -547,19 +529,81 @@ typedef void(^commandCompletion)(NSString*);
 - (void)startEMV
 {
     if(self.lib.isDeviceOpened && self.lib.isDeviceConnected)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter amount"
-                                                        message:@"Enter amount for transaction"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Start", nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
-        alert.tag = 0;
-        [alert show];
-        
-        
-    }
+       {
+
+           // dispatch_async(dispatch_get_main_queue(), ^{
+           
+               NSString *txtAmount = self.transactionAmount;
+               if(txtAmount.length == 0)
+                   txtAmount = @"0";
+               if(txtAmount.length > 0)
+               {
+                   // dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                   
+                   
+                       NSData* dataAmount = [HexUtil dataFromHexString:txtAmount];
+                       
+                       
+                       memcpy(tempAmount, [dataAmount bytes],6);
+                       
+                       for (int i = 5; i >= 0; i--) {
+                           amount[i] = tempAmount[5 - i];
+                       }
+                       memcpy(tempAmount, amount,6);
+                       
+                  
+                   Byte timeLimit = 0x3C;
+                   Byte cardType = 0x03;
+                   
+                   
+                   Byte option = 0x00;
+                   
+                   if([opt isQuickChip])
+                   {
+                       option |= 0x80;
+                   }
+                   
+                   Byte transactionType = [opt getPurchaseOption];
+                   
+                   cashBack[0] = 0x00;
+                   cashBack[1] = 0x00;
+                   cashBack[2] = 0x00;
+                   cashBack[3] = 0x00;
+                   cashBack[4] = 0x00;
+                   cashBack[5] = 0x00;
+                   
+                   
+                   currencyCode[0] =  0x08;
+                   currencyCode[1] = 0x40;
+                   Byte reportingOption =   0x02;
+                   
+                   
+                   [self getARQCFormat:^(NSString *format) {
+                       
+                       if([[format substringToIndex:1] isEqualToString:@"02"])
+                       {
+                           self->arqcFormat = 0x00;
+                       }
+                       else
+                       {
+                           if([HexUtil getBytesFromHexString:format].length > 2)
+                           {
+                               NSData * data = [[HexUtil getBytesFromHexString:format]subdataWithRange:NSMakeRange(2, 1)];
+                               [data getBytes:&self->arqcFormat length:1];
+                           }
+                       }
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           //[self ledON:1 completion:^(NSString* status) {
+                           [self.lib startTransaction:timeLimit cardType:cardType option:option amount:self->amount transactionType:transactionType cashBack:self->cashBack currencyCode:self->currencyCode reportingOption:reportingOption];
+                           
+                           //}];
+                       });
+                   }];
+                   //});
+               }
+       }else{
+           
+       }
 }
 
 
@@ -605,6 +649,9 @@ typedef void(^commandCompletion)(NSString*);
     dispatch_async(dispatch_get_main_queue(), ^{
         // self.txtData.text =  [self.txtData.text stringByAppendingString:[NSString stringWithFormat:@"\n[Display Message Request]\n%@", dataString]];
         [self setText:[NSString stringWithFormat:@"\n[Display Message Request]\n%@", dataString]];
+        if ([dataString isEqualToString:@"USE CHIP READER"]) {
+            self.swipeCardLbl.text = @"USE CHIP READER";
+        }
     });
     
 }
@@ -627,6 +674,10 @@ typedef void(^commandCompletion)(NSString*);
         
         
         [self setText:[NSString stringWithFormat:@"\n[Device Extended Response]\n%@", data]];
+        if ([data isEqualToString:@"00000000"]) {
+            [self setText:[NSString stringWithFormat:@"Statrt EMV Failed Trying again : %@", data]];
+            [self startEMV];
+        }
     });
 }
 
