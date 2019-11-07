@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AFNetworking.h"
+#import "AppDelegate.h"
+#import "Reachability.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EmergencyViewController : UIViewController{
