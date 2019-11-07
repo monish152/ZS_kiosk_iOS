@@ -318,10 +318,7 @@ typedef void(^commandCompletion)(NSString*);
                             
                             if(deviceType == MAGTEKTDYNAMO || deviceType == MAGTEKKDYNAMO)
                             {
-                                self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"MSR On"
-                                                                                                         style:UIBarButtonItemStylePlain
-                                                                                                        target:self action:@selector(turnMSROn)];
-                                [self setText:@"Setting Date Time..."];
+                                
                                 [self setDateTime];
                             }
                         });
@@ -676,7 +673,7 @@ typedef void(^commandCompletion)(NSString*);
         [self setText:[NSString stringWithFormat:@"\n[Device Extended Response]\n%@", data]];
         if ([data isEqualToString:@"00000000"]) {
             [self setText:[NSString stringWithFormat:@"Statrt EMV Failed Trying again : %@", data]];
-            [self startEMV];
+//            [self startEMV];
         }
     });
 }
@@ -750,6 +747,21 @@ typedef void(^commandCompletion)(NSString*);
         [self setText:[NSString stringWithFormat:@"\n[ARQC Received]\n%@", dataString]];
         if(tlv != nil)
         {
+            NSString *transactionTypeValue = [(MTTLV*)[tlv objectForKey:@"DFDF52"] value];
+                               if ([transactionTypeValue isEqualToString:@"01"]) {
+            //                       self->transactionType = @"MagStripe";
+                                   isCardSwipe = YES;
+                                   UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Zenspace" message:@"Card Swipe not working at this time. Please try EMV." preferredStyle:UIAlertControllerStyleAlert];
+                                   UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+                                       [self.navigationController popViewControllerAnimated:YES];
+                                   }];
+                                   
+                                   [alert addAction:okAction];
+                                   [self presentViewController:alert animated:YES completion:nil];
+                               }
+                               if ([transactionTypeValue isEqualToString:@"05"]) {
+                                   self->transactionType = @"EMV";
+                               }
             
             if([self->opt isQuickChip])
             {
@@ -952,17 +964,17 @@ typedef void(^commandCompletion)(NSString*);
 //    tlvData = @"0239F9820235DFDF540A00000000000000000000DFDF550182DFDF250F423530363638323038333031384141FA82020B70820207DFDF530100DFDF4D273B343736313030303039303030303131393D32323132303030303030303030303030303030303FDFDF520101F88201CEDFDF598201B0958A12029DAC7AB21299D32BDD9EFBA5D9727AAC191195D8ACA6B1603CAE5E2035BE65C140361CE269A321DBA8D094C06CBA98C7DC745D588416CBD650B8B337C01449B9C59BDC4EEF57CD2DED7C0B683C2165902FF4F5D53638768B1DFB1F65EF09B43FB4AE7389EB30CA4A52DD42407D8AE9107BE5CD30080F0305ED87B99617B2EA68D0924611EDD1807D88458351D7C41C3229FB19046D0A0BC4C3C534EF20BC459F47248A87CE07A31F78D91DB2F8F82A9D4533FD19F5CB955EF4C2962C69E0EEFE5A2E9727BE5C92A8ADAE88AF544E8F3B1CC461F020719EFDAE1B49061BA6066683387F6781F880CB085012CA07F5D43295640DBC1A61E35746AD2A05067E643AA1D0D5A62C6464BD0FC7E0CDD562F8A1940608C8A1F3BD8EB826CFAB543434514EF336AD037EAAFA513AD98C3073D26422DD2165C936372F1C7B4762315CE545B7C74883ABA56ACBCA1D62D84B2B7900FC8D7A31B972D65DB14EB77FAF6B2D8062471850BEC956D0C3F09104C0AC80F7F8A8C3B57C5150202981DCD9D0B5E84613FD86E336CC2E1F966C055FC26366A461BC4FF5DCFC529B648FA628D9651BAB8EF8B2BC197CF80A14131359DFDF560A9011880B50668200036ADFDF570180DFDF5801030000000000000000000000";
     
     //production
-            NSString *custCode = @"QF20436257";
-            NSString *userName = @"MAG190911002";
-            NSString *password = @"ryQbhRu!e@6#Z3";
-            NSString *processorName = @"Rapid Connect v3 - Production";
+//            NSString *custCode = @"QF20436257";
+//            NSString *userName = @"MAG190911002";
+//            NSString *password = @"ryQbhRu!e@6#Z3";
+//            NSString *processorName = @"Rapid Connect v3 - Production";
 //
     
     //Pilot
-//    NSString *custCode = @"RU78375046";
-//    NSString *userName = @"MAG180419001";
-//    NSString *password = @"e!g@8iX9kN#O4k";
-//    NSString *processorName = @"Rapid Connect v3 - Pilot";
+    NSString *custCode = @"RU78375046";
+    NSString *userName = @"MAG180419001";
+    NSString *password = @"e!g@8iX9kN#O4k";
+    NSString *processorName = @"Rapid Connect v3 - Pilot";
     
     
     
@@ -1099,17 +1111,17 @@ typedef void(^commandCompletion)(NSString*);
   
     
     //production
-//    NSString *custCode = @"QF20436257";
-//    NSString *userName = @"MAG190911002";
-//    NSString *password = @"ryQbhRu!e@6#Z3";
-//    NSString *processorName = @"Rapid Connect v3 - Production";
+    NSString *custCode = @"QF20436257";
+    NSString *userName = @"MAG190911002";
+    NSString *password = @"ryQbhRu!e@6#Z3";
+    NSString *processorName = @"Rapid Connect v3 - Production";
     
     
     //Pilot
-    NSString *custCode = @"RU78375046";
-    NSString *userName = @"MAG180419001";
-    NSString *password = @"e!g@8iX9kN#O4k";
-    NSString *processorName = @"Rapid Connect v3 - Pilot";
+//    NSString *custCode = @"RU78375046";
+//    NSString *userName = @"MAG180419001";
+//    NSString *password = @"e!g@8iX9kN#O4k";
+//    NSString *processorName = @"Rapid Connect v3 - Pilot";
 //
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://mppg.magensa.net/v3/MPPGv3Service.svc"]];
@@ -1260,7 +1272,7 @@ typedef void(^commandCompletion)(NSString*);
 }
 
 -(void)bookingApi:(NSString *)transactionID{
-  
+    return;
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     });

@@ -245,5 +245,7 @@
  // Pass the selected object to the new view controller.
  }
  */
-
+-(IBAction)backBtnPress:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
