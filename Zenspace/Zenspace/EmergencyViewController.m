@@ -27,7 +27,7 @@
                                  size:36];
     emergencyCall.font = [UIFont fontWithName:@"Roboto-Bold"
     size:36];
-    [self getList];
+//    [self getList];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

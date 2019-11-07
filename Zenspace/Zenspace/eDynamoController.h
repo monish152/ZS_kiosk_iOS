@@ -13,6 +13,8 @@
 {
     NSString *currentElement;
     BOOL isCardSwipe;
+    int countConnection;
+    
 
 }
 - (void)startEMV;
@@ -21,4 +23,5 @@
 @property (nonatomic, strong) UIButton* btnCancel;
 @property (nonatomic, strong) UIButton* btnReset;
 @property (nonatomic, strong) UIButton* btnOptions;
+@property (nonatomic, strong) NSMutableArray* deviceList;
 @end

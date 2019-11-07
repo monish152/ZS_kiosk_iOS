@@ -76,7 +76,9 @@ typedef void(^commandCompletion)(NSString*);
 //    [self.navigationController popViewControllerAnimated:YES];
     opt = [[optionController alloc]initWithData];
 //    [self isTDyanmo];
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 0.5), dispatch_get_main_queue(), ^(void){
+        [self isTDyanmo];
+    });
 }
 
 -(void)isTDyanmo
@@ -88,7 +90,10 @@ typedef void(^commandCompletion)(NSString*);
 //        return;
 //    }
    [self.lib setDeviceType:MAGTEKTDYNAMO];
-    [self scanForBLE];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self scanForBLE];
+    });
+    
 }
 -(void)presentOption
 {
@@ -175,7 +180,8 @@ typedef void(^commandCompletion)(NSString*);
 
 -(void) viewWillDisappear:(BOOL)animated
 {
-    //[self.lib closeDevice];
+    countConnection = 0;
+    [self.lib closeDevice];
     
 }
 
@@ -185,7 +191,7 @@ typedef void(^commandCompletion)(NSString*);
         [self setText:@"Connecting..."];
         //cbper = per;
         self.lib.delegate = self;
-        [self.navigationController popViewControllerAnimated:YES];
+//        [self.navigationController popViewControllerAnimated:YES];
         [self.lib setAddress:per.identifier.UUIDString];
         [self.lib openDevice];
     });
@@ -209,13 +215,31 @@ typedef void(^commandCompletion)(NSString*);
 - (void)scanForBLE
 {
     
-  
+    _deviceList = [NSMutableArray new];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setText:@"Fething Device list..."];
+//        self.lib.delegate = self;
+        [self.lib startScanningForPeripherals];
+    });
     
-    BLEScannerList* list = [[BLEScannerList alloc] initWithStyle:UITableViewStylePlain lib:self.lib];
-    list.delegate = self;
-    [self.navigationController pushViewController:list animated:YES];
+//    BLEScannerList* list = [[BLEScannerList alloc] initWithStyle:UITableViewStylePlain lib:self.lib];
+//    list.delegate = self;
+//    [self.navigationController pushViewController:list animated:YES];
 }
 
+- (void)bleReaderDidDiscoverPeripheral
+{
+    _deviceList = [self.lib getDiscoveredPeripherals];
+    [self.lib stopScanningForPeripherals];
+    //    [self didSelectBLEReader:_deviceList[0]];
+    [self setText:@"Connecting..."];
+    //cbper = per;
+//    self.lib.delegate = self;
+    CBPeripheral *per = _deviceList[0];
+    [self.lib setAddress:per.identifier.UUIDString];
+    [self.lib openDevice];
+    
+}
 
 - (void)deviceNotPaired
 {
@@ -314,7 +338,8 @@ typedef void(^commandCompletion)(NSString*);
                             [self setText:[NSString stringWithFormat:@"[Security Level]\r%@",sl]];
                             
                             
-                            
+                            [super sendCommandSync:@"580101"];
+                            [super sendCommandSync:@"59020F20"];
                             
                             if(deviceType == MAGTEKTDYNAMO || deviceType == MAGTEKKDYNAMO)
                             {
@@ -672,8 +697,13 @@ typedef void(^commandCompletion)(NSString*);
         
         [self setText:[NSString stringWithFormat:@"\n[Device Extended Response]\n%@", data]];
         if ([data isEqualToString:@"00000000"]) {
+            countConnection++;
             [self setText:[NSString stringWithFormat:@"Statrt EMV Failed Trying again : %@", data]];
-//            [self startEMV];
+//            [self cancelEMV];
+            if (countConnection ==1) {
+                 [self startEMV];
+            }
+           
         }
     });
 }
