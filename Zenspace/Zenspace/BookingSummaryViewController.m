@@ -295,23 +295,24 @@
         }
     
      
-//        StripePaymentViewController *vc = [[StripePaymentViewController alloc] initWithNibName:@"StripePaymentViewController" bundle:nil];
-//        NSString *amount = [NSString stringWithFormat:@"%@", _price];
-//        vc.transactionAmount =amount ;
-//        vc.sfid = _sfid;
-//        vc.podName = self->_podName;
-//        vc.date = self->_date;
-//        vc.duration = _duration;
-//        vc.imageurl = self->_imageurl;
-//        vc.price = amountDue;
-//        vc.capacity = self->_capacity;
-//        vc.email = email.text;
-//        vc.phoneNumber = number;
-//        vc.name = name.text;
-//        [self.navigationController pushViewController:vc animated:YES];
+        StripePaymentViewController *vc = [[StripePaymentViewController alloc] initWithNibName:@"StripePaymentViewController" bundle:nil];
+        NSString *amount = [NSString stringWithFormat:@"%@", _price];
+        vc.transactionAmount =amount ;
+        vc.sfid = _sfid;
+        vc.podName = self->_podName;
+        vc.date = self->_date;
+        vc.duration = _duration;
+        vc.imageurl = self->_imageurl;
+        vc.price = amountDue;
+        vc.capacity = self->_capacity;
+        vc.email = email.text;
+        vc.phoneNumber = number;
+        vc.name = name.text;
+        [self.navigationController pushViewController:vc animated:YES];
         
         
        
+        /*
         kDynamoController *vc = [[kDynamoController alloc] initWithNibName:@"kDynamoController" bundle:nil];
         CGFloat value = [_price floatValue] *100;
         NSString *amount = [NSString stringWithFormat:@"%f",value];
@@ -331,6 +332,7 @@
         vc.phoneNumber = number;
         vc.name = name.text;
         [self.navigationController pushViewController:vc animated:YES];
+         */
        
     }
 }

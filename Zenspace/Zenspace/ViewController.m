@@ -20,8 +20,8 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-//    EventsListViewController *vc = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
-//    [self.navigationController pushViewController:vc animated:NO];
+    EventsListViewController *vc = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:NO];
 
 //        BookingSummaryViewController *vc = [[BookingSummaryViewController alloc] initWithNibName:@"BookingSummaryViewController" bundle:nil];
 //        vc.price = @"10";

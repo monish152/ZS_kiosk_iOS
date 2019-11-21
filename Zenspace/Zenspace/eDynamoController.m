@@ -1141,17 +1141,17 @@ typedef void(^commandCompletion)(NSString*);
   
     
     //production
-    NSString *custCode = @"QF20436257";
-    NSString *userName = @"MAG190911002";
-    NSString *password = @"ryQbhRu!e@6#Z3";
-    NSString *processorName = @"Rapid Connect v3 - Production";
+//    NSString *custCode = @"QF20436257";
+//    NSString *userName = @"MAG190911002";
+//    NSString *password = @"ryQbhRu!e@6#Z3";
+//    NSString *processorName = @"Rapid Connect v3 - Production";
     
     
     //Pilot
-//    NSString *custCode = @"RU78375046";
-//    NSString *userName = @"MAG180419001";
-//    NSString *password = @"e!g@8iX9kN#O4k";
-//    NSString *processorName = @"Rapid Connect v3 - Pilot";
+    NSString *custCode = @"RU78375046";
+    NSString *userName = @"MAG180419001";
+    NSString *password = @"e!g@8iX9kN#O4k";
+    NSString *processorName = @"Rapid Connect v3 - Pilot";
 //
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://mppg.magensa.net/v3/MPPGv3Service.svc"]];

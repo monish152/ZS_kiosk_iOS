@@ -20,8 +20,8 @@ green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
 blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
 alpha:1.0]
 
-#define KBASEPATH @"https://zenspace-production.herokuapp.com/"
-//#define KBASEPATH @"https://zensapce-staging.herokuapp.com/"
+//#define KBASEPATH @"https://zenspace-production.herokuapp.com/"
+#define KBASEPATH @"https://zensapce-staging.herokuapp.com/"
 
 @import Firebase;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
